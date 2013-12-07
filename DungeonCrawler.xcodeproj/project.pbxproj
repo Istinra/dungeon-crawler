@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
-		225D7DBE1850C3EF00A141C0 /* DungeonCrawler.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 225D7DBD1850C3EF00A141C0 /* DungeonCrawler.1 */; };
 		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,16 +18,17 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				225D7DBE1850C3EF00A141C0 /* DungeonCrawler.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1BBDF662FEA373C9BD97B1FA /* DungeonCrawler.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; name = DungeonCrawler.1; path = DungeonCrawler/DungeonCrawler.1; sourceTree = "<group>"; };
+		2256277818532B37009A865C /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		2256277918532D65009A865C /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
 		225D7DBB1850C3EF00A141C0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		225D7DBD1850C3EF00A141C0 /* DungeonCrawler.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DungeonCrawler.1; sourceTree = "<group>"; };
 		225D7DC41850C45500A141C0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				225D7DB81850C3EF00A141C0 /* DungeonCrawler */,
+				1BBDF662FEA373C9BD97B1FA /* DungeonCrawler.1 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,7 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				225D7DBB1850C3EF00A141C0 /* main.cpp */,
-				225D7DBD1850C3EF00A141C0 /* DungeonCrawler.1 */,
+				2256277818532B37009A865C /* Renderer.h */,
+				2256277918532D65009A865C /* Game.h */,
 			);
 			path = DungeonCrawler;
 			sourceTree = "<group>";
@@ -239,6 +241,7 @@
 				225D7DC31850C3EF00A141C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
