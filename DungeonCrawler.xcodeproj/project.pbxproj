@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
 		225D7DBE1850C3EF00A141C0 /* DungeonCrawler.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 225D7DBD1850C3EF00A141C0 /* DungeonCrawler.1 */; };
+		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
 		225D7DBB1850C3EF00A141C0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		225D7DBD1850C3EF00A141C0 /* DungeonCrawler.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DungeonCrawler.1; sourceTree = "<group>"; };
+		225D7DC41850C45500A141C0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 		225D7DAF1850C3EF00A141C0 = {
 			isa = PBXGroup;
 			children = (
+				225D7DC41850C45500A141C0 /* SDL2.framework */,
 				225D7DBA1850C3EF00A141C0 /* DungeonCrawler */,
 				225D7DB91850C3EF00A141C0 /* Products */,
 			);
@@ -195,6 +199,11 @@
 		225D7DC21850C3EF00A141C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					/Library/Frameworks/SDL2.framework/Headers,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +211,11 @@
 		225D7DC31850C3EF00A141C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					/Library/Frameworks/SDL2.framework/Headers,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
