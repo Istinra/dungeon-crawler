@@ -14,7 +14,8 @@ class Bitmap
 public:
     Bitmap(unsigned height, unsigned width);
     ~Bitmap();
-private:
+
+protected:
     unsigned height, width;
     unsigned *pixels;
 };

@@ -23,7 +23,6 @@ public:
     unsigned *Pixels() { return pixels; }
 private:
     unsigned pixels[WIDTH * HEIGHT];
-
 };
 
 #endif
