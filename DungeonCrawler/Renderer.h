@@ -9,6 +9,15 @@
 #ifndef DungeonCrawler_Renderer_h
 #define DungeonCrawler_Renderer_h
 
+#include "Game.h"
 
+class Renderer
+{
+public:
+    Renderer();
+    void Draw(const Game& game);
+
+
+};
 
 #endif

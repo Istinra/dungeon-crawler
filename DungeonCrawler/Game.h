@@ -9,6 +9,11 @@
 #ifndef DungeonCrawler_Game_h
 #define DungeonCrawler_Game_h
 
+class Game
+{
+public:
+    Game();
 
+};
 
 #endif

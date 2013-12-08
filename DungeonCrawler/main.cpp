@@ -23,7 +23,7 @@ void Render(SDL_Window* const window)
     }
     for (unsigned i = 0; i < WIDTH * HEIGHT; i++)
     {
-        ((unsigned *)screen->pixels)[i] = (unsigned int) i;
+        ((unsigned *)screen->pixels)[i] = (unsigned int) i * 10;
     }
     if (SDL_MUSTLOCK(screen))
     {
@@ -85,7 +85,7 @@ int main(int argc, const char * argv[])
         {
             std::cout << "FPS: " << frames / totalTime << std::endl;
         }
-        //SDL_Delay(1);
+        SDL_Delay(1);
     }
     
     SDL_DestroyWindow(window);
