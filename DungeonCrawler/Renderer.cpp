@@ -8,7 +8,7 @@
 
 #include "Renderer.h"
 
-Renderer::Renderer()
+Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
 {
     for(int i = 0; i < HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i++)
     {
@@ -22,5 +22,7 @@ Renderer::Renderer()
 
 void Renderer::Draw(const Game &game)
 {
-
+    //Copy top HEIGHT - PANEL_HEIGHT rows from RayCastBitMap
+    //Note UI frame doesn't need to be redrawn
+    viewPort.Draw(game);
 }

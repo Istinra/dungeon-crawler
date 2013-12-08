@@ -9,11 +9,10 @@
 #ifndef DungeonCrawler_Renderer_h
 #define DungeonCrawler_Renderer_h
 
-#define WIDTH 640
-#define HEIGHT 480
 #define PANEL_HEIGHT 100
 
 #include "Game.h"
+#include "RayCastBitmap.h"
 
 class Renderer
 {
@@ -23,6 +22,7 @@ public:
     unsigned *Pixels() { return pixels; }
 private:
     unsigned pixels[WIDTH * HEIGHT];
+    RayCastBitmap viewPort;
 };
 
 #endif
