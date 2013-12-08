@@ -9,11 +9,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <random>
+#include "Renderer.h"
 
-#define WIDTH 640
-#define HEIGHT 480
-
-void Render(SDL_Window* const window)
+void Render(SDL_Window* const window, Renderer& renderer)
 {
     SDL_Surface* screen = SDL_GetWindowSurface(window);
 
@@ -21,9 +19,10 @@ void Render(SDL_Window* const window)
     {
         return;
     }
+    unsigned* pixels = renderer.Pixels();
     for (unsigned i = 0; i < WIDTH * HEIGHT; i++)
     {
-        ((unsigned *)screen->pixels)[i] = (unsigned int) i * 10;
+        ((unsigned *)screen->pixels)[i] = pixels[i];
     }
     if (SDL_MUSTLOCK(screen))
     {
@@ -36,7 +35,8 @@ int main(int argc, const char * argv[])
 {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
     
-    SDL_Window* window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
+    SDL_Window* window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 
     if (window == nullptr)
     {
@@ -52,7 +52,10 @@ int main(int argc, const char * argv[])
     float dt = 0;
     
     Uint64 oldTime = SDL_GetPerformanceCounter();
-    Uint64 newTime = oldTime;
+    Uint64 newTime;
+
+    Renderer renderer;
+    Game game;
     
     while (running)
     {
@@ -80,7 +83,7 @@ int main(int argc, const char * argv[])
                     break;
             }
         }
-        Render(window);
+        Render(window, renderer);
         if (frames % 100 == 0)
         {
             std::cout << "FPS: " << frames / totalTime << std::endl;

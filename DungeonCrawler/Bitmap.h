@@ -12,8 +12,11 @@
 class Bitmap
 {
 public:
-    Bitmap();
-    
+    Bitmap(unsigned height, unsigned width);
+    ~Bitmap();
+private:
+    unsigned height, width;
+    unsigned *pixels;
 };
 
 #endif

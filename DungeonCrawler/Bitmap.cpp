@@ -8,7 +8,12 @@
 
 #include "Bitmap.h"
 
-Bitmap::Bitmap()
+Bitmap::Bitmap(unsigned height, unsigned width) : height(height), width(width)
 {
+    pixels = new unsigned[height * width];
+}
 
+Bitmap::~Bitmap()
+{
+    delete [] pixels;
 }
