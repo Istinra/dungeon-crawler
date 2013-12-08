@@ -54,20 +54,28 @@ void RayCastBitmap::Draw(Game const game)
 
     for (int i = 0; i < WIDTH; i++)
     {
-        float vX, vZ;
-        CheckHorizontalIntersections(angle, vX, vZ);
-
+        float hX, hZ, vX, vZ;
+        CheckHorizontalIntersections(angle, hX, hZ);
+        CheckVerticalIntersections(angle, vX, vZ);
+        float vDistance = fabsf(posX - vX) / cosf(angle) /
+                fabsf(posZ - vZ) / sinf(angle);
+        float hDistance = fabsf(posX - hX) / cosf(angle) /
+                fabsf(posZ - hZ) / sinf(angle);
 
         angle += ANGLE_BETWEEN_RAYS;
     }
 }
 
-void RayCastBitmap::CheckHorizontalIntersections(float angle, float &x, float &z)
+void RayCastBitmap::CheckHorizontalIntersections(const float angle, float &x, float &z)
 {
     float aZ = static_cast<int>(posZ / 64) * 64 + (angle > M_PI ? +64 : -1);
-    float aX = (posZ - aZ) / tanf(angle);
+    float aX = posX + (posZ - aZ) / tanf(angle);
 
-    int zIndex = static_cast<int>(aZ) >> 8, xIndex = static_cast<int>(aX) >> 8;
+    int zIndex = static_cast<int>(aZ) >> 8,
+            xIndex = static_cast<int>(aX) >> 8;
+
+    float zA = angle > M_PI ? +64 : -64;
+    float xA = 64 / tanf(angle);
 
     while (zIndex < height && xIndex < width &&
             zIndex > -1 && xIndex > -1)
@@ -78,8 +86,37 @@ void RayCastBitmap::CheckHorizontalIntersections(float angle, float &x, float &z
             z = aZ;
             return;
         }
-        aZ += angle > M_PI ? +64 : -1;
-        aX += 64 / tanf(angle);
+        aZ += zA;
+        aX += xA;
+        zIndex = static_cast<int>(aZ) >> 8;
+        xIndex = static_cast<int>(aX) >> 8;
+    }
+    x = -1;
+    z = -1;
+}
+
+void RayCastBitmap::CheckVerticalIntersections(const float angle, float &x, float &z)
+{
+    float aX = static_cast<int>(posX / 64) * 64 + (angle < M_PI_2 || angle > M_PI_2 + M_PI ? +64 : -1);
+    float aZ = posZ + (posX - aX) * tanf(angle);
+
+    int zIndex = static_cast<int>(aZ) >> 8,
+            xIndex = static_cast<int>(aX) >> 8;
+
+    float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? +64 : -64;
+    float zA = 64 * tanf(angle);
+
+    while (zIndex < height && xIndex < width &&
+            zIndex > -1 && xIndex > -1)
+    {
+        if (level[zIndex][xIndex] > 0)
+        {
+            x = aX;
+            z = aZ;
+            return;
+        }
+        aZ += zA;
+        aX += xA;
         zIndex = static_cast<int>(aZ) >> 8;
         xIndex = static_cast<int>(aX) >> 8;
     }

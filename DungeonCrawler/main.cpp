@@ -83,6 +83,7 @@ int main(int argc, const char * argv[])
                     break;
             }
         }
+        renderer.Draw(game);
         Render(window, renderer);
         if (frames % 100 == 0)
         {

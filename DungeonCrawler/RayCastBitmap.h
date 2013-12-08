@@ -31,7 +31,10 @@ private:
     int mapWidth, mapHeight;
     float posX, posY, posZ, yaw;
 
-    void CheckHorizontalIntersections(float angle, float &x, float &z);
+    void CheckHorizontalIntersections(const float angle, float &x, float &z);
+
+    void CheckVerticalIntersections(const float angle, float &x, float &z);
+
 };
 
 #endif
