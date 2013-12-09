@@ -15,6 +15,20 @@ public:
     Bitmap(unsigned height, unsigned width);
     ~Bitmap();
 
+    unsigned const *Pixels()
+    {
+        return pixels;
+    };
+
+    unsigned Height()
+    {
+        return height;
+    };
+
+    unsigned Width()
+    {
+        return width;
+    };
 protected:
     unsigned height, width;
     unsigned *pixels;

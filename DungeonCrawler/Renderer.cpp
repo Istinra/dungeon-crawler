@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
+#include <string.h>
 #include "Renderer.h"
 
 Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
@@ -22,7 +23,7 @@ Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
 
 void Renderer::Draw(const Game &game)
 {
-    //Copy top HEIGHT - PANEL_HEIGHT rows from RayCastBitMap
+    memcpy(pixels, viewPort.Pixels(), viewPort.Width() * viewPort.Height() * sizeof(unsigned));
     //Note UI frame doesn't need to be redrawn
     viewPort.Draw(game);
 }
