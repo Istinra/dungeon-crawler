@@ -15,41 +15,50 @@ Bitmap(height, width)
     //Row based, iterate last number in inner loop for caching
     //XZ Coordinate top down
 
-    // XXXX
-    //    X
-    //    X
+    // XXX  X
+    //      X
+    //      X
     // O
     level[0][0] = 1;
-    level[0][1] = 1;
-    level[0][2] = 1;
-    level[0][3] = 1;
+    level[1][0] = 1;
+    level[2][0] = 1;
+    level[3][0] = 0;
+    level[4][0] = 0;
+    level[5][0] = 1;
 
-    level[1][0] = 0;
+    level[0][1] = 0;
     level[1][1] = 0;
-    level[1][2] = 0;
-    level[1][3] = 1;
-
-    level[2][0] = 0;
     level[2][1] = 0;
-    level[2][2] = 0;
-    level[2][3] = 1;
-
-    level[3][0] = 0; //Player Cube
     level[3][1] = 0;
+    level[4][1] = 0;
+    level[5][1] = 1;
+
+    level[0][2] = 0;
+    level[1][2] = 0;
+    level[2][2] = 0;
     level[3][2] = 0;
+    level[4][2] = 0;
+    level[5][2] = 1;
+
+    level[0][3] = 0;
+    level[1][3] = 0;
+    level[2][3] = 0;
     level[3][3] = 0;
+    level[4][3] = 0;
+    level[5][3] = 0;
 
     posY = 32;
-    posX = 32;
-    posZ = 224;
+    posX = 1;
+    posZ = 86;
     yaw = 0.785398163f;
 
     mapHeight = 4;
-    mapWidth = 4;
+    mapWidth = 6;
 }
 
 void RayCastBitmap::Draw(Game const game)
 {
+    yaw += 0.001;
     float angle = yaw - VIEWING_ANGLE / 2;
 
     for (int i = 0; i < width; i++)
@@ -72,7 +81,7 @@ void RayCastBitmap::Draw(Game const game)
         {
             distance = vDistance * cosf(angle);
         }
-        int sliceHeight = 64 / static_cast<int>(distance) * DISTANCE_TO_PLANE;
+        int sliceHeight = (int) (64 / distance * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;
         int end = height / 2 + sliceHeight / 2;
         if (start < 0) start = 0;
@@ -97,7 +106,7 @@ void RayCastBitmap::CheckHorizontalIntersections(const float angle, float &x, fl
     float zA = angle > M_PI ? +64 : -64;
     float xA = 64 / tanf(angle);
 
-    while (zIndex < height && xIndex < width &&
+    while (zIndex < mapHeight && xIndex < mapWidth &&
             zIndex > -1 && xIndex > -1)
     {
         if (level[zIndex][xIndex] > 0)
@@ -126,7 +135,7 @@ void RayCastBitmap::CheckVerticalIntersections(const float angle, float &x, floa
     float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? +64 : -64;
     float zA = 64 * tanf(angle);
 
-    while (zIndex < height && xIndex < width &&
+    while (zIndex < mapHeight && xIndex < mapWidth &&
             zIndex > -1 && xIndex > -1)
     {
         if (level[zIndex][xIndex] > 0)

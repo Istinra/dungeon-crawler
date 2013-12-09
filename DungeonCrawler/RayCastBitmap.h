@@ -27,7 +27,7 @@ public:
     void Draw(Game const game);
 
 private:
-    int level[4][4];
+    int level[6][4];
     int mapWidth, mapHeight;
     float posX, posY, posZ, yaw;
 
