@@ -83,17 +83,19 @@ void RayCastBitmap::Draw(Game const game)
         float distance;
         if (hDistance < vDistance)
         {
-            distance = hDistance * cosf(VIEWING_ANGLE / 2);
+            distance = hDistance * cosf(angle - yaw);
         }
         else
         {
-            distance = vDistance * cosf(VIEWING_ANGLE / 2);
+            distance = vDistance * cosf(angle - yaw);
         }
         int sliceHeight = (int) (GRID_SIZE / distance * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;
         int end = height / 2 + sliceHeight / 2;
         if (start < 0) start = 0;
         if (end > height) end = height - 1;
+        if (i == 320)
+            i = i;
         for (; start < end; start++)
         {
             pixels[i + start * width] = 0x00FF00;
