@@ -15,6 +15,7 @@
 #define HEIGHT 480
 #define ANGLE_BETWEEN_RAYS VIEWING_ANGLE / WIDTH
 
+#define GRID_SIZE 64
 
 #include "Bitmap.h"
 #include "Game.h"
@@ -27,7 +28,7 @@ public:
     void Draw(Game const game);
 
 private:
-    int level[6][4];
+    int level[6][5];
     int mapWidth, mapHeight;
     float posX, posY, posZ, yaw;
 
