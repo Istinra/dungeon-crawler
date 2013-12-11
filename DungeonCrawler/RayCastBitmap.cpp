@@ -15,7 +15,7 @@ Bitmap(height, width)
     //XZ Coordinate top down
 
     level[0][0] = 1;
-    level[1][0] = 1;
+    level[1][0] = 0;
     level[2][0] = 1;
     level[3][0] = 1;
     level[4][0] = 1;
@@ -89,13 +89,17 @@ void RayCastBitmap::Draw(Game const game)
         {
             distance = vDistance * cosf(angle - yaw);
         }
-        int sliceHeight = (int) (GRID_SIZE / distance * DISTANCE_TO_PLANE);
+        int sliceHeight = static_cast<int>(GRID_SIZE / floorf(distance) * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;
         int end = height / 2 + sliceHeight / 2;
-        if (start < 0) start = 0;
-        if (end > height) end = height - 1;
-        if (i == 320)
-            i = i;
+        if (start < 0)
+        {
+            start = 0;
+        }
+        if (end > height)
+        {
+            end = height - 1;
+        }
         for (; start < end; start++)
         {
             pixels[i + start * width] = 0x00FF00;
