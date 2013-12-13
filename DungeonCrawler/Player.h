@@ -10,10 +10,10 @@
 
 #include "Entity.h"
 
-class Player : public Entity {
+class Player : public Entity
+{
 public:
     Player();
-
     ~Player();
 
 private:

@@ -19,7 +19,7 @@ Bitmap(height, width)
     level[1][0] = 0;
     level[2][0] = 1;
     level[3][0] = 1;
-    level[4][0] = 0;
+    level[4][0] = 1;
     level[5][0] = 1;
 
     level[0][1] = 0;
@@ -66,14 +66,14 @@ void RayCastBitmap::Draw(Game &game) {
     {
         pixels[i] = 0;
     }
-    float angle = yaw - VIEWING_ANGLE / 2;
-    for (int i = 0; i < width; i++, angle += ANGLE_BETWEEN_RAYS)
+    float angle = yaw + VIEWING_ANGLE / 2;
+    for (int i = 0; i < width; i++, angle -= ANGLE_BETWEEN_RAYS)
     {
         float hX, hZ, vX, vZ;
         CheckHorizontalIntersections(angle, hX, hZ);
         CheckVerticalIntersections(angle, vX, vZ);
 
-        //todo swap to cos function
+        //todo swap to trig distances rather than square root
         float hDistance = sqrtf((posX - hX) * (posX - hX) + (posZ - hZ) * (posZ - hZ));
         float vDistance = sqrtf((posX - vX) * (posX - vX) + (posZ - vZ) * (posZ - vZ));
 
@@ -174,4 +174,5 @@ void RayCastBitmap::UpdatePosition(Game &game) {
     posX = pos.x;
     posY = pos.y;
     posZ = pos.z;
+    yaw = player.Yaw();
 }
