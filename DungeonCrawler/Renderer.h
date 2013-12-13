@@ -18,7 +18,9 @@ class Renderer
 {
 public:
     Renderer();
-    void Draw(const Game& game);
+
+    void Draw(Game &game);
+
     unsigned *Pixels() { return pixels; }
 private:
     unsigned pixels[WIDTH * HEIGHT];

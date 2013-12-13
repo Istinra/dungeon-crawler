@@ -44,7 +44,6 @@ int main(int argc, const char * argv[])
         return 1;
     }
     bool running = true;
-    bool keys[323] = { false };
 
     unsigned frames = 0;
     float frequency = (float) SDL_GetPerformanceFrequency();
@@ -70,12 +69,6 @@ int main(int argc, const char * argv[])
         {
             switch (event.type)
             {
-                case SDL_KEYDOWN:
-                    keys[event.key.keysym.sym] = true;
-                    break;
-                case SDL_KEYUP:
-                    keys[event.key.keysym.sym] = false;
-                    break;
                 case SDL_QUIT:
                     running = false;
                     break;
@@ -83,11 +76,13 @@ int main(int argc, const char * argv[])
                     break;
             }
         }
+        bool const *keys = reinterpret_cast<bool const *>(SDL_GetKeyboardState(nullptr));
+        game.Update(keys);
         renderer.Draw(game);
         Render(window, renderer);
         if (frames % 100 == 0)
         {
-            std::cout << "FPS: " << frames / totalTime << std::endl;
+            std::cout << "FPS: " << frames / totalTime << '\n';
         }
         SDL_Delay(1);
     }

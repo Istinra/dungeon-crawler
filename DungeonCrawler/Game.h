@@ -9,10 +9,23 @@
 #ifndef DungeonCrawler_Game_h
 #define DungeonCrawler_Game_h
 
+#include "Player.h"
+
 class Game
 {
 public:
     Game();
+
+    Player &GetPlayer() {
+        return player;
+    }
+
+    void Update(bool const *keys);
+
+private:
+    void HandleInput(bool const *keys);
+
+    Player player;
 
 };
 

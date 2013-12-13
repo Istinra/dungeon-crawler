@@ -9,24 +9,21 @@
 #ifndef DungeonCrawler_Bitmap_h
 #define DungeonCrawler_Bitmap_h
 
-class Bitmap
-{
+class Bitmap {
 public:
     Bitmap(unsigned height, unsigned width);
-    ~Bitmap();
 
-    unsigned const *Pixels()
-    {
+    virtual ~Bitmap();
+
+    unsigned const *Pixels() {
         return pixels;
     };
 
-    unsigned Height()
-    {
+    unsigned Height() {
         return height;
     };
 
-    unsigned Width()
-    {
+    unsigned Width() {
         return width;
     };
 protected:

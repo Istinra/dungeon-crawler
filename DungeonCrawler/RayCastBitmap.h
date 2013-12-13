@@ -25,17 +25,19 @@ class RayCastBitmap : public Bitmap
 public:
     RayCastBitmap(unsigned int height, unsigned int width);
 
-    void Draw(Game const game);
+    ~RayCastBitmap();
+
+    void Draw(Game &game);
 
 private:
+    void UpdatePosition(Game &game);
+
+    void CheckHorizontalIntersections(const float angle, float &x, float &z);
+    void CheckVerticalIntersections(const float angle, float &x, float &z);
+
     int level[6][5];
     int mapWidth, mapHeight;
     float posX, posY, posZ, yaw;
-
-    void CheckHorizontalIntersections(const float angle, float &x, float &z);
-
-    void CheckVerticalIntersections(const float angle, float &x, float &z);
-
 };
 
 #endif

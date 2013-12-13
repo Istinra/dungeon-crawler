@@ -7,6 +7,7 @@
 //
 
 #include <math.h>
+#include <random>
 #include "RayCastBitmap.h"
 
 RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width):
@@ -58,8 +59,9 @@ Bitmap(height, width)
     mapWidth = 6;
 }
 
-void RayCastBitmap::Draw(Game const game)
-{
+
+void RayCastBitmap::Draw(Game &game) {
+    UpdatePosition(game);
     for (int i = 0; i < height * width; i++)
     {
         pixels[i] = 0;
@@ -102,7 +104,7 @@ void RayCastBitmap::Draw(Game const game)
         }
         for (; start < end; start++)
         {
-            pixels[i + start * width] = i != 75 ? 0x00FF00 : 0xFF0000;
+            pixels[i + start * width] = (unsigned int) rand();
         }
     }
 }
@@ -161,4 +163,15 @@ void RayCastBitmap::CheckVerticalIntersections(const float angle, float &x, floa
     }
     x = INFINITY;
     z = INFINITY;
+}
+
+RayCastBitmap::~RayCastBitmap() {
+}
+
+void RayCastBitmap::UpdatePosition(Game &game) {
+    Player player = game.GetPlayer();
+    Vector3 pos = player.Position();
+    posX = pos.x;
+    posY = pos.y;
+    posZ = pos.z;
 }
