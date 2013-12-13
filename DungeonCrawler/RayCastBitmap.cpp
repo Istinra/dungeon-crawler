@@ -60,7 +60,8 @@ Bitmap(height, width)
 }
 
 
-void RayCastBitmap::Draw(Game &game) {
+void RayCastBitmap::Draw(Game &game)
+{
     UpdatePosition(game);
     for (int i = 0; i < height * width; i++)
     {
@@ -112,8 +113,6 @@ void RayCastBitmap::Draw(Game &game) {
         for (float texPos = 0; start < end; start++, texPos += texIncrement)
         {
             unsigned int heightOffset = static_cast<unsigned int>(texPos) * walls->Width();
-            if (texOffset == 6)
-                i = i;
             pixels[i + start * width] = walls->Pixels()[heightOffset + texOffset];
         }
     }
@@ -175,10 +174,12 @@ void RayCastBitmap::CheckVerticalIntersections(const float angle, float &x, floa
     z = INFINITY;
 }
 
-RayCastBitmap::~RayCastBitmap() {
+RayCastBitmap::~RayCastBitmap()
+{
 }
 
-void RayCastBitmap::UpdatePosition(Game &game) {
+void RayCastBitmap::UpdatePosition(Game &game)
+{
     Player player = game.GetPlayer();
     Vector3 pos = player.Position();
     posX = pos.x;
