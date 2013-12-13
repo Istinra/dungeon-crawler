@@ -30,14 +30,7 @@ Bitmap *Resources::LoadTexture(Textures texture)
     switch (texture)
     {
         case WALLS:
-            if (textures.find(WALLS) == textures.end())
-            {
-                bitmap = InitTexture("/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/walls.png");
-            }
-            else
-            {
-                return textures[WALLS];
-            }
+            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/walls.png");
             break;
         default:
             break;
@@ -45,12 +38,20 @@ Bitmap *Resources::LoadTexture(Textures texture)
     return bitmap;
 }
 
-Bitmap *Resources::InitTexture(const char *file)
+Bitmap *Resources::InitTexture(Textures texture, const char *file)
 {
     Bitmap *bitmap;
-    int x, y, n;
-    stbi_uc *string;
-    string = stbi_load(file, &x, &y, &n, 0);
-    bitmap = new Bitmap((unsigned int) x, (unsigned int) y, (unsigned int *) string);
-    textures[WALLS] = bitmap;
+    if (textures.find(texture) == textures.end())
+    {
+        int x, y, n;
+        stbi_uc *string;
+        string = stbi_load(file, &x, &y, &n, 0);
+        bitmap = new Bitmap((unsigned int) x, (unsigned int) y, (unsigned int *) string);
+        textures[texture] = bitmap;
+    }
+    else
+    {
+        return textures[texture];
+    }
+    return bitmap;
 }

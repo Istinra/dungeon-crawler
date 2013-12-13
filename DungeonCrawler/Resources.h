@@ -36,7 +36,7 @@ public:
     Bitmap *LoadTexture(Textures texture);
 
 private:
-    Bitmap *InitTexture(const char *file);
+    Bitmap *InitTexture(Textures texture, const char *file);
 
     std::map<Textures, Bitmap *> textures;
 };
