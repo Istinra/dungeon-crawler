@@ -17,3 +17,7 @@ Bitmap::~Bitmap()
 {
     delete [] pixels;
 }
+
+Bitmap::Bitmap(unsigned height, unsigned width, unsigned int *data) : height(height), width(width), pixels(data)
+{
+}

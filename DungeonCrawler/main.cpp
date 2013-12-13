@@ -9,6 +9,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <random>
+#include "Resources.h"
 #include "Renderer.h"
 
 void Render(SDL_Window* const window, Renderer& renderer)
@@ -33,8 +34,8 @@ void Render(SDL_Window* const window, Renderer& renderer)
 
 int main(int argc, const char * argv[])
 {
+    Bitmap *pBitmap = Resources::instance().LoadTexture(WALLS);
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-    
     SDL_Window* window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 

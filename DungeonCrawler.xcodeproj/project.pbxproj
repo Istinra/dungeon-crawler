@@ -13,6 +13,7 @@
 		2298AD2F1854219C008A4837 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD2E1854219C008A4837 /* Game.cpp */; };
 		2298AD31185421A7008A4837 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD30185421A7008A4837 /* Renderer.cpp */; };
 		2298AD351854230A008A4837 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD341854230A008A4837 /* Bitmap.cpp */; };
+		22C1A853185B38BD001C9B05 /* Resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22C1A852185B38BD001C9B05 /* Resources.cpp */; };
 		22DCB58D18543ECB000F77D0 /* RayCastBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22DCB58C18543ECB000F77D0 /* RayCastBitmap.cpp */; };
 		60DB6536185A8C9F0054681D /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60DB6535185A8C9F0054681D /* Entity.cpp */; };
 		60DB6539185A8E620054681D /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60DB6538185A8E620054681D /* Player.cpp */; };
@@ -45,6 +46,8 @@
 		2298AD30185421A7008A4837 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		2298AD33185422E6008A4837 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		2298AD341854230A008A4837 /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		22C1A851185B36FD001C9B05 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
+		22C1A852185B38BD001C9B05 /* Resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resources.cpp; sourceTree = "<group>"; };
 		22DCB58B18543EB5000F77D0 /* RayCastBitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RayCastBitmap.h; sourceTree = "<group>"; };
 		22DCB58C18543ECB000F77D0 /* RayCastBitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayCastBitmap.cpp; sourceTree = "<group>"; };
 		60DB6534185A8C940054681D /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				60DB6533185A8C7B0054681D /* Entity */,
 				2298AD321854227E008A4837 /* Graphics */,
 				225D7DBB1850C3EF00A141C0 /* main.cpp */,
+				22C1A851185B36FD001C9B05 /* Resources.h */,
+				22C1A852185B38BD001C9B05 /* Resources.cpp */,
 				2256277818532B37009A865C /* Renderer.h */,
 				2256277918532D65009A865C /* Game.h */,
 				2298AD2E1854219C008A4837 /* Game.cpp */,
@@ -203,6 +208,7 @@
 				22DCB58D18543ECB000F77D0 /* RayCastBitmap.cpp in Sources */,
 				60DB6539185A8E620054681D /* Player.cpp in Sources */,
 				2298AD31185421A7008A4837 /* Renderer.cpp in Sources */,
+				22C1A853185B38BD001C9B05 /* Resources.cpp in Sources */,
 				225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */,
 				2298AD351854230A008A4837 /* Bitmap.cpp in Sources */,
 				60DB6536185A8C9F0054681D /* Entity.cpp in Sources */,

@@ -13,6 +13,8 @@ class Bitmap {
 public:
     Bitmap(unsigned height, unsigned width);
 
+    Bitmap(unsigned height, unsigned width, unsigned *data);
+
     virtual ~Bitmap();
 
     unsigned const *Pixels() {
