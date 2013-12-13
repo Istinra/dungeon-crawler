@@ -14,7 +14,6 @@ Bitmap(height, width)
 {
     //Row based, iterate last number in inner loop for caching
     //XZ Coordinate top down
-
     level[0][0] = 1;
     level[1][0] = 0;
     level[2][0] = 1;
@@ -144,8 +143,8 @@ void RayCastBitmap::CheckVerticalIntersections(const float angle, float &x, floa
     int zIndex = static_cast<int>(aZ / GRID_SIZE);
     int xIndex = static_cast<int>(aX / GRID_SIZE);
 
-    float zA = GRID_SIZE * tanf(angle);
-    float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? +GRID_SIZE : -GRID_SIZE;
+    float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? GRID_SIZE : -GRID_SIZE;
+    float zA = GRID_SIZE * (posX - aX > 0 ? tanf(angle) : -tanf(angle));
 
     while (zIndex < mapHeight && xIndex < mapWidth && aZ >= 0 && aX >= 0)
     {
