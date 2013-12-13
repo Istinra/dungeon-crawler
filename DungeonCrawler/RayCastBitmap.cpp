@@ -9,6 +9,7 @@
 #include <math.h>
 #include <random>
 #include "RayCastBitmap.h"
+#include "Resources.h"
 
 RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width):
 Bitmap(height, width)
@@ -66,6 +67,9 @@ void RayCastBitmap::Draw(Game &game) {
     {
         pixels[i] = 0;
     }
+
+    Bitmap *walls = Resources::instance().LoadTexture(WALLS);
+
     float angle = yaw + VIEWING_ANGLE / 2;
     for (int i = 0; i < width; i++, angle -= ANGLE_BETWEEN_RAYS)
     {
@@ -73,7 +77,6 @@ void RayCastBitmap::Draw(Game &game) {
         CheckHorizontalIntersections(angle, hX, hZ);
         CheckVerticalIntersections(angle, vX, vZ);
 
-        //todo swap to trig distances rather than square root
         float hDistance = sqrtf((posX - hX) * (posX - hX) + (posZ - hZ) * (posZ - hZ));
         float vDistance = sqrtf((posX - vX) * (posX - vX) + (posZ - vZ) * (posZ - vZ));
 
@@ -83,13 +86,16 @@ void RayCastBitmap::Draw(Game &game) {
         }
 
         float distance;
+        unsigned int texOffset;
         if (hDistance < vDistance)
         {
             distance = hDistance * cosf(angle - yaw);
+            texOffset = static_cast<unsigned int>(hX) * GRID_SIZE;
         }
         else
         {
             distance = vDistance * cosf(angle - yaw);
+            texOffset = static_cast<unsigned int>(vX) * GRID_SIZE;
         }
         int sliceHeight = static_cast<int>(GRID_SIZE / floorf(distance) * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;

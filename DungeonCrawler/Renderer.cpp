@@ -22,7 +22,7 @@ Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
 }
 
 void Renderer::Draw(Game &game) {
-    memcpy(pixels, viewPort.Pixels(), viewPort.Width() * viewPort.Height() * sizeof(unsigned));
+    memcpy(pixels, viewPort.Pixels(), viewPort.Width() * viewPort.Height() * sizeof(unsigned int));
     //Note UI frame doesn't need to be redrawn
     viewPort.Draw(game);
 }

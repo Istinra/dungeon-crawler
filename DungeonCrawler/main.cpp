@@ -20,10 +20,10 @@ void Render(SDL_Window* const window, Renderer& renderer)
     {
         return;
     }
-    unsigned* pixels = renderer.Pixels();
-    for (unsigned i = 0; i < WIDTH * HEIGHT; i++)
+    unsigned int *pixels = renderer.Pixels();
+    for (unsigned int i = 0; i < WIDTH * HEIGHT; i++)
     {
-        ((unsigned *)screen->pixels)[i] = pixels[i];
+        ((unsigned int *) screen->pixels)[i] = pixels[i];
     }
     if (SDL_MUSTLOCK(screen))
     {
@@ -34,7 +34,6 @@ void Render(SDL_Window* const window, Renderer& renderer)
 
 int main(int argc, const char * argv[])
 {
-    Bitmap *pBitmap = Resources::instance().LoadTexture(WALLS);
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
     SDL_Window* window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
@@ -46,7 +45,7 @@ int main(int argc, const char * argv[])
     }
     bool running = true;
 
-    unsigned frames = 0;
+    unsigned int frames = 0;
     float frequency = (float) SDL_GetPerformanceFrequency();
     float totalTime = 0;
     float dt = 0;

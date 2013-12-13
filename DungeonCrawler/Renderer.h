@@ -21,9 +21,13 @@ public:
 
     void Draw(Game &game);
 
-    unsigned *Pixels() { return pixels; }
+    unsigned int *Pixels()
+    {
+        return pixels;
+    }
+
 private:
-    unsigned pixels[WIDTH * HEIGHT];
+    unsigned int pixels[WIDTH * HEIGHT];
     RayCastBitmap viewPort;
 };
 

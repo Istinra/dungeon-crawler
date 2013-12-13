@@ -8,9 +8,9 @@
 
 #include "Bitmap.h"
 
-Bitmap::Bitmap(unsigned height, unsigned width) : height(height), width(width)
+Bitmap::Bitmap(unsigned int height, unsigned int width) : height(height), width(width)
 {
-    pixels = new unsigned[height * width];
+    pixels = new int unsigned [height * width];
 }
 
 Bitmap::~Bitmap()
@@ -18,6 +18,6 @@ Bitmap::~Bitmap()
     delete [] pixels;
 }
 
-Bitmap::Bitmap(unsigned height, unsigned width, unsigned int *data) : height(height), width(width), pixels(data)
+Bitmap::Bitmap(unsigned int height, unsigned int width, unsigned int *data) : height(height), width(width), pixels(data)
 {
 }

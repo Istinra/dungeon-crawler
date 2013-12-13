@@ -27,7 +27,7 @@ public:
 
     ~Resources();
 
-    static Resources instance()
+    static Resources &instance()
     {
         static Resources instance;
         return instance;

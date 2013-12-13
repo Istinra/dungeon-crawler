@@ -11,26 +11,29 @@
 
 class Bitmap {
 public:
-    Bitmap(unsigned height, unsigned width);
+    Bitmap(unsigned int height, unsigned int width);
 
-    Bitmap(unsigned height, unsigned width, unsigned *data);
+    Bitmap(unsigned int height, unsigned int width, unsigned int *data);
 
     virtual ~Bitmap();
 
-    unsigned const *Pixels() {
+    unsigned int const *Pixels()
+    {
         return pixels;
     };
 
-    unsigned Height() {
+    unsigned int Height()
+    {
         return height;
     };
 
-    unsigned Width() {
+    unsigned int Width()
+    {
         return width;
     };
 protected:
-    unsigned height, width;
-    unsigned *pixels;
+    unsigned int height, width;
+    unsigned int *pixels;
 };
 
 #endif
