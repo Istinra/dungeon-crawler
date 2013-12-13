@@ -7,7 +7,6 @@
 //
 
 #include <math.h>
-#include <random>
 #include "RayCastBitmap.h"
 #include "Resources.h"
 
@@ -19,7 +18,7 @@ Bitmap(height, width)
     level[0][0] = 1;
     level[1][0] = 0;
     level[2][0] = 1;
-    level[3][0] = 1;
+    level[3][0] = 0;
     level[4][0] = 1;
     level[5][0] = 1;
 
@@ -90,12 +89,12 @@ void RayCastBitmap::Draw(Game &game) {
         if (hDistance < vDistance)
         {
             distance = hDistance * cosf(angle - yaw);
-            texOffset = static_cast<unsigned int>(hX) * GRID_SIZE;
+            texOffset = static_cast<unsigned int>(hX) % GRID_SIZE;
         }
         else
         {
             distance = vDistance * cosf(angle - yaw);
-            texOffset = static_cast<unsigned int>(vX) * GRID_SIZE;
+            texOffset = static_cast<unsigned int>(vX) % GRID_SIZE;
         }
         int sliceHeight = static_cast<int>(GRID_SIZE / floorf(distance) * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;
@@ -108,9 +107,14 @@ void RayCastBitmap::Draw(Game &game) {
         {
             end = height - 1;
         }
-        for (; start < end; start++)
+        float texIncrement = 16.0f / (end - start);
+        texOffset /= 4;
+        for (float texPos = 0; start < end; start++, texPos += texIncrement)
         {
-            pixels[i + start * width] = (unsigned int) rand();
+            unsigned int heightOffset = static_cast<unsigned int>(texPos) * walls->Width();
+            if (texOffset == 6)
+                i = i;
+            pixels[i + start * width] = walls->Pixels()[heightOffset + texOffset];
         }
     }
 }
