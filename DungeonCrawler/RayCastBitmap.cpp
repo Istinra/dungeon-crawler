@@ -15,11 +15,11 @@ Bitmap(height, width)
 {
     //Row based, iterate last number in inner loop for caching
     //XZ Coordinate top down
-    level[0][0] = 1;
-    level[1][0] = 0;
-    level[2][0] = 1;
-    level[3][0] = 0;
-    level[4][0] = 1;
+    level[0][0] = 0;
+    level[1][0] = 1;
+    level[2][0] = 0;
+    level[3][0] = 1;
+    level[4][0] = 0;
     level[5][0] = 1;
 
     level[0][1] = 0;
@@ -63,12 +63,6 @@ Bitmap(height, width)
 void RayCastBitmap::Draw(Game &game)
 {
     UpdatePosition(game);
-    //TODO remove once we have floor and roof
-    for (int i = 0; i < height * width; i++)
-    {
-        pixels[i] = 0;
-    }
-
     Bitmap *walls = Resources::instance().LoadTexture(WALLS);
 
     float angle = yaw + VIEWING_ANGLE / 2;
@@ -81,10 +75,10 @@ void RayCastBitmap::Draw(Game &game)
         float hDistance = sqrtf((posX - hX) * (posX - hX) + (posZ - hZ) * (posZ - hZ));
         float vDistance = sqrtf((posX - vX) * (posX - vX) + (posZ - vZ) * (posZ - vZ));
 
-        if (hDistance == INFINITY && INFINITY == vDistance)
-        {
-            continue;
-        }
+//        if (hDistance == INFINITY && INFINITY == vDistance)
+//        {
+//            continue;
+//        }
 
         float distance;
         unsigned int texOffset;
@@ -109,12 +103,20 @@ void RayCastBitmap::Draw(Game &game)
         {
             end = height - 1;
         }
+        for(int h = 0; h < start; h++)
+        {
+            pixels[i + h * width] = 0x444444;
+        }
         float texIncrement = 16.0f / (end - start);
         texOffset /= 4;
         for (float texPos = 0; start < end; start++, texPos += texIncrement)
         {
             unsigned int heightOffset = static_cast<unsigned int>(texPos) * walls->Width();
             pixels[i + start * width] = walls->Pixels()[heightOffset + texOffset];
+        }
+        for(int h = end; h < height; h++)
+        {
+            pixels[i + h * width] = 0x222222;
         }
     }
 }
