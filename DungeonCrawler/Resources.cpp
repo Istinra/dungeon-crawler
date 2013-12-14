@@ -47,7 +47,7 @@ Bitmap *Resources::InitTexture(Textures texture, const char *file)
         int x, y, n;
         stbi_uc *string;
         string = stbi_load(file, &x, &y, &n, 0);
-        bitmap = new Bitmap((unsigned int) x, (unsigned int) y, (unsigned int *) string);
+        bitmap = new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
         textures[texture] = bitmap;
     }
     else
@@ -63,5 +63,5 @@ Bitmap *Resources::LoadLevel(std::string name)
     int x, y, n;
     stbi_uc *string;
     string = stbi_load(s.c_str(), &x, &y, &n, 0);
-    return new Bitmap((unsigned int) x, (unsigned int) y, (unsigned int *) string);
+    return new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
 }

@@ -32,11 +32,10 @@ public:
 private:
     void UpdatePosition(Game &game);
 
-    void CheckHorizontalIntersections(const float angle, float &x, float &z);
-    void CheckVerticalIntersections(const float angle, float &x, float &z);
+    void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
 
-    int level[6][5];
-    int mapWidth, mapHeight;
+    void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z);
+
     float posX, posY, posZ, yaw;
 };
 

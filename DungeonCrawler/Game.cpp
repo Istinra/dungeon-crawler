@@ -10,6 +10,7 @@
 #include "Game.h"
 
 #define MOVE_STEP 0.25f
+#define TURN_STEP 0.005f
 
 Game::Game()
 {
@@ -31,12 +32,12 @@ void Game::HandleInput(bool const *keys)
     float yaw = player.Yaw();
     if (keys[SDL_SCANCODE_A])
     {
-        yaw += 0.001;
+        yaw += TURN_STEP;
 
     }
     if (keys[SDL_SCANCODE_D])
     {
-        yaw -= 0.001;
+        yaw -= TURN_STEP;
     }
     if (yaw > M_PI * 2) yaw = 0;
     if (yaw < 0) yaw = static_cast<float>(M_PI * 2);
