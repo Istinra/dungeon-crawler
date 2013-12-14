@@ -42,7 +42,7 @@ void RayCastBitmap::Draw(Game &game)
         else
         {
             distance = vDistance * cosf(angle - yaw);
-            texOffset = static_cast<unsigned int>(vX) % GRID_SIZE;
+            texOffset = static_cast<unsigned int>(vZ) % GRID_SIZE;
         }
         int sliceHeight = static_cast<int>(GRID_SIZE / floorf(distance) * DISTANCE_TO_PLANE);
         int start = height / 2 - sliceHeight / 2;
@@ -86,7 +86,7 @@ void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
     {
-        if (level[xIndex + zIndex * level.Height()].Id() << 8 != 0) //Ignore alpha channel, apparently on the left
+        if (level[xIndex + zIndex * level.Width()].Id() << 8 != 0) //Ignore alpha channel, apparently on the left
         {
             x = aX;
             z = aZ;
@@ -114,7 +114,7 @@ void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, 
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0) //Ignore alpha channel, apparently on the left
     {
-        if (level[xIndex + zIndex * level.Height()].Id() << 8 != 0)
+        if (level[xIndex + zIndex * level.Width()].Id() << 8 != 0)
         {
             x = aX;
             z = aZ;

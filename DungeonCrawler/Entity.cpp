@@ -12,7 +12,7 @@ Entity::Entity() : yaw(4.71238899)
 {
     position.x = 191;
     position.y = 32;
-    position.z = 200;
+    position.z = 260;
 }
 
 Entity::~Entity()
