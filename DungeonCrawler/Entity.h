@@ -2,7 +2,7 @@
 //  Entity.h
 //  DungeonCrawler
 //
-//  Created by Samuel Hands on 13/12/2013.
+//  Created by Samuel Hands on 14/12/2013.
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
@@ -11,25 +11,31 @@
 
 #include "Common/Vector.h"
 
-class Entity {
+class Entity
+{
 
 public:
     Entity();
+
     virtual ~Entity();
 
-    Vector3 const Position() {
+    Vector3 const Position()
+    {
         return position;
     }
 
-    void Position(Vector3 pos) {
+    void Position(Vector3 pos)
+    {
         position = pos;
     }
 
-    float Yaw() {
+    float Yaw()
+    {
         return yaw;
     }
 
-    void Yaw(float yaw) {
+    void Yaw(float yaw)
+    {
         this->yaw = yaw;
     }
 

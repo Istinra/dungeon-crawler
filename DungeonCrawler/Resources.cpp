@@ -2,15 +2,16 @@
 //  Resources.cpp
 //  DungeonCrawler
 //
-//  Created by Samuel Hands on 13/12/2013.
+//  Created by Samuel Hands on 14/12/2013.
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
+#include <string>
 #include "Resources.h"
 #include "External/std_image.h"
 
 
-Resources::Resources()
+Resources::Resources() : levelDirectory("/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Res/Level/")
 {
 
 }
@@ -54,4 +55,13 @@ Bitmap *Resources::InitTexture(Textures texture, const char *file)
         return textures[texture];
     }
     return bitmap;
+}
+
+Bitmap *Resources::LoadLevel(std::string name)
+{
+    std::string s = levelDirectory + name + ".png";
+    int x, y, n;
+    stbi_uc *string;
+    string = stbi_load(s.c_str(), &x, &y, &n, 0);
+    return new Bitmap((unsigned int) x, (unsigned int) y, (unsigned int *) string);
 }

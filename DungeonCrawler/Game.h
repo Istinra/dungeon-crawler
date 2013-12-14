@@ -2,7 +2,7 @@
 //  Game.h
 //  DungeonCrawler
 //
-//  Created by Samuel Hands on 7/12/2013.
+//  Created by Samuel Hands on 14/12/2013.
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
@@ -16,7 +16,8 @@ class Game
 public:
     Game();
 
-    Player &GetPlayer() {
+    Player &GetPlayer()
+    {
         return player;
     }
 

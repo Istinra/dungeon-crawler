@@ -10,6 +10,7 @@
 		1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDF0CEA30D3AB21C197177 /* stb_image.c */; };
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
 		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
+		2277FEDF185C13A50046CE0F /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2277FEDD185C13A50046CE0F /* Level.cpp */; };
 		2298AD2F1854219C008A4837 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD2E1854219C008A4837 /* Game.cpp */; };
 		2298AD31185421A7008A4837 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD30185421A7008A4837 /* Renderer.cpp */; };
 		2298AD351854230A008A4837 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD341854230A008A4837 /* Bitmap.cpp */; };
@@ -42,6 +43,8 @@
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
 		225D7DBB1850C3EF00A141C0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		225D7DC41850C45500A141C0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		2277FEDD185C13A50046CE0F /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
+		2277FEDE185C13A50046CE0F /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		2298AD2E1854219C008A4837 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		2298AD30185421A7008A4837 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		2298AD33185422E6008A4837 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
@@ -87,6 +90,15 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		1BBDF9B9C3F36D4E84F41B1D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2277FEDD185C13A50046CE0F /* Level.cpp */,
+				2277FEDE185C13A50046CE0F /* Level.h */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		225D7DAF1850C3EF00A141C0 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +132,7 @@
 				CA249E00FAD0446751731E96 /* Common */,
 				1BBDF61C31FB213014354735 /* External */,
 				1BBDF250C8DA3FDB7F955362 /* Art */,
+				1BBDF9B9C3F36D4E84F41B1D /* Map */,
 			);
 			path = DungeonCrawler;
 			sourceTree = "<group>";
@@ -211,6 +224,7 @@
 				22C1A853185B38BD001C9B05 /* Resources.cpp in Sources */,
 				225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */,
 				2298AD351854230A008A4837 /* Bitmap.cpp in Sources */,
+				2277FEDF185C13A50046CE0F /* Level.cpp in Sources */,
 				60DB6536185A8C9F0054681D /* Entity.cpp in Sources */,
 				2298AD2F1854219C008A4837 /* Game.cpp in Sources */,
 				1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */,

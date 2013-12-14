@@ -2,7 +2,7 @@
 //  Resources.h
 //  DungeonCrawler
 //
-//  Created by Samuel Hands on 13/12/2013.
+//  Created by Samuel Hands on 14/12/2013.
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #define DungeonCrawler_Resources_h
 
 #include <map>
+#include <string>
 #include "Bitmap.h"
 
 enum Textures
@@ -35,9 +36,12 @@ public:
 
     Bitmap *LoadTexture(Textures texture);
 
+    Bitmap *LoadLevel(std::string name);
+
 private:
     Bitmap *InitTexture(Textures texture, const char *file);
 
+    const std::string levelDirectory;
     std::map<Textures, Bitmap *> textures;
 };
 
