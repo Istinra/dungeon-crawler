@@ -9,15 +9,32 @@
 #ifndef __DungeonCrawler__Level__
 #define __DungeonCrawler__Level__
 
-#include <iostream>
+#include <string>
+#include "Block.h"
 
 class Level
 {
+public:
     Level();
-
     virtual ~Level();
 
     void LoadLevel(std::string name);
+
+    int Width()
+    {
+        return width;
+    }
+
+    int Height()
+    {
+        return width;
+    }
+
+    Block &operator [] (unsigned int);
+
+private:
+    Block *blocks;
+    int width, height;
 };
 
 #endif /* defined(__DungeonCrawler__Level__) */

@@ -55,6 +55,7 @@ int main(int argc, const char *argv[])
 
     Renderer renderer;
     Game game;
+    game.NewGame();
 
     while (running)
     {

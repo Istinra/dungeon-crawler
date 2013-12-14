@@ -9,11 +9,16 @@
 #include <SDL2/SDL_scancode.h>
 #include "Game.h"
 
-#define MOVE_STEP 0.1f
+#define MOVE_STEP 0.25f
 
 Game::Game()
 {
 
+}
+
+void Game::NewGame()
+{
+    level.LoadLevel("demo");
 }
 
 void Game::Update(bool const *keys)

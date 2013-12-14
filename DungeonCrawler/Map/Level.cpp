@@ -9,19 +9,35 @@
 #include "Level.h"
 #include "Resources.h"
 
-Level::Level()
+Level::Level() : blocks(nullptr)
 {
 
 }
 
 Level::~Level()
 {
-
+    if (blocks != nullptr)
+    {
+        delete [] blocks;
+    }
 }
 
 void Level::LoadLevel(std::string name)
 {
     Bitmap *levelImage = Resources::instance().LoadLevel(name);
+    width = levelImage->Width();
+    height = levelImage->Width();
+    blocks = new Block[width * height];
+
+    for (int i = 0; i < width * height; i++)
+    {
+        blocks[i] = Block(levelImage->Pixels()[i], i % width, i / height);
+    }
 
     delete levelImage;
+}
+
+Block &Level::operator [](unsigned int i)
+{
+    return blocks[i];
 }

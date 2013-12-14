@@ -11,7 +11,7 @@
 #include "External/std_image.h"
 
 
-Resources::Resources() : levelDirectory("/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Res/Level/")
+Resources::Resources() : levelDirectory("/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/")
 {
 
 }

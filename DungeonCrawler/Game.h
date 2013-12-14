@@ -10,6 +10,7 @@
 #define DungeonCrawler_Game_h
 
 #include "Player.h"
+#include "Map/Level.h"
 
 class Game
 {
@@ -21,13 +22,20 @@ public:
         return player;
     }
 
+    void NewGame();
+
     void Update(bool const *keys);
+
+    Level &CurrentLevel()
+    {
+        return level;
+    }
 
 private:
     void HandleInput(bool const *keys);
 
     Player player;
-
+    Level level;
 };
 
 #endif
