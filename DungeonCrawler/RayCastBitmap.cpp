@@ -75,11 +75,6 @@ void RayCastBitmap::Draw(Game &game)
         float hDistance = sqrtf((posX - hX) * (posX - hX) + (posZ - hZ) * (posZ - hZ));
         float vDistance = sqrtf((posX - vX) * (posX - vX) + (posZ - vZ) * (posZ - vZ));
 
-//        if (hDistance == INFINITY && INFINITY == vDistance)
-//        {
-//            continue;
-//        }
-
         float distance;
         unsigned int texOffset;
         if (hDistance < vDistance)
@@ -103,7 +98,7 @@ void RayCastBitmap::Draw(Game &game)
         {
             end = height - 1;
         }
-        for(int h = 0; h < start; h++)
+        for (int h = 0; h < start; h++)
         {
             pixels[i + h * width] = 0x444444;
         }
@@ -114,7 +109,7 @@ void RayCastBitmap::Draw(Game &game)
             unsigned int heightOffset = static_cast<unsigned int>(texPos) * walls->Width();
             pixels[i + start * width] = walls->Pixels()[heightOffset + texOffset];
         }
-        for(int h = end; h < height; h++)
+        for (int h = end; h < height; h++)
         {
             pixels[i + h * width] = 0x222222;
         }
