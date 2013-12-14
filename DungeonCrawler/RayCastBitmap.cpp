@@ -48,9 +48,14 @@ void RayCastBitmap::Draw(Game &game)
         int end = height / 2 + sliceHeight / 2;
         int start = height - end;
         float texIncrement = 16.0f / (end - start);
+        float texPos = -texIncrement * start;
         if (start < 0)
         {
             start = 0;
+        }
+        if (texPos < 0)
+        {
+            texPos = 0;
         }
         if (end > height)
         {
@@ -61,7 +66,7 @@ void RayCastBitmap::Draw(Game &game)
             pixels[i + h * width] = 0x444444;
         }
         texOffset /= 4;
-        for (float texPos = 0; start < end; start++, texPos += texIncrement)
+        for (; start < end; start++, texPos += texIncrement)
         {
             unsigned int heightOffset = static_cast<unsigned int>(texPos) * walls->Width();
             pixels[i + start * width] = walls->Pixels()[heightOffset + texOffset];
