@@ -25,6 +25,8 @@ void RayCastBitmap::Draw(Game &game)
     float angle = yaw + VIEWING_ANGLE / 2;
     for (int i = 0; i < width; i++, angle -= ANGLE_BETWEEN_RAYS)
     {
+        if (i == 100)
+            i = i; //384
         float hX, hZ, vX, vZ;
         CheckHorizontalIntersections(level, angle, hX, hZ);
         CheckVerticalIntersections(level, angle, vX, vZ);
@@ -82,7 +84,7 @@ void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle
     int xIndex = static_cast<int>(aX / GRID_SIZE);
 
     float zA = angle > M_PI ? +GRID_SIZE : -GRID_SIZE;
-    float xA = GRID_SIZE / tanf(angle);
+    float xA = GRID_SIZE / (posZ - aZ > 0 ? tanf(angle) : -tanf(angle));
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
     {
