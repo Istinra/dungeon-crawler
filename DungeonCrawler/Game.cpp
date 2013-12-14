@@ -56,12 +56,12 @@ void Game::HandleInput(bool const *keys)
     if (keys[SDL_SCANCODE_Q])
     {
         position.x -= sinf(yaw) * MOVE_STEP;
-        position.z += cosf(yaw) * MOVE_STEP;
+        position.z -= cosf(yaw) * MOVE_STEP;
     }
     if (keys[SDL_SCANCODE_E])
     {
         position.x += sinf(yaw) * MOVE_STEP;
-        position.z -= cosf(yaw) * MOVE_STEP;
+        position.z += cosf(yaw) * MOVE_STEP;
     }
 
     player.Position(position);
