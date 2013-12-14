@@ -25,8 +25,6 @@ void RayCastBitmap::Draw(Game &game)
     float angle = yaw + VIEWING_ANGLE / 2;
     for (int i = 0; i < width; i++, angle -= ANGLE_BETWEEN_RAYS)
     {
-        if (i == 100)
-            i = i; //384
         float hX, hZ, vX, vZ;
         CheckHorizontalIntersections(level, angle, hX, hZ);
         CheckVerticalIntersections(level, angle, vX, vZ);
@@ -46,9 +44,10 @@ void RayCastBitmap::Draw(Game &game)
             distance = vDistance * cosf(angle - yaw);
             texOffset = static_cast<unsigned int>(vZ) % GRID_SIZE;
         }
-        int sliceHeight = static_cast<int>(GRID_SIZE / floorf(distance) * DISTANCE_TO_PLANE);
-        int start = height / 2 - sliceHeight / 2;
+        int sliceHeight = static_cast<int>(GRID_SIZE * DISTANCE_TO_PLANE / floorf(distance));
         int end = height / 2 + sliceHeight / 2;
+        int start = height - end;
+        float texIncrement = 16.0f / (end - start);
         if (start < 0)
         {
             start = 0;
@@ -61,7 +60,6 @@ void RayCastBitmap::Draw(Game &game)
         {
             pixels[i + h * width] = 0x444444;
         }
-        float texIncrement = 16.0f / (end - start);
         texOffset /= 4;
         for (float texPos = 0; start < end; start++, texPos += texIncrement)
         {
