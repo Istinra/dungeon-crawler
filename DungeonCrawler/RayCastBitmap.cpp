@@ -63,6 +63,7 @@ Bitmap(height, width)
 void RayCastBitmap::Draw(Game &game)
 {
     UpdatePosition(game);
+    //TODO remove once we have floor and roof
     for (int i = 0; i < height * width; i++)
     {
         pixels[i] = 0;
