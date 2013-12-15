@@ -8,14 +8,17 @@
 
 #include "Entity.h"
 
-Entity::Entity() : yaw(4.71238899)
+Entity::Entity() : yaw(4.71238899), sprite(nullptr)
 {
-    position.x = 191;
+    position.x = 350;
     position.y = 32;
-    position.z = 260;
+    position.z = 90;
 }
 
 Entity::~Entity()
 {
-
+    if (sprite != nullptr)
+    {
+        delete sprite;
+    }
 }

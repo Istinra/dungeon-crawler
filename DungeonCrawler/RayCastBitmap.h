@@ -32,11 +32,15 @@ public:
 private:
     void UpdatePosition(Game &game);
 
-    void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
+    void DrawWalls(Game &game);
 
+    void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
     void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z);
 
+    void DrawSprites(Game &game);
+
     float posX, posY, posZ, yaw;
+    float zBuffer[WIDTH];
 };
 
 #endif

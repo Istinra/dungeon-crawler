@@ -10,6 +10,8 @@
 #define __DungeonCrawler__Level__
 
 #include <string>
+#include <vector>
+#include "Entity.h"
 #include "Block.h"
 
 class Level
@@ -35,6 +37,7 @@ public:
 private:
     Block *blocks;
     int width, height;
+    std::vector<Entity> entities;
 };
 
 #endif /* defined(__DungeonCrawler__Level__) */

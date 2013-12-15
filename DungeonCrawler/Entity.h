@@ -10,13 +10,13 @@
 #define DungeonCrawler_Entity_h
 
 #include "Common/Vector.h"
+#include "Bitmap.h"
 
 class Entity
 {
 
 public:
     Entity();
-
     virtual ~Entity();
 
     Vector3 const Position()
@@ -40,6 +40,7 @@ public:
     }
 
 protected:
+    Bitmap *sprite;
     Vector3 position;
     float yaw;
 };

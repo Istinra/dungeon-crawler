@@ -15,10 +15,15 @@ Bitmap(height, width)
 {
 }
 
-
 void RayCastBitmap::Draw(Game &game)
 {
     UpdatePosition(game);
+    DrawWalls(game);
+    DrawSprites(game);
+}
+
+void RayCastBitmap::DrawWalls(Game &game)
+{
     Bitmap *walls = Resources::instance().LoadTexture(WALLS);
     Level &level = game.CurrentLevel();
 
@@ -44,6 +49,7 @@ void RayCastBitmap::Draw(Game &game)
             distance = vDistance * cosf(angle - yaw);
             texOffset = static_cast<unsigned int>(vZ) % GRID_SIZE;
         }
+        zBuffer[i] = distance;
         int sliceHeight = static_cast<int>(GRID_SIZE * DISTANCE_TO_PLANE / floorf(distance));
         int end = height / 2 + sliceHeight / 2;
         int start = height - end;
@@ -76,6 +82,11 @@ void RayCastBitmap::Draw(Game &game)
             pixels[i + h * width] = 0x222222;
         }
     }
+}
+
+void RayCastBitmap::DrawSprites(Game &game)
+{
+
 }
 
 void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z)
