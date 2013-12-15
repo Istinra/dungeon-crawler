@@ -22,6 +22,8 @@ public:
 
     void LoadLevel(std::string name);
 
+    void AddEntity(Entity *entity);
+
     int Width()
     {
         return width;
@@ -34,10 +36,12 @@ public:
 
     Block &operator [] (unsigned int);
 
+    void RemoveEntity(Entity *entity);
+
 private:
     Block *blocks;
     int width, height;
-    std::vector<Entity> entities;
+    std::vector<Entity *> entities;
 };
 
 #endif /* defined(__DungeonCrawler__Level__) */

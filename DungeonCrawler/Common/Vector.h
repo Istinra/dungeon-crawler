@@ -9,12 +9,21 @@
 #ifndef DungeonCrawler_Vector_h
 #define DungeonCrawler_Vector_h
 
-struct Vector2 {
+struct Sprite
+{
+
+    Sprite(float x, float y, float z, int texNumber):x(x), y(y), z(z), texNumber(texNumber)
+    {
+    }
+
     float x;
+    float y;
     float z;
+    int texNumber;
 };
 
-struct Vector3 {
+struct Vector3
+{
     float x;
     float y;
     float z;

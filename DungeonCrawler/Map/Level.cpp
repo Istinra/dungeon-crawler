@@ -21,6 +21,10 @@ Level::~Level()
     {
         delete [] blocks;
     }
+    for (Entity *entity : entities)
+    {
+        delete entity;
+    }
 }
 
 void Level::LoadLevel(std::string name)
@@ -50,4 +54,14 @@ void Level::LoadLevel(std::string name)
 Block &Level::operator [](unsigned int i)
 {
     return blocks[i];
+}
+
+void Level::AddEntity(Entity *entity)
+{
+    entities.push_back(entity);
+}
+
+void Level::RemoveEntity(Entity *entity)
+{
+    entities.erase(std::remove(entities.begin(), entities.end(), entity));
 }

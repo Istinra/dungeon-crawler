@@ -17,6 +17,8 @@ class Game
 public:
     Game();
 
+    ~Game();
+
     Player &GetPlayer()
     {
         return player;
@@ -36,6 +38,8 @@ private:
 
     Player player;
     Level level;
+
+    void LoadLevel(std::string name);
 };
 
 #endif

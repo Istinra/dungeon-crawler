@@ -20,6 +20,15 @@ Game::Game()
 void Game::NewGame()
 {
     level.LoadLevel("demo");
+    level.AddEntity(&player);
+}
+
+void Game::LoadLevel(std::string name)
+{
+    level.RemoveEntity(&player);
+    level = Level();
+    level.LoadLevel(name);
+    level.AddEntity(&player);
 }
 
 void Game::Update(bool const *keys)
@@ -66,4 +75,9 @@ void Game::HandleInput(bool const *keys)
 
     player.Position(position);
     player.Yaw(yaw);
+}
+
+Game::~Game()
+{
+    level.RemoveEntity(&player);
 }
