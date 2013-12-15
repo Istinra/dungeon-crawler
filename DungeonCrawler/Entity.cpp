@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
+#include <math.h>
 #include "Entity.h"
 
-Entity::Entity() : yaw(4.71238899), sprite(nullptr)
+Entity::Entity() : yaw(M_PI_2), sprite(nullptr)
 {
-    position.x = 350;
+    position.x = 225;
     position.y = 32;
-    position.z = 90;
+    position.z = 416;
 }
 
 Entity::~Entity()

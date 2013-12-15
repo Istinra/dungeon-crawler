@@ -63,7 +63,11 @@ void RayCastBitmap::DrawWalls(Game &game)
         {
             texPos = 0;
         }
-        if (end > height)
+        if (start >= height)
+        {
+            start = height - 1;
+        }
+        if (end >= height)
         {
             end = height - 1;
         }
@@ -88,6 +92,7 @@ void RayCastBitmap::DrawSprites(Game &game)
 {
     std::vector<Entity *> &entities = game.CurrentLevel().Entities();
     Bitmap *spriteSheet = Resources::instance().LoadTexture(SPRITES);
+
     for (Entity *entity : entities)
     {
         Sprite *sprite = entity->ActiveSprite();
@@ -96,16 +101,6 @@ void RayCastBitmap::DrawSprites(Game &game)
             continue;
         }
         Vector3 spritePos = entity->Position();
-        float spriteX = spritePos.x - posX;
-        float spriteZ = spritePos.z - posZ;
-        //[rCos, -rSin]
-        //[rSin, rCos]
-        // x = x * cos(angle) + y * sin(angle), y = x * -sin(angle) + y * cos(angle)
-        float rCos = cosf(yaw);
-        float rSin = sinf(yaw);
-        float determinate = 1 / (rCos * rCos - rSin * -rSin);
-        float xTransform = determinate * (rCos * spriteX + -rSin * spriteZ);
-        float yTransform = determinate * (rSin * spriteX + -rCos * spriteZ);
 
 
     }
