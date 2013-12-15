@@ -86,7 +86,11 @@ void RayCastBitmap::DrawWalls(Game &game)
 
 void RayCastBitmap::DrawSprites(Game &game)
 {
+    std::vector<Entity *> &entities = game.CurrentLevel().Entities();
+    for (Entity *entity : entities)
+    {
 
+    }
 }
 
 void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z)

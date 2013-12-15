@@ -34,6 +34,11 @@ public:
         return width;
     }
 
+    std::vector<Entity *> &Entities()
+    {
+        return entities;
+    };
+
     Block &operator [] (unsigned int);
 
     void RemoveEntity(Entity *entity);
