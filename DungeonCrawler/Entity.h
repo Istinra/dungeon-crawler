@@ -9,7 +9,7 @@
 #ifndef DungeonCrawler_Entity_h
 #define DungeonCrawler_Entity_h
 
-#include "Common/Vector.h"
+#include "CommonTypes.h"
 
 class Entity
 {
@@ -41,6 +41,11 @@ public:
     Sprite *ActiveSprite()
     {
         return sprite;
+    }
+
+    void SetSprite(Sprite *sprite)
+    {
+        this->sprite = sprite;
     }
 
 protected:

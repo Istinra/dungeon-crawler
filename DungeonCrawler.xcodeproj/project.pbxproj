@@ -62,7 +62,7 @@
 		60DB6535185A8C9F0054681D /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		60DB6537185A8E5A0054681D /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		60DB6538185A8E620054681D /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
-		60DB653B185A91650054681D /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		60DB653B185A91650054681D /* CommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +171,7 @@
 		CA249E00FAD0446751731E96 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				60DB653B185A91650054681D /* Vector.h */,
+				60DB653B185A91650054681D /* CommonTypes.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
