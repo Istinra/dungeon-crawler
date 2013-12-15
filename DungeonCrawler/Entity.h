@@ -38,6 +38,11 @@ public:
         this->yaw = yaw;
     }
 
+    Sprite *ActiveSprite()
+    {
+        return sprite;
+    }
+
 protected:
     Sprite *sprite;
     Vector3 position;
