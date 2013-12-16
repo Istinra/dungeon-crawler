@@ -108,24 +108,31 @@ void RayCastBitmap::DrawSprites(Game &game)
         float xCamSpacePos = spritePos.x - posX;
         float zCamSpacePos = spritePos.z - posZ;
 
+        float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
+        float zCamSpace = rSin * xCamSpacePos + rCos * zCamSpacePos;
 
+        float distance = sqrtf(xCamSpacePos * xCamSpacePos + zCamSpacePos * zCamSpacePos);
 
-//        float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
-//        float zCamSpace = rSin * xCamSpacePos + rCos * zCamSpacePos;
-//
-//        float distance = sqrtf(xCamSpacePos * xCamSpacePos + zCamSpacePos * zCamSpacePos);
-//
-//        float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
-//        float zScreenPos = width / 2 - zCamSpace / distance * DISTANCE_TO_PLANE;
-//
-//        int size = (int) (128 / distance * DISTANCE_TO_PLANE);
-//        float increment = size / 128.0f;
-//
-//        int pixelX = (int) (xScreenPos - size / 2.0f);
-//        int pixelXEnd = pixelX + size;
-//
-//        int pixelZ = (int) (zScreenPos - size / 2.0f);
-//        int pixelZEnd = pixelZ + size;
+        float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
+        float zScreenPos = width / 2 - zCamSpace / distance * DISTANCE_TO_PLANE;
+
+        int size = (int) (128 / distance * DISTANCE_TO_PLANE);
+        float increment = size / 128.0f;
+
+        int pixelX = (int) (zScreenPos - size / 2.0f);
+        int pixelEndX = pixelX + size;
+
+        int pixelY = height / 2 - size / 2;
+        int pixelYEnd = pixelY + size;
+
+        for (int stripe = pixelX; stripe < pixelEndX; stripe++)
+        {
+            for (int row = pixelY; row < pixelYEnd; row++)
+            {
+                if (stripe + width * row >= height * width || stripe + width * row < 0) continue;
+                pixels[stripe + width * row] = 0xFF00FF;
+            }
+        }
     }
 }
 
