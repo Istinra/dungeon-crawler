@@ -93,7 +93,7 @@ void RayCastBitmap::DrawSprites(Game &game)
     std::vector<Entity *> &entities = game.CurrentLevel().Entities();
     Bitmap *spriteSheet = Resources::instance().LoadTexture(SPRITES);
 
-    float rCos = cosf(yaw);
+    float rCos = -cosf(yaw);
     float rSin = sinf(yaw);
 
     for (Entity *entity : entities)
@@ -108,12 +108,12 @@ void RayCastBitmap::DrawSprites(Game &game)
         float xCamSpacePos = spritePos.x - posX;
         float zCamSpacePos = spritePos.z - posZ;
 
-        float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
+        //float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
         float zCamSpace = rSin * xCamSpacePos + rCos * zCamSpacePos;
 
         float distance = sqrtf(xCamSpacePos * xCamSpacePos + zCamSpacePos * zCamSpacePos);
 
-        float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
+        //float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
         float zScreenPos = width / 2 - zCamSpace / distance * DISTANCE_TO_PLANE;
 
         int size = (int) (128 / distance * DISTANCE_TO_PLANE);
