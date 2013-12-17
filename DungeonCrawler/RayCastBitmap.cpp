@@ -30,7 +30,7 @@ void RayCastBitmap::DrawWalls(Game &game)
     float rawAngle = yaw + VIEWING_ANGLE / 2;
     for (int i = 0; i < width; i++, rawAngle -= ANGLE_BETWEEN_RAYS)
     {
-        float angle = correctAngle(rawAngle);
+        float angle = CorrectAngle(rawAngle);
 
         float hX, hZ, vX, vZ;
         CheckHorizontalIntersections(level, angle, hX, hZ);
@@ -213,7 +213,7 @@ void RayCastBitmap::UpdatePosition(Game &game)
     yaw = player.Yaw();
 }
 
-float RayCastBitmap::correctAngle(float angle)
+float RayCastBitmap::CorrectAngle(float angle)
 {
     if (angle > M_PI * 2)
     {

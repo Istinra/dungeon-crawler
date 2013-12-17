@@ -34,15 +34,15 @@ private:
 
     void DrawWalls(Game &game);
 
+    void DrawSprites(Game &game);
+
     void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
     void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z);
 
-    void DrawSprites(Game &game);
+    float CorrectAngle(float angle);
 
     float posX, posY, posZ, yaw;
     float zBuffer[WIDTH];
-
-    float correctAngle(float angle);
 };
 
 #endif
