@@ -41,6 +41,8 @@ private:
 
     float posX, posY, posZ, yaw;
     float zBuffer[WIDTH];
+
+    float correctAngle(float angle);
 };
 
 #endif

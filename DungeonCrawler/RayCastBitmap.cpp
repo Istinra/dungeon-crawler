@@ -27,9 +27,11 @@ void RayCastBitmap::DrawWalls(Game &game)
     Bitmap *walls = Resources::instance().LoadTexture(WALLS);
     Level &level = game.CurrentLevel();
 
-    float angle = yaw + VIEWING_ANGLE / 2;
-    for (int i = 0; i < width; i++, angle -= ANGLE_BETWEEN_RAYS)
+    float rawAngle = yaw + VIEWING_ANGLE / 2;
+    for (int i = 0; i < width; i++, rawAngle -= ANGLE_BETWEEN_RAYS)
     {
+        float angle = correctAngle(rawAngle);
+
         float hX, hZ, vX, vZ;
         CheckHorizontalIntersections(level, angle, hX, hZ);
         CheckVerticalIntersections(level, angle, vX, vZ);
@@ -209,4 +211,17 @@ void RayCastBitmap::UpdatePosition(Game &game)
     posY = pos.y;
     posZ = pos.z;
     yaw = player.Yaw();
+}
+
+float RayCastBitmap::correctAngle(float angle)
+{
+    if (angle > M_PI * 2)
+    {
+        return static_cast<float>(angle - M_PI * 2);
+    }
+    if (angle < 0)
+    {
+        return static_cast<float>(angle + M_PI * 2);
+    }
+    return angle;
 }
