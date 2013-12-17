@@ -36,8 +36,8 @@ void RayCastBitmap::DrawWalls(Game &game)
         CheckHorizontalIntersections(level, angle, hX, hZ);
         CheckVerticalIntersections(level, angle, vX, vZ);
 
-        float hDistance = sqrtf((posX - hX) * (posX - hX) + (posZ - hZ) * (posZ - hZ));
-        float vDistance = sqrtf((posX - vX) * (posX - vX) + (posZ - vZ) * (posZ - vZ));
+        float hDistance = fabsf((hX - posX) / cosf(angle));
+        float vDistance = fabsf((vX - posX) / cosf(angle));
 
         float distance;
         unsigned int texOffset;
