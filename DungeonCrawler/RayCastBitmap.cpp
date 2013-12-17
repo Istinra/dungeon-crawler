@@ -108,12 +108,14 @@ void RayCastBitmap::DrawSprites(Game &game)
         float xCamSpacePos = spritePos.x - posX;
         float zCamSpacePos = spritePos.z - posZ;
 
-        //float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
+        float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
         float zCamSpace = rSin * xCamSpacePos + rCos * zCamSpacePos;
+
+        if (xCamSpace < 0) continue; //Sprite is behind the camera
 
         float distance = sqrtf(xCamSpacePos * xCamSpacePos + zCamSpacePos * zCamSpacePos);
 
-        //float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
+        float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
         float zScreenPos = width / 2 - zCamSpace / distance * DISTANCE_TO_PLANE;
 
         int size = (int) (128 / distance * DISTANCE_TO_PLANE);
