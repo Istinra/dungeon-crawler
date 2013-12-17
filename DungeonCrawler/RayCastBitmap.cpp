@@ -127,6 +127,7 @@ void RayCastBitmap::DrawSprites(Game &game)
 
         for (int stripe = pixelX; stripe < pixelEndX; stripe++)
         {
+            if (stripe < 0 || stripe >= width) continue;
             for (int row = pixelY; row < pixelYEnd; row++)
             {
                 if (stripe + width * row >= height * width || stripe + width * row < 0) continue;
