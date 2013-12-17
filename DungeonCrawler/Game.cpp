@@ -22,8 +22,8 @@ void Game::NewGame()
     level.LoadLevel("demo");
     level.AddEntity(&player);
     Entity *entity = new Entity;
-    entity->Position(Vector3(224, 32, 150));
-    entity->SetSprite(new Sprite(224, 32, 150, 0));
+    entity->Position(Vector3(224, 32, 130));
+    entity->SetSprite(new Sprite(224, 32, 130, 0));
     level.AddEntity(entity);
 }
 

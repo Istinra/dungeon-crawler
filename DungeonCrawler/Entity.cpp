@@ -11,7 +11,7 @@
 
 Entity::Entity() : yaw(M_PI_2), sprite(nullptr)
 {
-    position.x = 225;
+    position.x = 142;
     position.y = 32;
     position.z = 416;
 }

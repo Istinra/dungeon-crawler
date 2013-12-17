@@ -105,34 +105,36 @@ void RayCastBitmap::DrawSprites(Game &game)
         }
         Vector3 spritePos = entity->Position();
 
-        float xCamSpacePos = spritePos.x - posX;
+        float xCamSpacePos = -(spritePos.x - posX);
         float zCamSpacePos = spritePos.z - posZ;
 
-        float xCamSpace = rCos * xCamSpacePos - rSin * zCamSpacePos;
+        float depth = rCos * xCamSpacePos - rSin * zCamSpacePos;
         float zCamSpace = rSin * xCamSpacePos + rCos * zCamSpacePos;
 
-        if (xCamSpace < 0) continue; //Sprite is behind the camera
+        if (depth < 0) continue; //Sprite is behind the camera
 
-        float distance = sqrtf(xCamSpacePos * xCamSpacePos + zCamSpacePos * zCamSpacePos);
+        float zScreenPos = width / 2 - zCamSpace / depth * DISTANCE_TO_PLANE;
 
-        float xScreenPos = width / 2 - xCamSpace / distance * DISTANCE_TO_PLANE;
-        float zScreenPos = width / 2 - zCamSpace / distance * DISTANCE_TO_PLANE;
-
-        int size = (int) (128 / distance * DISTANCE_TO_PLANE);
-        float increment = size / 128.0f;
+        int size = (int) (64 / depth * DISTANCE_TO_PLANE);
+        float increment = size / 64.0f;
 
         int pixelX = (int) (zScreenPos - size / 2.0f);
         int pixelEndX = pixelX + size;
 
+        if (pixelX < 0) pixelX = 0;
+        if (pixelEndX > width - 2) pixelEndX = width - 1;
+
         int pixelY = height / 2 - size / 2;
-        int pixelYEnd = pixelY + size;
+        int pixelEndY = pixelY + size;
+
+        if (pixelY < 0) pixelY = 0;
+        if (pixelEndY > height - 2) pixelEndY = height - 1;
 
         for (int stripe = pixelX; stripe < pixelEndX; stripe++)
         {
-            if (stripe < 0 || stripe >= width) continue;
-            for (int row = pixelY; row < pixelYEnd; row++)
+            if (depth > zBuffer[stripe]) continue;
+            for (int row = pixelY; row < pixelEndY; row++)
             {
-                if (stripe + width * row >= height * width || stripe + width * row < 0) continue;
                 pixels[stripe + width * row] = 0xFF00FF;
             }
         }
