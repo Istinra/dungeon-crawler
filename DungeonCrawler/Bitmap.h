@@ -23,17 +23,17 @@ public:
         return pixels;
     };
 
-    unsigned int Height()
+    int Height()
     {
         return height;
     };
 
-    unsigned int Width()
+    int Width()
     {
         return width;
     };
 protected:
-    unsigned int height, width;
+    int height, width;
     unsigned int *pixels;
 };
 
