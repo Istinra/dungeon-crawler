@@ -11,12 +11,16 @@
 
 #include "CommonTypes.h"
 
+class Level;
+
 class Entity
 {
 
 public:
     Entity();
     virtual ~Entity();
+
+    void Move(Vector3 movement);
 
     Vector3 const Position()
     {
@@ -48,7 +52,11 @@ public:
         this->sprite = sprite;
     }
 
+    void SetLevel(Level *level);
+
 protected:
+    static const float boundingWidth;
+    Level *level;
     Sprite *sprite;
     Vector3 position;
     float yaw;

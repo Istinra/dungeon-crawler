@@ -19,8 +19,9 @@ public:
     }
 
     Block(unsigned int id, int x, int y);
-
     virtual ~Block();
+
+    bool IsSolid();
 
     unsigned int Id()
     {

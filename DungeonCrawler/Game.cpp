@@ -55,29 +55,32 @@ void Game::HandleInput(bool const *keys)
     if (yaw > M_PI * 2) yaw = 0;
     if (yaw < 0) yaw = static_cast<float>(M_PI * 2);
 
-    Vector3 position = player.Position();
+    Vector3 movement(0, 0, 0);
     if (keys[SDL_SCANCODE_W])
     {
-        position.z -= sinf(yaw) * MOVE_STEP;
-        position.x += cosf(yaw) * MOVE_STEP;
+        movement.z -= sinf(yaw) * MOVE_STEP;
+        movement.x += cosf(yaw) * MOVE_STEP;
     }
     if (keys[SDL_SCANCODE_S])
     {
-        position.z += sinf(yaw) * MOVE_STEP;
-        position.x -= cosf(yaw) * MOVE_STEP;
+        movement.z += sinf(yaw) * MOVE_STEP;
+        movement.x -= cosf(yaw) * MOVE_STEP;
     }
     if (keys[SDL_SCANCODE_Q])
     {
-        position.x -= sinf(yaw) * MOVE_STEP;
-        position.z -= cosf(yaw) * MOVE_STEP;
+        movement.x -= sinf(yaw) * MOVE_STEP;
+        movement.z -= cosf(yaw) * MOVE_STEP;
     }
     if (keys[SDL_SCANCODE_E])
     {
-        position.x += sinf(yaw) * MOVE_STEP;
-        position.z += cosf(yaw) * MOVE_STEP;
+        movement.x += sinf(yaw) * MOVE_STEP;
+        movement.z += cosf(yaw) * MOVE_STEP;
     }
 
-    player.Position(position);
+    if (movement.x != 0 || movement.y != 0 || movement.z != 0)
+    {
+        player.Move(movement);
+    }
     player.Yaw(yaw);
 }
 

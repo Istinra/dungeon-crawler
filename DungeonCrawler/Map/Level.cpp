@@ -59,6 +59,7 @@ Block &Level::operator [](unsigned int i)
 void Level::AddEntity(Entity *entity)
 {
     entities.push_back(entity);
+    entity->SetLevel(this);
 }
 
 void Level::RemoveEntity(Entity *entity)

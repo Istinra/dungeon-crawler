@@ -22,3 +22,8 @@ bool Block::Use()
 {
     return false;
 }
+
+bool Block::IsSolid()
+{
+    return id << 8 > 0;
+}

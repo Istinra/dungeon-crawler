@@ -36,6 +36,11 @@ struct Vector3
     float x;
     float y;
     float z;
+
+    Vector3 operator + (Vector3 rhs)
+    {
+        return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
+    }
 };
 
 #endif

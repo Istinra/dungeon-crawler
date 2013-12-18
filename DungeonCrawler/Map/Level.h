@@ -21,8 +21,11 @@ public:
     virtual ~Level();
 
     void LoadLevel(std::string name);
-
     void AddEntity(Entity *entity);
+
+    void RemoveEntity(Entity *entity);
+
+    Block &operator [] (unsigned int);
 
     int Width()
     {
@@ -38,10 +41,6 @@ public:
     {
         return entities;
     };
-
-    Block &operator [] (unsigned int);
-
-    void RemoveEntity(Entity *entity);
 
 private:
     Block *blocks;
