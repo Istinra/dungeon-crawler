@@ -8,7 +8,10 @@
 #ifndef DungeonCrawler_Player_h
 #define DungeonCrawler_Player_h
 
+#define MAX_INVENTORY 8
+
 #include "Entity.h"
+#include "Item.h"
 
 class Player : public Entity
 {
@@ -17,8 +20,11 @@ public:
     ~Player();
 
 private:
+    short health;
+    short battery;
 
-
+    Item inventory[MAX_INVENTORY];
+    short activeSlot;
 };
 
 #endif

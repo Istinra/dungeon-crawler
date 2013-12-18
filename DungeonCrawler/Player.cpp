@@ -8,7 +8,7 @@
 
 #include "Player.h"
 
-Player::Player()
+Player::Player() : health(10), battery(100), activeSlot(0)
 {
 
 }

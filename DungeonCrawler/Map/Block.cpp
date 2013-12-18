@@ -17,3 +17,8 @@ Block::~Block()
 {
 
 }
+
+bool Block::Use()
+{
+    return false;
+}

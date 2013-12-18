@@ -27,6 +27,8 @@ public:
         return id;
     }
 
+    virtual bool Use();
+
     int XTexture()
     {
         return texX;
