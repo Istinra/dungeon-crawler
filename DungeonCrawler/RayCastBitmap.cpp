@@ -69,6 +69,10 @@ void RayCastBitmap::DrawWalls(Game &game)
         {
             start = height - 1;
         }
+        if (start > end)
+        {
+            end = start;
+        }
         if (end >= height)
         {
             end = height - 1;
