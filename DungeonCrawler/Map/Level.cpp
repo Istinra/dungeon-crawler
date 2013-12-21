@@ -37,6 +37,10 @@ void Level::LoadLevel(std::string name)
     for (int i = 0; i < width * height; i++)
     {
         blocks[i] = Block(levelImage->Pixels()[i], i % width, i / height);
+        //R : Block Type
+        //G : Entity on the block
+        //B : ??
+        //A : Block ID
     }
 
     for (int i = 0; i < height; i++)
