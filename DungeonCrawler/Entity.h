@@ -22,6 +22,10 @@ public:
 
     void Move(Vector3 movement);
 
+    bool ContainsPoint(float x, float z);
+
+    virtual void Use();
+
     Vector3 const Position()
     {
         return position;

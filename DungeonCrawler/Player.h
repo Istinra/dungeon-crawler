@@ -19,6 +19,8 @@ public:
     Player();
     ~Player();
 
+    void Action();
+
 private:
     short health;
     short battery;

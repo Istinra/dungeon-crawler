@@ -81,6 +81,11 @@ void Game::HandleInput(bool const *keys)
     {
         player.Move(movement);
     }
+
+    if (keys[SDL_SCANCODE_E])
+    {
+        player.Action();
+    }
     player.Yaw(yaw);
 }
 
