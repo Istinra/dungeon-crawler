@@ -48,8 +48,15 @@ Bitmap *Resources::InitTexture(Textures texture, const char *file)
     if (textures.find(texture) == textures.end())
     {
         int x, y, n;
-        stbi_uc *string;
-        string = stbi_load(file, &x, &y, &n, 0);
+        stbi_uc *string = stbi_load(file, &x, &y, &n, 0);
+        stbi_uc *p = string;
+        for (int i = 0; i < x * y; ++i)
+        {
+            unsigned char t = p[0];
+            p[0] = p[2];
+            p[2] = t;
+            p += 4;
+        }
         bitmap = new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
         textures[texture] = bitmap;
     }
@@ -64,7 +71,14 @@ Bitmap *Resources::LoadLevel(std::string name)
 {
     std::string s = levelDirectory + name + ".png";
     int x, y, n;
-    stbi_uc *string;
-    string = stbi_load(s.c_str(), &x, &y, &n, 0);
+    stbi_uc *string = stbi_load(s.c_str(), &x, &y, &n, 0);
+    stbi_uc *p = string;
+    for (int i = 0; i < x * y; ++i)
+    {
+        unsigned char t = p[0];
+        p[0] = p[2];
+        p[2] = t;
+        p += 4;
+    }
     return new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
 }
