@@ -60,7 +60,7 @@ bool Entity::ContainsPoint(float x, float z)
             z < position.z + 40 && z > position.z - 40;
 }
 
-void Entity::Use()
+bool Entity::Use()
 {
-
+    return false;
 }

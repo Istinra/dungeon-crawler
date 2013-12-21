@@ -24,7 +24,7 @@ public:
 
     bool ContainsPoint(float x, float z);
 
-    virtual void Use();
+    virtual bool Use();
 
     Vector3 const Position()
     {

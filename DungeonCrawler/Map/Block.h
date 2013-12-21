@@ -23,12 +23,13 @@ public:
 
     bool IsSolid();
 
+    virtual bool Use();
+
+
     unsigned int Id()
     {
         return id;
     }
-
-    virtual bool Use();
 
     int XTexture()
     {
