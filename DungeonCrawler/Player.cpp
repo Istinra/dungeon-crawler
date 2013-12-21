@@ -40,18 +40,18 @@ void Player::Action()
     float rCos = cosf(yaw);
     static const int maxCheckDistance = 64;
 
-    for (int i = 0; i < maxCheckDistance; i += 4)
+    for (int i = 0; i < maxCheckDistance; i = i + 4)
     {
         float x = position.x + rCos * i;
-        float z = position.z + rSin * i;
-        for (Entity *entity : potentialEntities)
-        {
-            if (entity->ContainsPoint(x, z))
-            {
-                entity->Use();
-                return;
-            }
-        }
+        float z = position.z - rSin * i;
+//        for (Entity *entity : potentialEntities)
+//        {
+//            if (entity->ContainsPoint(x, z))
+//            {
+//                entity->Use();
+//                return;
+//            }
+//        }
         int xIndex = static_cast<int>(x / 64);
         int zIndex = static_cast<int>(z / 64);
         if ((*level)[zIndex * level->Height() + xIndex].Use())

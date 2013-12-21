@@ -82,7 +82,7 @@ void Game::HandleInput(bool const *keys)
         player.Move(movement);
     }
 
-    if (keys[SDL_SCANCODE_E])
+    if (keys[SDL_SCANCODE_F])
     {
         player.Action();
     }

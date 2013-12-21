@@ -20,6 +20,10 @@ Block::~Block()
 
 bool Block::Use()
 {
+    if (id << 8 == 0)
+    {
+        return false;
+    }
     id = 0;
     return true;
 }
