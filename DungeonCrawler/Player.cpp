@@ -23,17 +23,11 @@ Player::~Player()
 
 void Player::Action()
 {
-    float fromX = position.x;
-    float fromZ = position.z;
-
-    float toX = position.x + yaw > M_PI_2 * 3 || yaw < M_PI_2 ? 64 : -64;
-    float toZ = position.z + yaw > M_PI ? -64 : 64;
-
     std::vector<Entity *> potentialEntities;
     const std::vector<Entity *> &entities = level->Entities();
     for (Entity *entity : entities)
     {
-        Vector3 entPos = entity->position;
+        Vector3 entPos = entity->Position();
         if (entPos.x < position.x + 64 && entPos.x > position.x - 64 &&
                 entPos.z < position.z + 64 && entPos.z > position.z - 64)
         {
@@ -57,6 +51,12 @@ void Player::Action()
                 entity->Use();
                 return;
             }
+        }
+        int xIndex = static_cast<int>(x / 64);
+        int zIndex = static_cast<int>(z / 64);
+        if ((*level)[zIndex * level->Height() + xIndex].Use())
+        {
+            return;
         }
     }
 }

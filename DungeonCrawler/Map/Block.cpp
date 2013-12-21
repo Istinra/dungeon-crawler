@@ -20,7 +20,8 @@ Block::~Block()
 
 bool Block::Use()
 {
-    return false;
+    id = 0;
+    return true;
 }
 
 bool Block::IsSolid()
