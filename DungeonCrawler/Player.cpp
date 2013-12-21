@@ -44,14 +44,14 @@ void Player::Action()
     {
         float x = position.x + rCos * i;
         float z = position.z - rSin * i;
-//        for (Entity *entity : potentialEntities)
-//        {
-//            if (entity->ContainsPoint(x, z))
-//            {
-//                entity->Use();
-//                return;
-//            }
-//        }
+        for (Entity *entity : potentialEntities)
+        {
+            if (entity->ContainsPoint(x, z))
+            {
+                entity->Use();
+                return;
+            }
+        }
         int xIndex = static_cast<int>(x / 64);
         int zIndex = static_cast<int>(z / 64);
         if ((*level)[zIndex * level->Height() + xIndex].Use())
