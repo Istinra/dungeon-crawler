@@ -20,8 +20,7 @@ public:
     virtual void Update();
 
 protected:
-    int textureId;
-    const int originalId;
+    const int textureId;
     int animationTimer;
 };
 

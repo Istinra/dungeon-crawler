@@ -9,8 +9,7 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(textureId),
-originalId(textureId), animationTimer(0)
+Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(textureId), animationTimer(0)
 {
 
 }
@@ -23,5 +22,5 @@ Enemy::~Enemy()
 void Enemy::Update()
 {
     Entity::Update();
-    textureId = originalId + (++animationTimer % 100 == 0 ? 1 : 0);
+    sprite->texNumber = textureId + (++animationTimer % 200 > 100 ? 1 : 0);
 }
