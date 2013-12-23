@@ -34,7 +34,7 @@ public:
 
     int Height()
     {
-        return width;
+        return height;
     }
 
     std::vector<Entity *> &Entities()
@@ -43,8 +43,12 @@ public:
     };
 
 private:
-    Block *blocks;
+    Block *CreateBlock(int x, int y, unsigned pixel);
+
+    void CheckEntities(int x, int y, unsigned pixel);
+
     int width, height;
+    std::vector<Block *> blocks;
     std::vector<Entity *> entities;
 };
 

@@ -9,8 +9,8 @@
 #include <SDL2/SDL_scancode.h>
 #include "Game.h"
 
-#define MOVE_STEP 0.25f
-#define TURN_STEP 0.005f
+#define MOVE_STEP 0.5f
+#define TURN_STEP 0.008f
 
 Game::Game()
 {
