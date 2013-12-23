@@ -12,11 +12,8 @@
 
 const float Entity::boundingWidth = 20.0f;
 
-Entity::Entity() : yaw(M_PI_2), sprite(nullptr)
+Entity::Entity(Vector3 position) : yaw(M_PI_2), sprite(nullptr), position(position)
 {
-    position.x = 142;
-    position.y = 32;
-    position.z = 416;
 }
 
 Entity::~Entity()

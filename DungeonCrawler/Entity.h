@@ -17,7 +17,8 @@ class Entity
 {
 
 public:
-    Entity();
+    Entity(Vector3 position);
+
     virtual ~Entity();
 
     void Move(Vector3 movement);

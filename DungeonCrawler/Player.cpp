@@ -11,9 +11,8 @@
 #include "Player.h"
 #include "Level.h"
 
-Player::Player() : health(10), battery(100), activeSlot(0)
+Player::Player() : Entity(Vector3(142, 32, 416)), health(10), battery(100), activeSlot(0)
 {
-
 }
 
 Player::~Player()

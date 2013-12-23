@@ -122,7 +122,6 @@ void RayCastBitmap::DrawSprites(Game &game)
         float zScreenPos = width / 2 - zCamSpace / depth * DISTANCE_TO_PLANE;
 
         int size = (int) (64 / depth * DISTANCE_TO_PLANE);
-        float increment = size / 64.0f;
 
         int pixelX = (int) (zScreenPos - size / 2.0f);
         int pixelEndX = pixelX + size;

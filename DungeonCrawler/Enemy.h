@@ -13,10 +13,12 @@
 class Enemy : public Entity
 {
 public:
-    Enemy();
+    Enemy(Vector3 position, int textureId);
 
-    ~Enemy();
+    virtual ~Enemy();
 
+protected:
+    int textureId;
 };
 
 #endif /* defined(__DungeonCrawler__Enemy__) */

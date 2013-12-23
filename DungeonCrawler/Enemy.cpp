@@ -8,7 +8,8 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy()
+
+Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(textureId)
 {
 
 }
