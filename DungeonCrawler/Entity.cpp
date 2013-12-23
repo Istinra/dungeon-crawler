@@ -66,3 +66,8 @@ void Entity::Update()
 {
 
 }
+
+void Entity::Collide(Entity *e)
+{
+
+}

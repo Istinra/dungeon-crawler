@@ -29,6 +29,10 @@ public:
 
     virtual void Update();
 
+    virtual void Collide(Entity *e);
+
+    void SetLevel(Level *level);
+
     Vector3 const Position()
     {
         return position;
@@ -58,8 +62,6 @@ public:
     {
         this->sprite = sprite;
     }
-
-    void SetLevel(Level *level);
 
 protected:
     static const float boundingWidth;

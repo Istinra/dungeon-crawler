@@ -10,19 +10,21 @@
 
 #define MAX_INVENTORY 8
 
-#include "Entity.h"
+#include "LivingEntity.h"
 #include "Item.h"
 
-class Player : public Entity
+class Player : public LivingEntity
 {
 public:
     Player();
-    ~Player();
+
+    virtual ~Player();
 
     void Action();
 
+    virtual void Hurt(int damage);
+
 private:
-    short health;
     short battery;
 
     Item inventory[MAX_INVENTORY];

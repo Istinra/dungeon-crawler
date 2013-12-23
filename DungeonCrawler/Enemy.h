@@ -8,19 +8,23 @@
 #ifndef __DungeonCrawler__Enemy__
 #define __DungeonCrawler__Enemy__
 
-#include "Entity.h"
+#include "LivingEntity.h"
 
-class Enemy : public Entity
+class Enemy : public LivingEntity
 {
 public:
     Enemy(Vector3 position, int textureId);
-
     virtual ~Enemy();
 
     virtual void Update();
 
+    virtual void Collide(Entity *e);
+
+    virtual void Hurt(int damage);
+
 protected:
     const int textureId;
+    int attackCoolDown;
     int animationTimer;
 };
 

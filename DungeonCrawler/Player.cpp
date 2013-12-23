@@ -11,7 +11,7 @@
 #include "Player.h"
 #include "Level.h"
 
-Player::Player() : Entity(Vector3(142, 32, 416)), health(10), battery(100), activeSlot(0)
+Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
 {
 }
 
@@ -58,4 +58,9 @@ void Player::Action()
             return;
         }
     }
+}
+
+void Player::Hurt(int damage)
+{
+
 }

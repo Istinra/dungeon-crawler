@@ -13,6 +13,7 @@
 		2274729F1867AAC60055BC91 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2274729D1867AAC60055BC91 /* Enemy.cpp */; };
 		2277FEDF185C13A50046CE0F /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2277FEDD185C13A50046CE0F /* Level.cpp */; };
 		2284CA4D185C1A9F00386D90 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2284CA4B185C1A9F00386D90 /* Block.cpp */; };
+		229428351868610500229F48 /* LivingEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 229428331868610500229F48 /* LivingEntity.cpp */; };
 		2298AD2F1854219C008A4837 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD2E1854219C008A4837 /* Game.cpp */; };
 		2298AD31185421A7008A4837 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD30185421A7008A4837 /* Renderer.cpp */; };
 		2298AD351854230A008A4837 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD341854230A008A4837 /* Bitmap.cpp */; };
@@ -55,6 +56,8 @@
 		2277FEDE185C13A50046CE0F /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		2284CA4B185C1A9F00386D90 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
 		2284CA4C185C1A9F00386D90 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		229428331868610500229F48 /* LivingEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LivingEntity.cpp; sourceTree = "<group>"; };
+		229428341868610500229F48 /* LivingEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingEntity.h; sourceTree = "<group>"; };
 		2298AD2E1854219C008A4837 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		2298AD30185421A7008A4837 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		2298AD33185422E6008A4837 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 				2274729E1867AAC60055BC91 /* Enemy.h */,
 				22BFA69D186807C100FD4037 /* BatEnemy.cpp */,
 				22BFA69E186807C100FD4037 /* BatEnemy.h */,
+				229428331868610500229F48 /* LivingEntity.cpp */,
+				229428341868610500229F48 /* LivingEntity.h */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				22CAB7B01861853F00D3D0AF /* Item.cpp in Sources */,
 				22DCB58D18543ECB000F77D0 /* RayCastBitmap.cpp in Sources */,
 				60DB6539185A8E620054681D /* Player.cpp in Sources */,
+				229428351868610500229F48 /* LivingEntity.cpp in Sources */,
 				2298AD31185421A7008A4837 /* Renderer.cpp in Sources */,
 				22C1A853185B38BD001C9B05 /* Resources.cpp in Sources */,
 				225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */,
