@@ -23,7 +23,6 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
-    Entity::Update();
     sprite->texNumber = textureId + (++animationTimer % 200 > 100 ? 1 : 0);
     if (attackCoolDown > 0)
     {
@@ -42,5 +41,5 @@ void Enemy::Collide(Entity *e)
 
 void Enemy::Hurt(int damage)
 {
-
+    health -= damage;
 }

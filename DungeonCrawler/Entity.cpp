@@ -57,11 +57,6 @@ bool Entity::ContainsPoint(float x, float z)
             z < position.z + 40 && z > position.z - 40;
 }
 
-bool Entity::Use()
-{
-    return false;
-}
-
 void Entity::Update()
 {
 
@@ -70,4 +65,9 @@ void Entity::Update()
 void Entity::Collide(Entity *e)
 {
 
+}
+
+bool Entity::Use(Entity *source, Item &item)
+{
+    return false;
 }

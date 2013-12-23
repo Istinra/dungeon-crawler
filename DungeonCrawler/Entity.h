@@ -10,6 +10,7 @@
 #define DungeonCrawler_Entity_h
 
 #include "CommonTypes.h"
+#include "Item.h"
 
 class Level;
 
@@ -25,7 +26,7 @@ public:
 
     bool ContainsPoint(float x, float z);
 
-    virtual bool Use();
+    virtual bool Use(Entity *source, Item &item);
 
     virtual void Update();
 

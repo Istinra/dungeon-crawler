@@ -47,7 +47,7 @@ void Player::Action()
         {
             if (entity->ContainsPoint(x, z))
             {
-                entity->Use();
+                entity->Use(this, inventory[activeSlot]);
                 return;
             }
         }
@@ -62,5 +62,5 @@ void Player::Action()
 
 void Player::Hurt(int damage)
 {
-
+    health -= damage;
 }
