@@ -10,6 +10,7 @@
 		1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDF0CEA30D3AB21C197177 /* stb_image.c */; };
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
 		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
+		2274729F1867AAC60055BC91 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2274729D1867AAC60055BC91 /* Enemy.cpp */; };
 		2277FEDF185C13A50046CE0F /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2277FEDD185C13A50046CE0F /* Level.cpp */; };
 		2284CA4D185C1A9F00386D90 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2284CA4B185C1A9F00386D90 /* Block.cpp */; };
 		2298AD2F1854219C008A4837 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD2E1854219C008A4837 /* Game.cpp */; };
@@ -47,6 +48,8 @@
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
 		225D7DBB1850C3EF00A141C0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		225D7DC41850C45500A141C0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		2274729D1867AAC60055BC91 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		2274729E1867AAC60055BC91 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		2277FEDD185C13A50046CE0F /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
 		2277FEDE185C13A50046CE0F /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		2284CA4B185C1A9F00386D90 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				60DB6538185A8E620054681D /* Player.cpp */,
 				22CAB7AE1861853F00D3D0AF /* Item.cpp */,
 				22CAB7AF1861853F00D3D0AF /* Item.h */,
+				2274729D1867AAC60055BC91 /* Enemy.cpp */,
+				2274729E1867AAC60055BC91 /* Enemy.h */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				22C1A853185B38BD001C9B05 /* Resources.cpp in Sources */,
 				225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */,
 				2298AD351854230A008A4837 /* Bitmap.cpp in Sources */,
+				2274729F1867AAC60055BC91 /* Enemy.cpp in Sources */,
 				2277FEDF185C13A50046CE0F /* Level.cpp in Sources */,
 				60DB6536185A8C9F0054681D /* Entity.cpp in Sources */,
 				2298AD2F1854219C008A4837 /* Game.cpp in Sources */,
