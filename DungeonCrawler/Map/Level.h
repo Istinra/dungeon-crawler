@@ -22,8 +22,9 @@ public:
 
     void LoadLevel(std::string name);
     void AddEntity(Entity *entity);
-
     void RemoveEntity(Entity *entity);
+
+    void Update();
 
     Block &operator [] (unsigned int);
 

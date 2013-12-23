@@ -27,6 +27,8 @@ public:
 
     virtual bool Use();
 
+    virtual void Update();
+
     Vector3 const Position()
     {
         return position;

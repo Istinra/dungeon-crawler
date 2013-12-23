@@ -78,11 +78,12 @@ void Level::RemoveEntity(Entity *entity)
 
 void Level::CheckEntities(int x, int y, unsigned pixel)
 {
-    Vector3 pos = Vector3(x * 64 + 32, 0, y * 62 + 32);
+    Vector3 pos = Vector3(x * 64 + 32, 0, y * 62 - 32);
     switch (pixel)
         case 0xFF00A000:
         {
             BatEnemy *bat = new BatEnemy(pos, 1);
+            bat->SetSprite(new Sprite(0, 0, 0, 1));
             entities.push_back(bat);
             break;
         }
@@ -100,4 +101,12 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel)
             block = new Block(0, x, y);
     }
     return block;
+}
+
+void Level::Update()
+{
+    for (Entity *entity : entities)
+    {
+        entity->Update();
+    }
 }

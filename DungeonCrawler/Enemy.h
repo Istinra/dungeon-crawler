@@ -17,8 +17,12 @@ public:
 
     virtual ~Enemy();
 
+    virtual void Update();
+
 protected:
     int textureId;
+    const int originalId;
+    int animationTimer;
 };
 
 #endif /* defined(__DungeonCrawler__Enemy__) */

@@ -9,7 +9,8 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(textureId)
+Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(textureId),
+originalId(textureId), animationTimer(0)
 {
 
 }
@@ -17,4 +18,10 @@ Enemy::Enemy(Vector3 position, int textureId) : Entity(position), textureId(text
 Enemy::~Enemy()
 {
 
+}
+
+void Enemy::Update()
+{
+    Entity::Update();
+    textureId = originalId + (++animationTimer % 100 == 0 ? 1 : 0);
 }

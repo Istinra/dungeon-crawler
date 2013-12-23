@@ -61,3 +61,8 @@ bool Entity::Use()
 {
     return false;
 }
+
+void Entity::Update()
+{
+
+}
