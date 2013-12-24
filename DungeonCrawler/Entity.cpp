@@ -44,6 +44,16 @@ void Entity::Move(Vector3 movement)
         movement.z = 0.0f;
     }
     position = position + movement;
+    for (Entity *entity : level->Entities())
+    {
+        if (entity == this) continue;
+        if (ContainsPoint(entity->Position().x, entity->Position().z))
+        {
+            Collide(entity);
+            entity->Collide(this);
+            return;
+        }
+    }
 }
 
 void Entity::SetLevel(Level *level)

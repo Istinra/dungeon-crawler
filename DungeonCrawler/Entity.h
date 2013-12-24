@@ -35,6 +35,11 @@ public:
 
     virtual void Collide(Entity *e);
 
+    virtual bool IsRemoved()
+    {
+        return false;
+    }
+
     void SetLevel(Level *level);
 
     Vector3 const Position()

@@ -64,3 +64,8 @@ void Player::Hurt(int damage)
 {
     health -= damage;
 }
+
+bool Player::IsRemoved()
+{
+    return false;
+}

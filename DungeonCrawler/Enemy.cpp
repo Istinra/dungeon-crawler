@@ -48,10 +48,14 @@ void Enemy::Update()
 
 void Enemy::Collide(Entity *e)
 {
-    Player *player = dynamic_cast<Player *>(e);
-    if (player)
+    if (!attackCoolDown)
     {
-        player->Hurt(damage);
+        attackCoolDown = 100;
+        Player *player = dynamic_cast<Player *>(e);
+        if (player)
+        {
+            player->Hurt(damage);
+        }
     }
 }
 

@@ -21,6 +21,11 @@ public:
 
     virtual void Hurt(int damage) = 0;
 
+    virtual bool IsRemoved()
+    {
+        return health <= 0;
+    }
+
 protected:
     short health;
     short damage;

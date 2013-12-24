@@ -24,6 +24,8 @@ public:
 
     virtual void Hurt(int damage);
 
+    virtual bool IsRemoved() override;
+
 private:
     short battery;
 

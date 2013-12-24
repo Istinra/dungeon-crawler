@@ -10,5 +10,5 @@
 
 BatEnemy::BatEnemy(Vector3 position, int textureId):Enemy(position, textureId)
 {
-    this->health = 2;
+    this->health = 5;
 }

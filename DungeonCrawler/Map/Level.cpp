@@ -106,8 +106,13 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel)
 
 void Level::Update()
 {
-    for (Entity *entity : entities)
+    for (auto i = entities.begin(); i != entities.end(); i++)
     {
-        entity->Update();
+        (*i)->Update();
+        if ((*i)->IsRemoved())
+        {
+            delete (*i);
+            entities.erase(i);
+        }
     }
 }
