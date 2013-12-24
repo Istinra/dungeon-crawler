@@ -24,10 +24,13 @@ public:
 
     virtual void Hurt(int damage);
 
+    virtual void Update() override;
+
     virtual bool IsRemoved() override;
 
 private:
     short battery;
+    short actionTimer;
 
     Item inventory[MAX_INVENTORY];
     short activeSlot;

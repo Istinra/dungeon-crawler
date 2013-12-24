@@ -22,6 +22,11 @@ Player::~Player()
 
 void Player::Action()
 {
+    if (actionTimer > 0)
+    {
+        return;
+    }
+    actionTimer = 100;
     std::vector<Entity *> potentialEntities;
     const std::vector<Entity *> &entities = level->Entities();
     for (Entity *entity : entities)
@@ -68,4 +73,12 @@ void Player::Hurt(int damage)
 bool Player::IsRemoved()
 {
     return false;
+}
+
+void Player::Update()
+{
+    if (actionTimer > 0)
+    {
+        --actionTimer;
+    }
 }
