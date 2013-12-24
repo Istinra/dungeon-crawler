@@ -84,6 +84,7 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
         {
             BatEnemy *bat = new BatEnemy(pos, 1);
             bat->SetSprite(new Sprite(0, 0, 0, 1));
+            bat->SetLevel(this);
             entities.push_back(bat);
             break;
         }

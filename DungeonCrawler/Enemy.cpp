@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
+#include <stdlib.h>
+#include <math.h>
 #include "Enemy.h"
 #include "Player.h"
 
@@ -28,6 +30,20 @@ void Enemy::Update()
     {
         --attackCoolDown;
     }
+    //Only step movement every 30 frames
+    if (animationTimer % 200 == 0)
+    {
+        yaw += static_cast<float>((rand() % 360) * 180 / M_PI) * TURN_STEP;
+        if (yaw < 0)
+        {
+            yaw += 2 * M_PI;
+        }
+        else if (yaw > 2 * M_PI )
+        {
+            yaw -= 2 * M_PI;
+        }
+    }
+    Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));
 }
 
 void Enemy::Collide(Entity *e)

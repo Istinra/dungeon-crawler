@@ -53,8 +53,8 @@ void Entity::SetLevel(Level *level)
 
 bool Entity::ContainsPoint(float x, float z)
 {
-    return x < position.x + 40 && x > position.x - 40 &&
-            z < position.z + 40 && z > position.z - 40;
+    return x < position.x + 60 && x > position.x - 60 &&
+            z < position.z + 60 && z > position.z - 60;
 }
 
 void Entity::Update()
