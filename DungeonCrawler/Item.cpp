@@ -8,7 +8,7 @@
 
 #include "Item.h"
 
-Item::Item()
+Item::Item() : count(0)
 {
 
 }

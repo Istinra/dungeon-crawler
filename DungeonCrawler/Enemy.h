@@ -22,6 +22,8 @@ public:
 
     virtual void Hurt(int damage);
 
+    virtual bool Use(Entity *source, Item &item);
+
 protected:
     const int textureId;
     int attackCoolDown;

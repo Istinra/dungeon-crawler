@@ -43,3 +43,9 @@ void Enemy::Hurt(int damage)
 {
     health -= damage;
 }
+
+bool Enemy::Use(Entity *source, Item &item)
+{
+    Hurt(2);
+    return true;
+}

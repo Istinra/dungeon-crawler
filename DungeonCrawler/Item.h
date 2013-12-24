@@ -22,6 +22,7 @@ public:
     ~Item();
 
 private:
+    int count;
     ItemType type;
 };
 
