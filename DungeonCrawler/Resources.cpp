@@ -36,6 +36,9 @@ Bitmap *Resources::LoadTexture(Textures texture)
         case SPRITES:
             bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/sprites.png");
             break;
+        case HUD:
+            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/HUD.png");
+            break;
         default:
             break;
     }

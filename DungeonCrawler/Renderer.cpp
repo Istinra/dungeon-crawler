@@ -8,6 +8,7 @@
 
 #include <string.h>
 #include "Renderer.h"
+#include "Resources.h"
 
 Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
 {
@@ -15,9 +16,14 @@ Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
     {
         pixels[i] = 0xFF0000;
     }
-    for(int i = HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i < HEIGHT * WIDTH; i++)
+    Bitmap *const hudTexture = Resources::instance().LoadTexture(HUD);
+    unsigned int const *const hudPixels = hudTexture->Pixels();
+    for (int h = HEIGHT - PANEL_HEIGHT, hudImgHeight = 0; h < HEIGHT; h++, hudImgHeight++)
     {
-        pixels[i] = 0x0000FF;
+        for (int w = 0; w < WIDTH; w++)
+        {
+            pixels[w + h * WIDTH] = hudPixels[w / 4 + hudImgHeight / 4 * hudTexture->Width()];
+        }
     }
 }
 

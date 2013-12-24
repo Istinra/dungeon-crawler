@@ -9,7 +9,7 @@
 #ifndef DungeonCrawler_Renderer_h
 #define DungeonCrawler_Renderer_h
 
-#define PANEL_HEIGHT 100
+#define PANEL_HEIGHT 29 * 4
 
 #include "Game.h"
 #include "RayCastBitmap.h"
