@@ -28,6 +28,11 @@ public:
 
     virtual bool IsRemoved() override;
 
+    short Battery()
+    {
+        return battery;
+    }
+
 private:
     short battery;
     short actionTimer;

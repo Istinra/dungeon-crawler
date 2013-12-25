@@ -34,6 +34,8 @@ void Renderer::Draw(Game &game)
     memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
     viewPort.Draw(game);
     DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
+    DrawText(std::to_string(game.GetPlayer().Battery()) + "%", 50, 425);
+    DrawText(std::string("0/?"), 50, 455);
 }
 
 void Renderer::DrawText(const std::string text, int x, int y)
