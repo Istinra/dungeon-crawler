@@ -43,6 +43,7 @@
 		1BBDF5C5D0A91B72FD995D9C /* HUD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HUD.png; sourceTree = "<group>"; };
 		1BBDF662FEA373C9BD97B1FA /* DungeonCrawler.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; name = DungeonCrawler.1; path = DungeonCrawler/DungeonCrawler.1; sourceTree = "<group>"; };
 		1BBDF7EE7ACFCDFCC8708625 /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo.png; sourceTree = "<group>"; };
+		1BBDF8E43E79C872158B1B3F /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
 		1BBDFC746E6DB639522E133C /* walls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walls.png; sourceTree = "<group>"; };
 		1BBDFDF1E1B1E571E3D911C7 /* std_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = std_image.h; path = External/std_image.h; sourceTree = "<group>"; };
 		2256277818532B37009A865C /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 				1BBDFC746E6DB639522E133C /* walls.png */,
 				1BBDF7EE7ACFCDFCC8708625 /* demo.png */,
 				1BBDF1BD9DC8EBE982E1F2C7 /* sprites.png */,
+				1BBDF8E43E79C872158B1B3F /* font.png */,
 			);
 			path = Art;
 			sourceTree = "<group>";

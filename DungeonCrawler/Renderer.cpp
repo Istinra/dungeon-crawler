@@ -10,7 +10,8 @@
 #include "Renderer.h"
 #include "Resources.h"
 
-Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
+Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH),
+symbols("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?.!@#$%^&*(){}[]_+=-")
 {
     for(int i = 0; i < HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i++)
     {
@@ -27,7 +28,8 @@ Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH)
     }
 }
 
-void Renderer::Draw(Game &game) {
+void Renderer::Draw(Game &game)
+{
     memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
     //Note UI frame doesn't need to be redrawn
     viewPort.Draw(game);

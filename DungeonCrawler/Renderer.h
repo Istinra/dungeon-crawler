@@ -27,6 +27,7 @@ public:
     }
 
 private:
+    const std::string symbols;
     unsigned int pixels[WIDTH * HEIGHT];
     RayCastBitmap viewPort;
 };
