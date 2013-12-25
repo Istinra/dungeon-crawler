@@ -22,7 +22,7 @@ public:
 
     void Draw(Game &game);
 
-    void DrawText(const std::string text, float x, float y);
+    void DrawText(const std::string text, int x, int y);
 
     unsigned int *Pixels()
     {

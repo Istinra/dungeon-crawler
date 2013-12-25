@@ -33,10 +33,10 @@ void Renderer::Draw(Game &game)
 {
     memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
     viewPort.Draw(game);
-    DrawText(std::to_string(game.GetPlayer().Health()), 0, 0);
+    DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
 }
 
-void Renderer::DrawText(const std::string text, float x, float y)
+void Renderer::DrawText(const std::string text, int x, int y)
 {
     Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
     unsigned int const *const fontPix = fontBitmap->Pixels();
@@ -48,11 +48,10 @@ void Renderer::DrawText(const std::string text, float x, float y)
         {
             int heightOffset = (location / (fontBitmap->Width() / LETTER_WIDTH)) * LETTER_HEIGHT;
             int widthOffset = (location % (fontBitmap->Width() / LETTER_WIDTH)) * LETTER_WIDTH;
-            for (int height = heightOffset, screenHeight = 0; height < heightOffset + LETTER_HEIGHT; height++, screenHeight++)
+            for (int height = heightOffset, screenHeight = y; height < heightOffset + LETTER_HEIGHT; height++, screenHeight++)
             {
-                for (int width = widthOffset, screenWidth = 10; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
+                for (int width = widthOffset, screenWidth = x; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
                 {
-                    //TODO Stop letters drawing on top of each other
                     pixels[screenWidth + screenHeight * WIDTH + i * LETTER_WIDTH] =
                             fontPix[width + height * fontBitmap->Width()];
                 }
