@@ -33,15 +33,13 @@ void Renderer::Draw(Game &game)
 {
     memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
     viewPort.Draw(game);
-//    DrawText(std::to_string(game.GetPlayer().Health()), 0, 0);
-    DrawText(std::string("Heloooooo"), 0, 0);
+    DrawText(std::to_string(game.GetPlayer().Health()), 0, 0);
 }
 
 void Renderer::DrawText(const std::string text, float x, float y)
 {
     Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
     unsigned int const *const fontPix = fontBitmap->Pixels();
-    char const *const string = text.c_str();
     for (int i = 0; i < text.length(); i++)
     {
         char c = text[i];
@@ -54,8 +52,9 @@ void Renderer::DrawText(const std::string text, float x, float y)
             {
                 for (int width = widthOffset, screenWidth = 10; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
                 {
-                    //TODO Stop letters drawing on top of eachother
-                    pixels[screenWidth + screenHeight * WIDTH] = fontPix[width + height * fontBitmap->Width()];
+                    //TODO Stop letters drawing on top of each other
+                    pixels[screenWidth + screenHeight * WIDTH + i * LETTER_WIDTH] =
+                            fontPix[width + height * fontBitmap->Width()];
                 }
             }
         }
