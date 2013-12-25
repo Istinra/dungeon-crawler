@@ -26,6 +26,11 @@ public:
         return health <= 0;
     }
 
+    short Health()
+    {
+        return health;
+    }
+
 protected:
     short health;
     short damage;

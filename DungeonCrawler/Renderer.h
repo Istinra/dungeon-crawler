@@ -13,6 +13,7 @@
 
 #include "Game.h"
 #include "RayCastBitmap.h"
+#include <string.h>
 
 class Renderer
 {
@@ -20,6 +21,8 @@ public:
     Renderer();
 
     void Draw(Game &game);
+
+    void DrawText(const std::string text, float x, float y);
 
     unsigned int *Pixels()
     {

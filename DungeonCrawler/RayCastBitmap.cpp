@@ -24,7 +24,7 @@ void RayCastBitmap::Draw(Game &game)
 
 void RayCastBitmap::DrawWalls(Game &game)
 {
-    Bitmap *walls = Resources::instance().LoadTexture(WALLS);
+    Bitmap *walls = Resources::Instance().LoadTexture(WALLS);
     Level &level = game.CurrentLevel();
 
     float rawAngle = yaw + VIEWING_ANGLE / 2;
@@ -97,7 +97,7 @@ void RayCastBitmap::DrawWalls(Game &game)
 void RayCastBitmap::DrawSprites(Game &game)
 {
     std::vector<Entity *> &entities = game.CurrentLevel().Entities();
-    Bitmap *spriteSheet = Resources::instance().LoadTexture(SPRITES);
+    Bitmap *spriteSheet = Resources::Instance().LoadTexture(SPRITES);
 
     float rCos = -cosf(yaw);
     float rSin = sinf(yaw);

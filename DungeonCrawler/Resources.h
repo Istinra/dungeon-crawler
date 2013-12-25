@@ -16,7 +16,7 @@
 enum Textures
 {
     WALLS,
-    ROOF_FLOOR,
+    FONT,
     HUD,
     SPRITES
 };
@@ -28,7 +28,7 @@ public:
 
     ~Resources();
 
-    static Resources &instance()
+    static Resources &Instance()
     {
         static Resources instance;
         return instance;

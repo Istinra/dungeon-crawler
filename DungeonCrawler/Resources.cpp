@@ -39,6 +39,9 @@ Bitmap *Resources::LoadTexture(Textures texture)
         case HUD:
             bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/HUD.png");
             break;
+        case FONT:
+            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/font.png");
+            break;
         default:
             break;
     }
