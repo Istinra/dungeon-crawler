@@ -30,8 +30,11 @@ void Game::LoadLevel(std::string name)
 
 void Game::Update(bool const *keys)
 {
-    HandleInput(keys);
-    level.Update();
+    if (player.Alive())
+    {
+        HandleInput(keys);
+        level.Update();
+    }
 }
 
 void Game::HandleInput(bool const *keys)

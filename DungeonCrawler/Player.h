@@ -33,6 +33,11 @@ public:
         return battery;
     }
 
+    bool Alive()
+    {
+        return health > 0;
+    }
+
 private:
     short battery;
     short actionTimer;

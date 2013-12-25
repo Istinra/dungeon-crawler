@@ -31,11 +31,18 @@ symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
 
 void Renderer::Draw(Game &game)
 {
-    memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
-    viewPort.Draw(game);
-    DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
-    DrawText(std::to_string(game.GetPlayer().Battery()) + "%", 50, 425);
-    DrawText(std::string("0/?"), 50, 455);
+    if (game.GetPlayer().Alive())
+    {
+        viewPort.Draw(game);
+        memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
+        DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
+        DrawText(std::to_string(game.GetPlayer().Battery()) + "%", 50, 425);
+        DrawText(std::string("0/?"), 50, 455);
+    }
+    else
+    {
+        DrawText(std::string("You died"), 320, 240);
+    }
 }
 
 void Renderer::DrawText(const std::string text, int x, int y)
