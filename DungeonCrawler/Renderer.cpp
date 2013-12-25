@@ -11,7 +11,7 @@
 #include "Resources.h"
 
 Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH),
-symbols("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?.!@#$%^&*(){}[]_+=-")
+symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
 {
     for(int i = 0; i < HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i++)
     {
