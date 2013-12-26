@@ -98,6 +98,14 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
             entities.push_back(pickup);
             break;
         }
+        case 0xFF0000AA:
+        {
+            Pickup *pickup = new Pickup(pos, Item(1, SWORD));
+            pickup->SetSprite(new Sprite(0, 0, 0, 3));
+            pickup->SetLevel(this);
+            entities.push_back(pickup);
+            break;
+        }
     }
 
 }
