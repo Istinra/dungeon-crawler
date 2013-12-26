@@ -17,6 +17,14 @@ enum ItemType
 
 struct Item
 {
+    Item()
+    {
+    }
+
+    Item(int count, ItemType const &type):count(count), type(type)
+    {
+    }
+
     int count;
     ItemType type;
 };

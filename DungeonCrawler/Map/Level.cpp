@@ -9,6 +9,7 @@
 #include "Level.h"
 #include "BatEnemy.h"
 #include "Resources.h"
+#import "Pickup.h"
 #include <iostream>
 
 Level::Level()
@@ -80,6 +81,7 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
 {
     Vector3 pos = Vector3(x * 64 + 32, 0, y * 62 - 32);
     switch (pixel)
+    {
         case 0xFF00A000:
         {
             BatEnemy *bat = new BatEnemy(pos, 1);
@@ -88,6 +90,14 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
             entities.push_back(bat);
             break;
         }
+        case 0xFF0000FF:
+        {
+            Pickup *pickup = new Pickup(pos, Item(1, POTION));
+            pickup->SetSprite(new Sprite(0, 0, 0, 4));
+            break;
+        }
+    }
+
 }
 
 Block *Level::CreateBlock(int x, int y, unsigned pixel)
