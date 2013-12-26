@@ -9,7 +9,7 @@
 #include "Pickup.h"
 #include "Player.h"
 
-Pickup::Pickup(Vector3 const &position, Item item):Entity(position), item(item)
+Pickup::Pickup(Vector3 const &position, Item item):Entity(position), item(item), removed(false)
 {
 }
 
@@ -19,5 +19,11 @@ void Pickup::Collide(Entity *e)
     if (player)
     {
         player->GiveItem(item);
+        removed = true;
     }
+}
+
+bool Pickup::IsRemoved()
+{
+    return removed;
 }

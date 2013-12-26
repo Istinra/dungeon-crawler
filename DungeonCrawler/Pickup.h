@@ -18,8 +18,12 @@ public:
 
     virtual void Collide(Entity *e) override;
 
+
+    virtual bool IsRemoved() override;
+
 private:
     Item item;
+    bool removed;
 };
 
 #endif /* defined(__DungeonCrawler__Pickup__) */
