@@ -11,17 +11,12 @@
 
 enum ItemType
 {
+    SWORD,
     POTION
 };
 
-class Item
+struct Item
 {
-public:
-    Item();
-
-    ~Item();
-
-private:
     int count;
     ItemType type;
 };

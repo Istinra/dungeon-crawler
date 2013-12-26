@@ -82,3 +82,18 @@ void Player::Update()
         --actionTimer;
     }
 }
+
+void Player::GiveItem(Item item)
+{
+    for (int i = 0; i < MAX_INVENTORY; i++)
+    {
+        if (inventory[i].type == item.type)
+        {
+            inventory[i].count += item.count;
+        }
+        else if (inventory[i].count == 0)
+        {
+            inventory[i] = item;
+        }
+    }
+}

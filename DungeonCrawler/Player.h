@@ -22,6 +22,8 @@ public:
 
     void Action();
 
+    void GiveItem(Item item);
+
     virtual void Hurt(int damage);
 
     virtual void Update() override;
