@@ -159,7 +159,7 @@ void RayCastBitmap::DrawSprites(Game &game)
                 unsigned int colour = spriteSheet->Pixels()[index];
                 if (0xFF000000 & colour)
                 {
-                    pixels[stripe + width * row] = colour;
+                    pixels[stripe + width * row] = colour | sprite->colour;
                 }
                 texY += yTexIncrement;
             }

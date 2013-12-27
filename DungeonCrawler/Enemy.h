@@ -26,8 +26,10 @@ public:
 
 protected:
     const int textureId;
+    unsigned int colour;
     int attackCoolDown;
     int animationTimer;
+    int hurtTimer;
 };
 
 #endif /* defined(__DungeonCrawler__Enemy__) */

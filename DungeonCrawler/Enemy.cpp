@@ -11,11 +11,12 @@
 #include "Enemy.h"
 #include "Player.h"
 
+#define HURT_COLOUR 0x00FF0000
 
 Enemy::Enemy(Vector3 position, int textureId) : LivingEntity(position),
 textureId(textureId), animationTimer(0), attackCoolDown(0)
 {
-
+    colour = HURT_COLOUR;
 }
 
 Enemy::~Enemy()
@@ -25,6 +26,16 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
+    if (hurtTimer > 0)
+    {
+        --hurtTimer;
+        if (hurtTimer == 0)
+        {
+            unsigned int temp = sprite->colour;
+            sprite->colour = colour;
+            colour = temp;
+        }
+    }
     sprite->texNumber = textureId + (++animationTimer % 200 > 100 ? 1 : 0);
     if (attackCoolDown > 0)
     {
@@ -50,7 +61,7 @@ void Enemy::Collide(Entity *e)
 {
     if (!attackCoolDown)
     {
-        attackCoolDown = 100;
+        attackCoolDown = 150;
         Player *player = dynamic_cast<Player *>(e);
         if (player)
         {
@@ -62,6 +73,10 @@ void Enemy::Collide(Entity *e)
 void Enemy::Hurt(int damage)
 {
     health -= damage;
+    unsigned int temp = sprite->colour;
+    sprite->colour = colour;
+    colour = temp;
+    hurtTimer = 100;
 }
 
 bool Enemy::Use(Entity *source, Item &item)
