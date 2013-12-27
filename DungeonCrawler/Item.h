@@ -11,13 +11,13 @@
 
 enum ItemType
 {
-    SWORD,
-    POTION
+    SWORD = 3,
+    POTION = 4
 };
 
 struct Item
 {
-    Item()
+    Item() : count(0)
     {
     }
 

@@ -40,6 +40,11 @@ public:
         return health > 0;
     }
 
+    Item ItemAtSlot(int slot)
+    {
+        return inventory[slot];
+    }
+
 private:
     short battery;
     short actionTimer;

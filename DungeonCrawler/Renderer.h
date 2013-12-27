@@ -24,6 +24,8 @@ public:
 
     void DrawText(const std::string text, int x, int y);
 
+    void DrawInventory(Game &game);
+
     unsigned int *Pixels()
     {
         return pixels;
