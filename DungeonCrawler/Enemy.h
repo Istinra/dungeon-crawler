@@ -14,6 +14,7 @@ class Enemy : public LivingEntity
 {
 public:
     Enemy(Vector3 position, int textureId);
+
     virtual ~Enemy();
 
     virtual void Update();
@@ -23,7 +24,6 @@ public:
     virtual void Hurt(int damage);
 
     virtual bool Use(Entity *source, Item &item);
-
 
     virtual bool IsRemoved() override;
 

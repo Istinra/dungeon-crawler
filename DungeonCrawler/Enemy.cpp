@@ -60,7 +60,7 @@ void Enemy::Update()
             yaw -= 2 * M_PI;
         }
     }
-    Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));
+//    Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));
 }
 
 void Enemy::Collide(Entity *e)
@@ -79,7 +79,7 @@ void Enemy::Collide(Entity *e)
 void Enemy::Hurt(int damage)
 {
     health -= damage;
-    if (health < 1)
+    if (health > 0)
     {
         unsigned int temp = sprite->colour;
         sprite->colour = colour;
