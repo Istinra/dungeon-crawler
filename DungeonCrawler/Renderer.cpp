@@ -85,9 +85,9 @@ void Renderer::DrawInventory(Game &game)
         }
         int heightOffset = (item.type / (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
         int widthOffset = (item.type % (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
-        for (int height = heightOffset, screenHeight = 353; height < heightOffset + SPRITE_SIZE; height++, screenHeight++)
+        for (int height = heightOffset, screenHeight = 408; height < heightOffset + SPRITE_SIZE; height++, screenHeight++)
         {
-            for (int width = widthOffset, screenWidth = 30; width < widthOffset + SPRITE_SIZE; width++, screenWidth++)
+            for (int width = widthOffset, screenWidth = 120; width < widthOffset + SPRITE_SIZE; width++, screenWidth++)
             {
                 pixels[screenWidth + screenHeight * WIDTH + i * SPRITE_SIZE] =
                         spritePixels[width + height * spriteBitmap->Width()];
