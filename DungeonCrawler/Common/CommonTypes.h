@@ -11,8 +11,12 @@
 
 struct Sprite
 {
+    Sprite(float x, float y, float z, int texNumber, unsigned int colour):
+    x(x), y(y), z(z), texNumber(texNumber), colour(colour)
+    {
+    }
 
-    Sprite(float x, float y, float z, int texNumber):x(x), y(y), z(z), texNumber(texNumber)
+    Sprite(float x, float y, float z, int texNumber):x(x), y(y), z(z), texNumber(texNumber), colour(0x00000000)
     {
     }
 
@@ -20,6 +24,7 @@ struct Sprite
     float y;
     float z;
     int texNumber;
+    unsigned int colour;
 };
 
 struct Vector3
