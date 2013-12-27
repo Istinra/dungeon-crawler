@@ -74,6 +74,7 @@ void Renderer::DrawText(const std::string text, int x, int y)
 
 void Renderer::DrawInventory(Game &game)
 {
+    const static float scale = 3.8f;
     Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(SPRITES);
     unsigned int const *const spritePixels = spriteBitmap->Pixels();
     for (int i = 0; i < MAX_INVENTORY; i++)
@@ -83,14 +84,16 @@ void Renderer::DrawInventory(Game &game)
         {
             return;
         }
-        int heightOffset = (item.type / (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
-        int widthOffset = (item.type % (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
-        for (int height = heightOffset, screenHeight = 408; height < heightOffset + SPRITE_SIZE; height++, screenHeight++)
+        float heightOffset = (item.type / (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+        float widthOffset = (item.type % (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+        int screenHeight = 408;
+        for (float height = heightOffset; height < heightOffset + SPRITE_SIZE; height += 1 / scale, screenHeight++)
         {
-            for (int width = widthOffset, screenWidth = 120; width < widthOffset + SPRITE_SIZE; width++, screenWidth++)
+            int screenWidth = 120;
+            for (float width = widthOffset; width < widthOffset + SPRITE_SIZE; width += 1 / scale, screenWidth++)
             {
-                pixels[screenWidth + screenHeight * WIDTH + i * SPRITE_SIZE] =
-                        spritePixels[width + height * spriteBitmap->Width()];
+                pixels[screenWidth + screenHeight * WIDTH + static_cast<int>(i * SPRITE_SIZE * (0.2f + scale))] =
+                        spritePixels[static_cast<int>(width) + static_cast<int>(height) * spriteBitmap->Width()];
             }
         }
     }
