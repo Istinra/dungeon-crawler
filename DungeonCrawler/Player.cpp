@@ -90,10 +90,12 @@ void Player::GiveItem(Item item)
         if (inventory[i].type == item.type)
         {
             inventory[i].count += item.count;
+            break;
         }
         else if (inventory[i].count == 0)
         {
             inventory[i] = item;
+            break;
         }
     }
 }

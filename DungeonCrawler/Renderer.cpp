@@ -11,7 +11,7 @@
 #define LETTER_WIDTH 6
 #define LETTER_HEIGHT 8
 
-#define SPRITE_LENGTH 16
+#define SPRITE_SIZE 16
 
 Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH),
 symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
@@ -83,13 +83,13 @@ void Renderer::DrawInventory(Game &game)
         {
             return;
         }
-        int heightOffset = (i / (spriteBitmap->Width() / SPRITE_LENGTH)) * SPRITE_LENGTH;
-        int widthOffset = (i % (spriteBitmap->Width() / SPRITE_LENGTH)) * SPRITE_LENGTH;
-        for (int height = heightOffset, screenHeight = 353; height < heightOffset + LETTER_HEIGHT; height++, screenHeight++)
+        int heightOffset = (item.type / (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+        int widthOffset = (item.type % (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+        for (int height = heightOffset, screenHeight = 353; height < heightOffset + SPRITE_SIZE; height++, screenHeight++)
         {
-            for (int width = widthOffset, screenWidth = 30; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
+            for (int width = widthOffset, screenWidth = 30; width < widthOffset + SPRITE_SIZE; width++, screenWidth++)
             {
-                pixels[screenWidth + screenHeight * WIDTH + i * SPRITE_LENGTH] =
+                pixels[screenWidth + screenHeight * WIDTH + i * SPRITE_SIZE] =
                         spritePixels[width + height * spriteBitmap->Width()];
             }
         }
