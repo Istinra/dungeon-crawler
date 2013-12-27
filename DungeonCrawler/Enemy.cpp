@@ -12,6 +12,7 @@
 #include "Player.h"
 
 #define HURT_COLOUR 0x00FF0000
+#define DEAD_TEXTURE 5
 
 Enemy::Enemy(Vector3 position, int textureId) : LivingEntity(position),
 textureId(textureId), animationTimer(0), attackCoolDown(0)
@@ -26,6 +27,11 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
+    if (health < 1)
+    {
+        --animationTimer;
+        return;
+    }
     if (hurtTimer > 0)
     {
         --hurtTimer;
@@ -73,14 +79,27 @@ void Enemy::Collide(Entity *e)
 void Enemy::Hurt(int damage)
 {
     health -= damage;
-    unsigned int temp = sprite->colour;
-    sprite->colour = colour;
-    colour = temp;
-    hurtTimer = 100;
+    if (health < 1)
+    {
+        unsigned int temp = sprite->colour;
+        sprite->colour = colour;
+        colour = temp;
+        hurtTimer = 100;
+    }
+    else
+    {
+        sprite->texNumber = DEAD_TEXTURE;
+        animationTimer = 100;
+    }
 }
 
 bool Enemy::Use(Entity *source, Item &item)
 {
     Hurt(2);
     return true;
+}
+
+bool Enemy::IsRemoved()
+{
+    return health < 1 && animationTimer < 1;
 }

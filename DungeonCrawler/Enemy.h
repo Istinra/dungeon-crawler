@@ -24,6 +24,9 @@ public:
 
     virtual bool Use(Entity *source, Item &item);
 
+
+    virtual bool IsRemoved() override;
+
 protected:
     const int textureId;
     unsigned int colour;
