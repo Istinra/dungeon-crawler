@@ -152,16 +152,18 @@ void RayCastBitmap::DrawSprites(Game &game)
         for (int stripe = pixelX; stripe < pixelEndX; stripe++)
         {
             float texY = sprite->texNumber / 8 * 16 + yOffset;
-            if (depth > zBuffer[stripe]) continue;
-            for (int row = pixelY; row < pixelEndY; row++)
+            if (depth < zBuffer[stripe])
             {
-                int index = static_cast<int>(texX) + static_cast<int>(texY) * spriteSheet->Width();
-                unsigned int colour = spriteSheet->Pixels()[index];
-                if (0xFF000000 & colour)
+                for (int row = pixelY; row < pixelEndY; row++)
                 {
-                    pixels[stripe + width * row] = colour | sprite->colour;
+                    int index = static_cast<int>(texX) + static_cast<int>(texY) * spriteSheet->Width();
+                    unsigned int colour = spriteSheet->Pixels()[index];
+                    if (0xFF000000 & colour)
+                    {
+                        pixels[stripe + width * row] = colour | sprite->colour;
+                    }
+                    texY += yTexIncrement;
                 }
-                texY += yTexIncrement;
             }
             texX += xTexIncrement;
         }
