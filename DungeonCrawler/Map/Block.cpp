@@ -8,7 +8,7 @@
 
 #include "Block.h"
 
-Block::Block(unsigned int id, int x, int y) : id(id), texX(x), texY(y)
+Block::Block(unsigned int id, int x, int y) : id(id)
 {
 
 }

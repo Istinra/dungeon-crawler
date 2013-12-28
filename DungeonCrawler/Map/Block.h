@@ -19,6 +19,7 @@ public:
     }
 
     Block(unsigned int id, int x, int y);
+
     virtual ~Block();
 
     bool IsSolid();
@@ -31,19 +32,8 @@ public:
         return id;
     }
 
-    int XTexture()
-    {
-        return texX;
-    }
-
-    int YTexture()
-    {
-        return texY;
-    }
-
 private:
     unsigned int id;
-    int texX, texY;
 };
 
 #endif /* defined(__DungeonCrawler__Block__) */
