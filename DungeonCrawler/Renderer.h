@@ -35,6 +35,8 @@ private:
     const std::string symbols;
     unsigned int pixels[WIDTH * HEIGHT];
     RayCastBitmap viewPort;
+
+    void DrawHeldItem(Game &game, Bitmap *const spriteBitmap);
 };
 
 #endif

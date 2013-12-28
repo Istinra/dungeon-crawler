@@ -77,6 +77,7 @@ void Renderer::DrawInventory(Game &game)
     const static float scale = 3.8f;
     Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(ITEMS);
     unsigned int const *const spritePixels = spriteBitmap->Pixels();
+    DrawHeldItem(game, spriteBitmap);
     for (int i = 0; i < MAX_INVENTORY; i++)
     {
         const Item item = game.GetPlayer().ItemAtSlot(i);
@@ -94,6 +95,35 @@ void Renderer::DrawInventory(Game &game)
             {
                 pixels[screenWidth + screenHeight * WIDTH + static_cast<int>(i * SPRITE_SIZE * (0.2f + scale))] =
                         spritePixels[static_cast<int>(width) + static_cast<int>(height) * spriteBitmap->Width()];
+            }
+        }
+    }
+}
+
+void Renderer::DrawHeldItem(Game &game, Bitmap *const spriteBitmap)
+{
+    unsigned int const *const spritePixels = spriteBitmap->Pixels();
+    const Item item = game.GetPlayer().ActiveItem();
+    const static float scale = 10.0f;
+
+    if (item.count == 0)
+    {
+        return;
+    }
+    float heightOffset = (item.type / (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+    float widthOffset = (item.type % (spriteBitmap->Width() / SPRITE_SIZE)) * SPRITE_SIZE;
+    heightOffset += game.GetPlayer().IsActing() ? 32 : 16;
+    int screenHeight = 204;
+    for (float height = heightOffset; height < heightOffset + SPRITE_SIZE; height += 1 / scale, screenHeight++)
+    {
+        int screenWidth = 384;
+        for (float width = widthOffset; width < widthOffset + SPRITE_SIZE; width += 1 / scale, screenWidth++)
+        {
+            const unsigned int colour =
+                    spritePixels[static_cast<int>(width) + static_cast<int>(height) * spriteBitmap->Width()];
+            if (0xFF000000 & colour)
+            {
+                pixels[screenWidth + screenHeight * WIDTH] = colour;
             }
         }
     }

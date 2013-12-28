@@ -50,6 +50,11 @@ public:
         return inventory[activeSlot];
     }
 
+    bool IsActing()
+    {
+        return actionTimer > 0;
+    }
+
 private:
     short battery;
     short actionTimer;
