@@ -42,6 +42,9 @@ Bitmap *Resources::LoadTexture(Textures texture)
         case FONT:
             bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/font.png");
             break;
+        case ITEMS:
+            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/items.png");
+            break;
         default:
             break;
     }

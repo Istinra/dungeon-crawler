@@ -11,8 +11,8 @@
 
 enum ItemType
 {
-    SWORD = 3,
-    POTION = 4
+    SWORD = 0,
+    POTION = 1
 };
 
 struct Item

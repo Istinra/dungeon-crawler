@@ -75,7 +75,7 @@ void Renderer::DrawText(const std::string text, int x, int y)
 void Renderer::DrawInventory(Game &game)
 {
     const static float scale = 3.8f;
-    Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(SPRITES);
+    Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(ITEMS);
     unsigned int const *const spritePixels = spriteBitmap->Pixels();
     for (int i = 0; i < MAX_INVENTORY; i++)
     {

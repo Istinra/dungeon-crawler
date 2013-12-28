@@ -18,7 +18,6 @@ public:
 
     virtual void Collide(Entity *e) override;
 
-
     virtual bool IsRemoved() override;
 
 private:

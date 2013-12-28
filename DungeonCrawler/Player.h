@@ -45,6 +45,11 @@ public:
         return inventory[slot];
     }
 
+    Item ActiveItem()
+    {
+        return inventory[activeSlot];
+    }
+
 private:
     short battery;
     short actionTimer;

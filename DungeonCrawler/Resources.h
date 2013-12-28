@@ -18,7 +18,8 @@ enum Textures
     WALLS,
     FONT,
     HUD,
-    SPRITES
+    SPRITES,
+    ITEMS
 };
 
 class Resources
