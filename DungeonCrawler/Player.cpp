@@ -27,13 +27,14 @@ void Player::Action()
         return;
     }
     actionTimer = 100;
+    static const int checkDist = 96;
     std::vector<Entity *> potentialEntities;
     const std::vector<Entity *> &entities = level->Entities();
     for (Entity *entity : entities)
     {
         Vector3 entPos = entity->Position();
-        if (entPos.x < position.x + 64 && entPos.x > position.x - 64 &&
-                entPos.z < position.z + 64 && entPos.z > position.z - 64)
+        if (entPos.x < position.x + checkDist && entPos.x > position.x - checkDist &&
+                entPos.z < position.z + checkDist && entPos.z > position.z - checkDist)
         {
             if (entity == this) continue;
             potentialEntities.push_back(entity);
@@ -42,9 +43,8 @@ void Player::Action()
 
     float rSin = sinf(yaw);
     float rCos = cosf(yaw);
-    static const int maxCheckDistance = 64;
 
-    for (int i = 0; i < maxCheckDistance; i = i + 4)
+    for (int i = 0; i < checkDist; i += 4)
     {
         float x = position.x + rCos * i;
         float z = position.z - rSin * i;
