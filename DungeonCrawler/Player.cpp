@@ -58,7 +58,7 @@ void Player::Action()
         }
         int xIndex = static_cast<int>(x / 64);
         int zIndex = static_cast<int>(z / 64);
-        if ((*level)[xIndex + zIndex * level->Width()].Use())
+        if ((*level)[xIndex + zIndex * level->Width()]->Use())
         {
             return;
         }

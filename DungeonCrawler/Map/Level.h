@@ -26,7 +26,7 @@ public:
 
     void Update();
 
-    Block &operator [] (unsigned int);
+    Block *operator [] (unsigned int);
 
     int Width()
     {

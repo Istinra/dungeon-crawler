@@ -9,6 +9,7 @@
 #include <math.h>
 #include "RayCastBitmap.h"
 #include "Resources.h"
+#import "DoorBlock.h"
 
 RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width):
 Bitmap(height, width)
@@ -183,16 +184,37 @@ void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
     {
-        if (level[xIndex + zIndex * level.Width()].Id() << 8 != 0) //Ignore alpha channel, apparently on the left
+        Block *block = level[xIndex + zIndex * level.Width()];
+        DoorBlock *doorBlock = dynamic_cast<DoorBlock *>(block);
+        if (doorBlock)
         {
-            x = aX;
-            z = aZ;
-            return;
+            aZ += zA / 2;
+            aX += xA / 2;
+            zIndex = static_cast<int>(aZ / GRID_SIZE);
+            xIndex = static_cast<int>(aX / GRID_SIZE);
+            if (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
+            {
+                if (block->Id() << 8 != 0) //Ignore alpha channel, apparently on the left
+                {
+                    x = aX;
+                    z = aZ;
+                    return;
+                }
+            }
         }
-        aZ += zA;
-        aX += xA;
-        zIndex = static_cast<int>(aZ / GRID_SIZE);
-        xIndex = static_cast<int>(aX / GRID_SIZE);
+        else
+        {
+            if (block->Id() << 8 != 0) //Ignore alpha channel, apparently on the left
+            {
+                x = aX;
+                z = aZ;
+                return;
+            }
+            aZ += zA;
+            aX += xA;
+            zIndex = static_cast<int>(aZ / GRID_SIZE);
+            xIndex = static_cast<int>(aX / GRID_SIZE);
+        }
     }
     x = INFINITY;
     z = INFINITY;
@@ -211,7 +233,7 @@ void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, 
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0) //Ignore alpha channel, apparently on the left
     {
-        if (level[xIndex + zIndex * level.Width()].Id() << 8 != 0)
+        if (level[xIndex + zIndex * level.Width()]->Id() << 8 != 0)
         {
             x = aX;
             z = aZ;

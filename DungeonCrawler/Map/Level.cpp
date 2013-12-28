@@ -62,9 +62,9 @@ void Level::LoadLevel(std::string name)
     delete levelImage;
 }
 
-Block &Level::operator [](unsigned int i)
+Block *Level::operator [](unsigned int i)
 {
-    return *blocks[i];
+    return blocks[i];
 }
 
 void Level::AddEntity(Entity *entity)
