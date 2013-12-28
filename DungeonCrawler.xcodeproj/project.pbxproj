@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDF0CEA30D3AB21C197177 /* stb_image.c */; };
+		223BCF52186EF4B700DA9E6E /* DoorBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 223BCF50186EF4B700DA9E6E /* DoorBlock.cpp */; };
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
 		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
 		2274729F1867AAC60055BC91 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2274729D1867AAC60055BC91 /* Enemy.cpp */; };
@@ -46,6 +47,8 @@
 		1BBDF8E43E79C872158B1B3F /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
 		1BBDFC746E6DB639522E133C /* walls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walls.png; sourceTree = "<group>"; };
 		1BBDFDF1E1B1E571E3D911C7 /* std_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = std_image.h; path = External/std_image.h; sourceTree = "<group>"; };
+		223BCF50186EF4B700DA9E6E /* DoorBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoorBlock.cpp; sourceTree = "<group>"; };
+		223BCF51186EF4B700DA9E6E /* DoorBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorBlock.h; sourceTree = "<group>"; };
 		2256277818532B37009A865C /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		2256277918532D65009A865C /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +122,8 @@
 				2277FEDE185C13A50046CE0F /* Level.h */,
 				2284CA4B185C1A9F00386D90 /* Block.cpp */,
 				2284CA4C185C1A9F00386D90 /* Block.h */,
+				223BCF50186EF4B700DA9E6E /* DoorBlock.cpp */,
+				223BCF51186EF4B700DA9E6E /* DoorBlock.h */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				2277FEDF185C13A50046CE0F /* Level.cpp in Sources */,
 				60DB6536185A8C9F0054681D /* Entity.cpp in Sources */,
 				2298AD2F1854219C008A4837 /* Game.cpp in Sources */,
+				223BCF52186EF4B700DA9E6E /* DoorBlock.cpp in Sources */,
 				2284CA4D185C1A9F00386D90 /* Block.cpp in Sources */,
 				1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */,
 			);

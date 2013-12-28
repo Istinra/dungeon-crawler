@@ -10,6 +10,7 @@
 #include "BatEnemy.h"
 #include "Resources.h"
 #import "Pickup.h"
+#import "DoorBlock.h"
 #include <iostream>
 
 Level::Level()
@@ -45,7 +46,7 @@ void Level::LoadLevel(std::string name)
         CheckEntities(x, y, pixel);
         //R : Block Type
         //G : Entity on the block
-        //B : ??
+        //B : Pickup/Item entities
         //A : Block ID
     }
 
@@ -115,6 +116,9 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel)
     Block *block;
     switch (pixel)
     {
+        case 0xFFFF0000:
+            block = new DoorBlock(1, x, y);
+            break;
         case 0xFFFFFFFF:
             block = new Block(1, x, y);
             break;
