@@ -9,7 +9,6 @@
 #include <math.h>
 #include "RayCastBitmap.h"
 #include "Resources.h"
-#import "DoorBlock.h"
 
 RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width):
 Bitmap(height, width)
@@ -176,48 +175,10 @@ void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle
     float aZ = floorf(posZ / GRID_SIZE) * GRID_SIZE + (angle > M_PI ? +GRID_SIZE : -1);
     float aX = posX + (posZ - aZ) / tanf(angle);
 
-    int zIndex = static_cast<int>(aZ / GRID_SIZE);
-    int xIndex = static_cast<int>(aX / GRID_SIZE);
-
     float zA = angle > M_PI ? +GRID_SIZE : -GRID_SIZE;
     float xA = GRID_SIZE / (posZ - aZ > 0 ? tanf(angle) : -tanf(angle));
 
-    while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
-    {
-        Block *block = level[xIndex + zIndex * level.Width()];
-        DoorBlock *doorBlock = dynamic_cast<DoorBlock *>(block);
-        if (doorBlock)
-        {
-            aZ += zA / 2;
-            aX += xA / 2;
-            zIndex = static_cast<int>(aZ / GRID_SIZE);
-            xIndex = static_cast<int>(aX / GRID_SIZE);
-            if (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0)
-            {
-                if (block->Id() << 8 != 0) //Ignore alpha channel, apparently on the left
-                {
-                    x = aX;
-                    z = aZ;
-                    return;
-                }
-            }
-        }
-        else
-        {
-            if (block->Id() << 8 != 0) //Ignore alpha channel, apparently on the left
-            {
-                x = aX;
-                z = aZ;
-                return;
-            }
-            aZ += zA;
-            aX += xA;
-            zIndex = static_cast<int>(aZ / GRID_SIZE);
-            xIndex = static_cast<int>(aX / GRID_SIZE);
-        }
-    }
-    x = INFINITY;
-    z = INFINITY;
+    return CheckIntersections(level, aZ, aX, zA, xA, x, z);
 }
 
 void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, float &x, float &z)
@@ -225,27 +186,9 @@ void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, 
     float aX = floorf(posX / GRID_SIZE) * GRID_SIZE + (angle < M_PI_2 || angle > M_PI_2 + M_PI ? +GRID_SIZE : -1);
     float aZ = posZ + (posX - aX) * tanf(angle);
 
-    int zIndex = static_cast<int>(aZ / GRID_SIZE);
-    int xIndex = static_cast<int>(aX / GRID_SIZE);
-
     float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? GRID_SIZE : -GRID_SIZE;
     float zA = GRID_SIZE * (posX - aX > 0 ? tanf(angle) : -tanf(angle));
-
-    while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0) //Ignore alpha channel, apparently on the left
-    {
-        if (level[xIndex + zIndex * level.Width()]->Id() << 8 != 0)
-        {
-            x = aX;
-            z = aZ;
-            return;
-        }
-        aZ += zA;
-        aX += xA;
-        zIndex = static_cast<int>(aZ / GRID_SIZE);
-        xIndex = static_cast<int>(aX / GRID_SIZE);
-    }
-    x = INFINITY;
-    z = INFINITY;
+    return CheckIntersections(level, aZ, aX, zA, xA, x, z);
 }
 
 RayCastBitmap::~RayCastBitmap()
@@ -273,4 +216,26 @@ float RayCastBitmap::CorrectAngle(float angle)
         return static_cast<float>(angle + M_PI * 2);
     }
     return angle;
+}
+
+void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float zA, float xA, float &x, float &z)
+{
+    int zIndex = static_cast<int>(aZ / GRID_SIZE);
+    int xIndex = static_cast<int>(aX / GRID_SIZE);
+
+    while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0) //Ignore alpha channel, apparently on the left
+    {
+        if (level[xIndex + zIndex * level.Width()]->Id() << 8 != 0)
+        {
+            x = aX;
+            z = aZ;
+            return;
+        }
+        aZ += zA;
+        aX += xA;
+        zIndex = static_cast<int>(aZ / GRID_SIZE);
+        xIndex = static_cast<int>(aX / GRID_SIZE);
+    }
+    x = INFINITY;
+    z = INFINITY;
 }

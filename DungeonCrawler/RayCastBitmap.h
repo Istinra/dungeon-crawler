@@ -39,6 +39,8 @@ private:
     void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
     void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z);
 
+    void CheckIntersections(Level &level, float aZ, float aX, float zA, float xA, float &x, float &z);
+
     float CorrectAngle(float angle);
 
     float posX, posY, posZ, yaw;
