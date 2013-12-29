@@ -11,10 +11,12 @@
 		223BCF52186EF4B700DA9E6E /* DoorBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 223BCF50186EF4B700DA9E6E /* DoorBlock.cpp */; };
 		225D7DBC1850C3EF00A141C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 225D7DBB1850C3EF00A141C0 /* main.cpp */; };
 		225D7DC51850C45500A141C0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225D7DC41850C45500A141C0 /* SDL2.framework */; };
+		22735E3E18706861006BF982 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22735E3C18706861006BF982 /* SoundManager.cpp */; };
 		2274729F1867AAC60055BC91 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2274729D1867AAC60055BC91 /* Enemy.cpp */; };
 		2277FEDF185C13A50046CE0F /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2277FEDD185C13A50046CE0F /* Level.cpp */; };
 		2284CA4D185C1A9F00386D90 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2284CA4B185C1A9F00386D90 /* Block.cpp */; };
 		229428351868610500229F48 /* LivingEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 229428331868610500229F48 /* LivingEntity.cpp */; };
+		22988805187059C400605767 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22988803187059C400605767 /* Sound.cpp */; };
 		2298AD2F1854219C008A4837 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD2E1854219C008A4837 /* Game.cpp */; };
 		2298AD31185421A7008A4837 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD30185421A7008A4837 /* Renderer.cpp */; };
 		2298AD351854230A008A4837 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2298AD341854230A008A4837 /* Bitmap.cpp */; };
@@ -54,6 +56,8 @@
 		225D7DB81850C3EF00A141C0 /* DungeonCrawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DungeonCrawler; sourceTree = BUILT_PRODUCTS_DIR; };
 		225D7DBB1850C3EF00A141C0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		225D7DC41850C45500A141C0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		22735E3C18706861006BF982 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		22735E3D18706861006BF982 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		2274729D1867AAC60055BC91 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		2274729E1867AAC60055BC91 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		2277FEDD185C13A50046CE0F /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		2284CA4C185C1A9F00386D90 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		229428331868610500229F48 /* LivingEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LivingEntity.cpp; sourceTree = "<group>"; };
 		229428341868610500229F48 /* LivingEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingEntity.h; sourceTree = "<group>"; };
+		22988803187059C400605767 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		22988804187059C400605767 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		2298AD2E1854219C008A4837 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		2298AD30185421A7008A4837 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		2298AD33185422E6008A4837 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
@@ -162,6 +168,10 @@
 				1BBDF61C31FB213014354735 /* External */,
 				1BBDF250C8DA3FDB7F955362 /* Art */,
 				1BBDF9B9C3F36D4E84F41B1D /* Map */,
+				22988803187059C400605767 /* Sound.cpp */,
+				22988804187059C400605767 /* Sound.h */,
+				22735E3C18706861006BF982 /* SoundManager.cpp */,
+				22735E3D18706861006BF982 /* SoundManager.h */,
 			);
 			path = DungeonCrawler;
 			sourceTree = "<group>";
@@ -257,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22BFA69F186807C100FD4037 /* BatEnemy.cpp in Sources */,
+				22735E3E18706861006BF982 /* SoundManager.cpp in Sources */,
 				22DCB58D18543ECB000F77D0 /* RayCastBitmap.cpp in Sources */,
 				60DB6539185A8E620054681D /* Player.cpp in Sources */,
 				229428351868610500229F48 /* LivingEntity.cpp in Sources */,
@@ -270,6 +281,7 @@
 				60DB6536185A8C9F0054681D /* Entity.cpp in Sources */,
 				2298AD2F1854219C008A4837 /* Game.cpp in Sources */,
 				223BCF52186EF4B700DA9E6E /* DoorBlock.cpp in Sources */,
+				22988805187059C400605767 /* Sound.cpp in Sources */,
 				2284CA4D185C1A9F00386D90 /* Block.cpp in Sources */,
 				1BBDF205BEE66EF7D660FC0F /* stb_image.c in Sources */,
 			);

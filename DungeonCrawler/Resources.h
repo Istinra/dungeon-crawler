@@ -12,6 +12,7 @@
 #include <map>
 #include <string>
 #include "Bitmap.h"
+#include "Sound.h"
 
 enum Textures
 {
