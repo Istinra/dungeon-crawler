@@ -19,7 +19,7 @@ public:
 
     virtual ~Block();
 
-    bool IsSolid();
+    virtual bool IsSolid() const;
 
     virtual bool Use();
 

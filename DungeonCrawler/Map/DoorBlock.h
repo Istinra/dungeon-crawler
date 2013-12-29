@@ -17,6 +17,9 @@ class DoorBlock : public  Block
 public:
     DoorBlock(unsigned int id, int x, int y, unsigned int tex);
 
+    virtual bool Use() override;
+
+    virtual bool IsSolid() const override;
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const override;
 

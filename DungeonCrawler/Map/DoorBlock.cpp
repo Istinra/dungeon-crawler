@@ -22,3 +22,18 @@ bool DoorBlock::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z
     }
     return false;
 }
+
+bool DoorBlock::Use()
+{
+    if (closed)
+    {
+        closed = false;
+        return true;
+    }
+    return false;
+}
+
+bool DoorBlock::IsSolid() const
+{
+    return closed;
+}

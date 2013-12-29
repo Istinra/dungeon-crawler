@@ -23,7 +23,7 @@ bool Block::Use()
     return false;
 }
 
-bool Block::IsSolid()
+bool Block::IsSolid() const
 {
     return id << 8 > 0;
 }
