@@ -230,7 +230,7 @@ void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float z
         const Block *const block = level[xIndex + zIndex * level.Width()];
         if (block->CheckSolidAndAdjust(xA, zA, aX, aZ))
         {
-            tex = block->Id();
+            tex = block->Texture();
             x = aX;
             z = aZ;
             return;
