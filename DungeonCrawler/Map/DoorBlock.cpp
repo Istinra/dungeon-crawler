@@ -8,7 +8,7 @@
 
 #include "DoorBlock.h"
 
-DoorBlock::DoorBlock(unsigned int id, int x, int y):Block(id, x, y), closed(true)
+DoorBlock::DoorBlock(unsigned int id, int x, int y, unsigned int tex):Block(id, x, y, tex), closed(true)
 {
 }
 

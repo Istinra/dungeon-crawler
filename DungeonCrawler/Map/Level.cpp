@@ -117,13 +117,13 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel)
     switch (pixel)
     {
         case 0xFFFF0000:
-            block = new DoorBlock(1, x, y);
+            block = new DoorBlock(1, x, y, 2);
             break;
         case 0xFFFFFFFF:
-            block = new Block(1, x, y);
+            block = new Block(1, x, y, 0);
             break;
         default:
-            block = new Block(0, x, y);
+            block = new Block(0, x, y, 0);
     }
     return block;
 }

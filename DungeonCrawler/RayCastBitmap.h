@@ -36,10 +36,11 @@ private:
 
     void DrawSprites(Game &game);
 
-    void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z);
-    void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z);
+    void CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex);
 
-    void CheckIntersections(Level &level, float aZ, float aX, float zA, float xA, float &x, float &z);
+    void CheckVerticalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex);
+
+    void CheckIntersections(Level &level, float aZ, float aX, float zA, float xA, float &x, float &z, unsigned int &tex);
 
     float CorrectAngle(float angle);
 

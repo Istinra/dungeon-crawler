@@ -14,11 +14,8 @@
 class Block
 {
 public:
-    Block()
-    {
-    }
 
-    Block(unsigned int id, int x, int y);
+    Block(unsigned int id, int x, int y, unsigned int tex);
 
     virtual ~Block();
 
@@ -28,13 +25,19 @@ public:
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
 
-    unsigned int Id()
+    unsigned int Id() const
     {
         return id;
     }
 
+    unsigned int Texture() const
+    {
+        return tex;
+    }
+
 private:
-    unsigned int id;
+    const unsigned int id;
+    const unsigned int tex;
 };
 
 #endif /* defined(__DungeonCrawler__Block__) */

@@ -8,7 +8,7 @@
 
 #include "Block.h"
 
-Block::Block(unsigned int id, int x, int y) : id(id)
+Block::Block(unsigned int id, int x, int y, unsigned int tex) : id(id), tex(tex)
 {
 
 }
@@ -20,12 +20,7 @@ Block::~Block()
 
 bool Block::Use()
 {
-    if (id << 8 == 0)
-    {
-        return false;
-    }
-    id = 0;
-    return true;
+    return false;
 }
 
 bool Block::IsSolid()

@@ -33,8 +33,9 @@ void RayCastBitmap::DrawWalls(Game &game)
         float angle = CorrectAngle(rawAngle);
 
         float hX, hZ, vX, vZ;
-        CheckHorizontalIntersections(level, angle, hX, hZ);
-        CheckVerticalIntersections(level, angle, vX, vZ);
+        unsigned int hTex = 0, vTex = 0;
+        CheckHorizontalIntersections(level, angle, hX, hZ, hTex);
+        CheckVerticalIntersections(level, angle, vX, vZ, vTex);
 
         float hDistance = fabsf((hX - posX) / cosf(angle));
         float vDistance = fabsf((vX - posX) / cosf(angle));
@@ -44,12 +45,12 @@ void RayCastBitmap::DrawWalls(Game &game)
         if (hDistance < vDistance)
         {
             distance = hDistance * cosf(angle - yaw);
-            texOffset = static_cast<unsigned int>(hX) % GRID_SIZE;
+            texOffset = static_cast<unsigned int>(hX) % GRID_SIZE + hTex * GRID_SIZE;
         }
         else
         {
             distance = vDistance * cosf(angle - yaw);
-            texOffset = static_cast<unsigned int>(vZ) % GRID_SIZE;
+            texOffset = static_cast<unsigned int>(vZ) % GRID_SIZE + vTex * GRID_SIZE;
         }
         zBuffer[i] = distance;
         int sliceHeight = static_cast<int>(GRID_SIZE * DISTANCE_TO_PLANE / floorf(distance));
@@ -170,7 +171,7 @@ void RayCastBitmap::DrawSprites(Game &game)
     }
 }
 
-void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z)
+void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex)
 {
     float aZ = floorf(posZ / GRID_SIZE) * GRID_SIZE + (angle > M_PI ? +GRID_SIZE : -1);
     float aX = posX + (posZ - aZ) / tanf(angle);
@@ -178,17 +179,17 @@ void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle
     float zA = angle > M_PI ? +GRID_SIZE : -GRID_SIZE;
     float xA = GRID_SIZE / (posZ - aZ > 0 ? tanf(angle) : -tanf(angle));
 
-    return CheckIntersections(level, aZ, aX, zA, xA, x, z);
+    return CheckIntersections(level, aZ, aX, zA, xA, x, z, tex);
 }
 
-void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, float &x, float &z)
+void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex)
 {
     float aX = floorf(posX / GRID_SIZE) * GRID_SIZE + (angle < M_PI_2 || angle > M_PI_2 + M_PI ? +GRID_SIZE : -1);
     float aZ = posZ + (posX - aX) * tanf(angle);
 
     float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? GRID_SIZE : -GRID_SIZE;
     float zA = GRID_SIZE * (posX - aX > 0 ? tanf(angle) : -tanf(angle));
-    return CheckIntersections(level, aZ, aX, zA, xA, x, z);
+    return CheckIntersections(level, aZ, aX, zA, xA, x, z, tex);
 }
 
 RayCastBitmap::~RayCastBitmap()
@@ -218,7 +219,8 @@ float RayCastBitmap::CorrectAngle(float angle)
     return angle;
 }
 
-void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float zA, float xA, float &x, float &z)
+void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float zA, float xA,
+        float &x, float &z, unsigned int &tex)
 {
     int zIndex = static_cast<int>(aZ / GRID_SIZE);
     int xIndex = static_cast<int>(aX / GRID_SIZE);
@@ -228,6 +230,7 @@ void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float z
         const Block *const block = level[xIndex + zIndex * level.Width()];
         if (block->CheckSolidAndAdjust(xA, zA, aX, aZ))
         {
+            tex = block->Id();
             x = aX;
             z = aZ;
             return;
