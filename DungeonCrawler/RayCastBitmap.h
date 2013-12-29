@@ -23,7 +23,7 @@
 class RayCastBitmap : public Bitmap
 {
 public:
-    RayCastBitmap(unsigned int height, unsigned int width);
+    RayCastBitmap(unsigned int height, unsigned int width, unsigned int *data, bool cleanUp);
 
     ~RayCastBitmap();
 

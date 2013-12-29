@@ -10,8 +10,8 @@
 #include "RayCastBitmap.h"
 #include "Resources.h"
 
-RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width):
-Bitmap(height, width)
+RayCastBitmap::RayCastBitmap(unsigned int height, unsigned int width, unsigned int *data, bool cleanUp):
+Bitmap(height, width, data, cleanUp)
 {
 }
 

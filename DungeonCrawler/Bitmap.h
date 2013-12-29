@@ -14,7 +14,7 @@ class Bitmap
 public:
     Bitmap(unsigned int height, unsigned int width);
 
-    Bitmap(unsigned int height, unsigned int width, unsigned int *data);
+    Bitmap(unsigned int height, unsigned int width, unsigned int *data, bool cleanUp);
 
     virtual ~Bitmap();
 
@@ -33,6 +33,7 @@ public:
         return width;
     };
 protected:
+    const bool cleanUp;
     int height, width;
     unsigned int *pixels;
 };

@@ -13,7 +13,7 @@
 
 #define SPRITE_SIZE 16
 
-Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH),
+Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH, pixels, false),
 symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
 {
     for(int i = 0; i < HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i++)
@@ -36,7 +36,6 @@ void Renderer::Draw(Game &game)
     if (game.GetPlayer().Alive())
     {
         viewPort.Draw(game);
-        memcpy(pixels, viewPort.Pixels(), static_cast<size_t>(viewPort.Width() * viewPort.Height() * sizeof(int)));
         DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
         DrawText(std::to_string(game.GetPlayer().Battery()) + "%", 50, 425);
         DrawText(std::string("0/?"), 50, 455);

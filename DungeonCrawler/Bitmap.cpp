@@ -8,16 +8,20 @@
 
 #include "Bitmap.h"
 
-Bitmap::Bitmap(unsigned int height, unsigned int width) : height(height), width(width)
+Bitmap::Bitmap(unsigned int height, unsigned int width) : height(height), width(width), cleanUp(true)
 {
     pixels = new int unsigned [height * width];
 }
 
 Bitmap::~Bitmap()
 {
-    delete [] pixels;
+    if (cleanUp)
+    {
+        delete [] pixels;
+    }
 }
 
-Bitmap::Bitmap(unsigned int height, unsigned int width, unsigned int *data) : height(height), width(width), pixels(data)
+Bitmap::Bitmap(unsigned int height, unsigned int width, unsigned int *data, bool cleanUp) :
+height(height), width(width), pixels(data), cleanUp(cleanUp)
 {
 }

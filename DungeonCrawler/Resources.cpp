@@ -66,7 +66,7 @@ Bitmap *Resources::InitTexture(Textures texture, const char *file)
             p[2] = t;
             p += 4;
         }
-        bitmap = new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
+        bitmap = new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string, true);
         textures[texture] = bitmap;
     }
     else
@@ -89,5 +89,5 @@ Bitmap *Resources::LoadLevel(std::string name)
         p[2] = t;
         p += 4;
     }
-    return new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string);
+    return new Bitmap((unsigned int) y, (unsigned int) x, (unsigned int *) string, true);
 }
