@@ -225,7 +225,8 @@ void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float z
 
     while (zIndex < level.Height() && xIndex < level.Width() && aZ >= 0 && aX >= 0) //Ignore alpha channel, apparently on the left
     {
-        if (level[xIndex + zIndex * level.Width()]->Id() << 8 != 0)
+        const Block *const block = level[xIndex + zIndex * level.Width()];
+        if (block->CheckSolidAndAdjust(xA, zA, aX, aZ))
         {
             x = aX;
             z = aZ;

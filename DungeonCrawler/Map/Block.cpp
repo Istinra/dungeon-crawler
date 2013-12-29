@@ -32,3 +32,8 @@ bool Block::IsSolid()
 {
     return id << 8 > 0;
 }
+
+bool Block::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const
+{
+    return id << 8 != 0;
+}

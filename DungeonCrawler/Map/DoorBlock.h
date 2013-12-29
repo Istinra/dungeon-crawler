@@ -16,6 +16,12 @@ class DoorBlock : public  Block
 
 public:
     DoorBlock(unsigned int id, int x, int y);
+
+
+    virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const override;
+
+private:
+    bool closed;
 };
 
 #endif /* defined(__DungeonCrawler__DoorBlock__) */

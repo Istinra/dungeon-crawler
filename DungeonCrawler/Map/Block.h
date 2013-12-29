@@ -26,6 +26,7 @@ public:
 
     virtual bool Use();
 
+    virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
 
     unsigned int Id()
     {
