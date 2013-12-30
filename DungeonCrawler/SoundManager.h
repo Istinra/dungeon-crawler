@@ -19,12 +19,14 @@ public:
 
     void PlaySound(Sounds sound);
 
-    SoundManager &Instance();
+    static SoundManager &Instance();
 
 private:
     SoundManager();
 
-    std::map<Sounds, Sound> soundMap;
+    Sound *InitSound(Sounds, const char *file);
+
+    std::map<Sounds, Sound *> soundMap;
 };
 
 #endif /* defined(__DungeonCrawler__SoundManager__) */

@@ -11,6 +11,7 @@
 #include <random>
 #include "Resources.h"
 #include "Renderer.h"
+#include "SoundManager.h"
 
 void Render(SDL_Window *const window, Renderer &renderer)
 {
@@ -56,6 +57,8 @@ int main(int argc, const char *argv[])
     Renderer renderer;
     Game game;
     game.NewGame();
+
+    SoundManager::Instance().PlaySound(SOUND);
 
     while (running)
     {
