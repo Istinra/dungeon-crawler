@@ -21,11 +21,13 @@ public:
 
     static SoundManager &Instance();
 
+    void Update();
+
 private:
     SoundManager();
-
     Sound *InitSound(Sounds, const char *file);
 
+    Sound *activeSound;
     std::map<Sounds, Sound *> soundMap;
 };
 

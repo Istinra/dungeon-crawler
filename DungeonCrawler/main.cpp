@@ -84,6 +84,7 @@ int main(int argc, const char *argv[])
         game.Update(keys);
         renderer.Draw(game);
         Render(window, renderer);
+        SoundManager::Instance().Update();
         if (frames % 100 == 0)
         {
             std::cout << "FPS: " << frames / totalTime << '\n';
