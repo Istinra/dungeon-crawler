@@ -40,7 +40,6 @@ SoundManager::~SoundManager()
         SDL_FreeWAV(val.second->wavBuffer);
         delete val.second;
     }
-    SDL_CloseAudio();
 }
 
 void SoundManager::PlaySound(Sounds sound)
@@ -56,7 +55,7 @@ void SoundManager::PlaySound(Sounds sound)
         default:
             return;
     }
-
+    activeSound = soundObject;
 }
 
 SoundManager &SoundManager::Instance()
@@ -84,5 +83,6 @@ void SoundManager::Update()
     if (activeSound != nullptr && activeSound->wavLength == 0)
     {
         SDL_CloseAudio();
+        activeSound = nullptr;
     }
 }
