@@ -49,6 +49,7 @@
 		1BBDF8E43E79C872158B1B3F /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
 		1BBDFC746E6DB639522E133C /* walls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walls.png; sourceTree = "<group>"; };
 		1BBDFDF1E1B1E571E3D911C7 /* std_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = std_image.h; path = External/std_image.h; sourceTree = "<group>"; };
+		1BBDFFDA6655664CA586F3F9 /* items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = items.png; sourceTree = "<group>"; };
 		223BCF50186EF4B700DA9E6E /* DoorBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoorBlock.cpp; sourceTree = "<group>"; };
 		223BCF51186EF4B700DA9E6E /* DoorBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorBlock.h; sourceTree = "<group>"; };
 		2256277818532B37009A865C /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 				1BBDF7EE7ACFCDFCC8708625 /* demo.png */,
 				1BBDF1BD9DC8EBE982E1F2C7 /* sprites.png */,
 				1BBDF8E43E79C872158B1B3F /* font.png */,
+				1BBDFFDA6655664CA586F3F9 /* items.png */,
 			);
 			path = Art;
 			sourceTree = "<group>";
