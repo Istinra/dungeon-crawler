@@ -12,7 +12,7 @@
 #define MOVE_STEP 0.5f
 #define TURN_STEP 0.008f
 
-#include "CommonTypes.h"
+#include "Common/CommonTypes.h"
 #include "Item.h"
 
 class Level;

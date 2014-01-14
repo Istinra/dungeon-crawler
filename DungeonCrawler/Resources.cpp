@@ -11,7 +11,7 @@
 #include "External/std_image.h"
 
 
-Resources::Resources() : levelDirectory("/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/")
+Resources::Resources() : levelDirectory("..\\DungeonCrawler\\Art\\")
 {
 
 }
@@ -31,19 +31,19 @@ Bitmap *Resources::LoadTexture(Textures texture)
     switch (texture)
     {
         case WALLS:
-            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/walls.png");
+            bitmap = InitTexture(texture, "..\\DungeonCrawler\\Art\\walls.png");
             break;
         case SPRITES:
-            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/sprites.png");
+            bitmap = InitTexture(texture, "..\\DungeonCrawler\\Art\\sprites.png");
             break;
         case HUD:
-            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/HUD.png");
+            bitmap = InitTexture(texture, "..\\DungeonCrawler\\Art\\HUD.png");
             break;
         case FONT:
-            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/font.png");
+            bitmap = InitTexture(texture, "..\\DungeonCrawler\\Art\\font.png");
             break;
         case ITEMS:
-            bitmap = InitTexture(texture, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/items.png");
+            bitmap = InitTexture(texture, "..\\DungeonCrawler\\Art\\items.png");
             break;
         default:
             break;

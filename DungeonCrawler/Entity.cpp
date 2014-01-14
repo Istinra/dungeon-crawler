@@ -8,7 +8,7 @@
 
 #include <math.h>
 #include "Entity.h"
-#include "Level.h"
+#include "Map/Level.h"
 
 const float Entity::boundingWidth = 20.0f;
 

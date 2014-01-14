@@ -20,6 +20,8 @@ class Renderer
 public:
     Renderer();
 
+	~Renderer();
+
     void Draw(Game &game);
 
     void DrawText(const std::string text, int x, int y);
@@ -33,7 +35,7 @@ public:
 
 private:
     const std::string symbols;
-    unsigned int pixels[WIDTH * HEIGHT];
+    unsigned int* pixels;
     RayCastBitmap viewPort;
 
     void DrawHeldItem(Game &game, Bitmap *const spriteBitmap);

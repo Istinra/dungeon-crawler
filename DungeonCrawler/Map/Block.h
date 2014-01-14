@@ -9,7 +9,7 @@
 #ifndef __DungeonCrawler__Block__
 #define __DungeonCrawler__Block__
 
-#include "CommonTypes.h"
+#include "../Common/CommonTypes.h"
 
 class Block
 {

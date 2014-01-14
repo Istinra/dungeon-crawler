@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <random>
 #include "Resources.h"
 #include "Renderer.h"
@@ -21,11 +21,13 @@ void Render(SDL_Window *const window, Renderer &renderer)
     {
         return;
     }
-    unsigned int *pixels = renderer.Pixels();
-    for (unsigned int i = 0; i < WIDTH * HEIGHT; i++)
-    {
-        ((unsigned int *) screen->pixels)[i] = pixels[i];
-    }
+	memcpy(screen->pixels, renderer.Pixels(), WIDTH * HEIGHT * sizeof(unsigned int));
+	//unsigned int *pixels = renderer.Pixels();
+	//unsigned int *screenPixelsPtr = reinterpret_cast<unsigned int*>(screen->pixels);
+	//for (unsigned int i = 0; i < WIDTH * HEIGHT; i++)
+	//{
+	//	(*screenPixelsPtr++) = (*pixels++);
+ //   }
     if (SDL_MUSTLOCK(screen))
     {
         SDL_UnlockSurface(screen);
@@ -33,7 +35,7 @@ void Render(SDL_Window *const window, Renderer &renderer)
     SDL_UpdateWindowSurface(window);
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
     SDL_Window *window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
@@ -46,19 +48,19 @@ int main(int argc, const char *argv[])
     }
     bool running = true;
 
-    unsigned int frames = 0;
+	unsigned int frames = 0;
     float frequency = (float) SDL_GetPerformanceFrequency();
     float totalTime = 0;
     float dt = 0;
 
     Uint64 oldTime = SDL_GetPerformanceCounter();
     Uint64 newTime;
-
+	
     Renderer renderer;
-    Game game;
+	Game game;
     game.NewGame();
 
-    SoundManager::Instance().PlaySound(SOUND);
+//    SoundManager::Instance().PlaySound(SOUND);
 
     while (running)
     {
@@ -84,7 +86,7 @@ int main(int argc, const char *argv[])
         game.Update(keys);
         renderer.Draw(game);
         Render(window, renderer);
-        SoundManager::Instance().Update();
+//        SoundManager::Instance().Update();
         if (frames % 100 == 0)
         {
             std::cout << "FPS: " << frames / totalTime << '\n';

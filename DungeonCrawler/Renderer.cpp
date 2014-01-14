@@ -13,7 +13,7 @@
 
 #define SPRITE_SIZE 16
 
-Renderer::Renderer() : viewPort(HEIGHT - PANEL_HEIGHT, WIDTH, pixels, false),
+Renderer::Renderer() : pixels(new unsigned int[WIDTH * HEIGHT]), viewPort(HEIGHT - PANEL_HEIGHT, WIDTH, pixels, false),
 symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
 {
     for(int i = 0; i < HEIGHT * WIDTH - PANEL_HEIGHT * WIDTH; i++)
@@ -29,6 +29,11 @@ symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
             pixels[w + h * WIDTH] = hudPixels[w / 4 + hudImgHeight / 4 * hudTexture->Width()];
         }
     }
+}
+
+Renderer::~Renderer()
+{
+	delete [] pixels;
 }
 
 void Renderer::Draw(Game &game)
@@ -50,6 +55,7 @@ void Renderer::Draw(Game &game)
 void Renderer::DrawText(const std::string text, int x, int y)
 {
     Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
+	int fontBitmapWidth = fontBitmap->Width();
     unsigned int const *const fontPix = fontBitmap->Pixels();
     for (int i = 0; i < text.length(); i++)
     {
@@ -64,7 +70,7 @@ void Renderer::DrawText(const std::string text, int x, int y)
                 for (int width = widthOffset, screenWidth = x; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
                 {
                     pixels[screenWidth + screenHeight * WIDTH + i * LETTER_WIDTH] =
-                            fontPix[width + height * fontBitmap->Width()];
+						fontPix[width + height * fontBitmapWidth];
                 }
             }
         }

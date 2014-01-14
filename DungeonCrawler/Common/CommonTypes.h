@@ -9,6 +9,8 @@
 #ifndef DungeonCrawler_Vector_h
 #define DungeonCrawler_Vector_h
 
+#define _USE_MATH_DEFINES
+
 struct Sprite
 {
     Sprite(float x, float y, float z, int texNumber, unsigned int colour):

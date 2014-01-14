@@ -9,7 +9,7 @@
 #include <vector>
 #include <math.h>
 #include "Player.h"
-#include "Level.h"
+#include "Map/Level.h"
 
 Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
 {
