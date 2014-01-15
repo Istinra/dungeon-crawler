@@ -9,6 +9,7 @@
 #include <vector>
 #include <math.h>
 #include "Player.h"
+#include "SoundManager.h"
 #include "Map/Level.h"
 
 Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
@@ -26,6 +27,7 @@ void Player::Action()
     {
         return;
     }
+	SoundManager::Instance().PlaySound(SOUND);
     actionTimer = 100;
     static const int checkDist = 96;
     std::vector<Entity *> potentialEntities;

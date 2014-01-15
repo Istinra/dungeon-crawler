@@ -55,8 +55,6 @@ int main(int argc, char *argv[])
 	Game game;
     game.NewGame();
 
-    SoundManager::Instance().PlaySound(SOUND);
-
     while (running)
     {
         ++frames;
