@@ -102,6 +102,8 @@ void RayCastBitmap::DrawSprites(Game &game)
 {
 	std::vector<Entity *> &entities = game.CurrentLevel().Entities();
 	Bitmap *spriteSheet = Resources::Instance().LoadTexture(SPRITES);
+	int sheetWidth = spriteSheet->Width();
+	const unsigned int *sheetPixels = spriteSheet->Pixels();
 
 	float rCos = -cosf(yaw);
 	float rSin = sinf(yaw);
@@ -160,8 +162,8 @@ void RayCastBitmap::DrawSprites(Game &game)
 			{
 				for (int row = pixelY; row < pixelEndY; row++)
 				{
-					int index = static_cast<int>(texX) +static_cast<int>(texY) * spriteSheet->Width();
-					unsigned int colour = spriteSheet->Pixels()[index];
+					int index = static_cast<int>(texX) + static_cast<int>(texY) * sheetWidth;
+					unsigned int colour = sheetPixels[index];
 					if (0xFF000000 & colour)
 					{
 						pixels[stripe + width * row] = colour | sprite->colour;

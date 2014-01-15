@@ -22,12 +22,7 @@ void Render(SDL_Window *const window, Renderer &renderer)
         return;
     }
 	memcpy(screen->pixels, renderer.Pixels(), WIDTH * HEIGHT * sizeof(unsigned int));
-	//unsigned int *pixels = renderer.Pixels();
-	//unsigned int *screenPixelsPtr = reinterpret_cast<unsigned int*>(screen->pixels);
-	//for (unsigned int i = 0; i < WIDTH * HEIGHT; i++)
-	//{
-	//	(*screenPixelsPtr++) = (*pixels++);
- //   }
+
     if (SDL_MUSTLOCK(screen))
     {
         SDL_UnlockSurface(screen);
@@ -60,7 +55,7 @@ int main(int argc, char *argv[])
 	Game game;
     game.NewGame();
 
-//    SoundManager::Instance().PlaySound(SOUND);
+    SoundManager::Instance().PlaySound(SOUND);
 
     while (running)
     {
@@ -86,7 +81,7 @@ int main(int argc, char *argv[])
         game.Update(keys);
         renderer.Draw(game);
         Render(window, renderer);
-//        SoundManager::Instance().Update();
+        SoundManager::Instance().Update();
         if (frames % 100 == 0)
         {
             std::cout << "FPS: " << frames / totalTime << '\n';
