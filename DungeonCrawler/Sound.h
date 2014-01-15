@@ -9,7 +9,7 @@
 #ifndef __DungeonCrawler__Sound__
 #define __DungeonCrawler__Sound__
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 enum Sounds
 {

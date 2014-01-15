@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Sam. All rights reserved.
 //
 
-#include <SDL2/SDL_scancode.h>
+#include <SDL_scancode.h>
 #include "Game.h"
 
 Game::Game()

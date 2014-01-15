@@ -1,7 +1,7 @@
 #ifndef STBI_HEADER_FILE_ONLY
 
 #ifndef STBI_NO_HDR
-
+#define _CRT_SECURE_NO_DEPRECATE
 #include <math.h>  // ldexp
 #include <string.h> // strcmp, strtok
 

@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <random>
 #include "Resources.h"
 #include "Renderer.h"
@@ -21,11 +21,8 @@ void Render(SDL_Window *const window, Renderer &renderer)
     {
         return;
     }
-    unsigned int *pixels = renderer.Pixels();
-    for (unsigned int i = 0; i < WIDTH * HEIGHT; i++)
-    {
-        ((unsigned int *) screen->pixels)[i] = pixels[i];
-    }
+	memcpy(screen->pixels, renderer.Pixels(), WIDTH * HEIGHT * sizeof(unsigned int));
+
     if (SDL_MUSTLOCK(screen))
     {
         SDL_UnlockSurface(screen);
@@ -33,7 +30,7 @@ void Render(SDL_Window *const window, Renderer &renderer)
     SDL_UpdateWindowSurface(window);
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
     SDL_Window *window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
@@ -46,16 +43,16 @@ int main(int argc, const char *argv[])
     }
     bool running = true;
 
-    unsigned int frames = 0;
+	unsigned int frames = 0;
     float frequency = (float) SDL_GetPerformanceFrequency();
     float totalTime = 0;
     float dt = 0;
 
     Uint64 oldTime = SDL_GetPerformanceCounter();
     Uint64 newTime;
-
+	
     Renderer renderer;
-    Game game;
+	Game game;
     game.NewGame();
 
     SoundManager::Instance().PlaySound(SOUND);

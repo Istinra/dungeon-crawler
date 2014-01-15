@@ -7,10 +7,11 @@
 //
 
 #include "Level.h"
-#include "BatEnemy.h"
-#include "Resources.h"
-#import "Pickup.h"
-#import "DoorBlock.h"
+#include "../BatEnemy.h"
+#include "../Resources.h"
+#include "../Pickup.h"
+#include "DoorBlock.h"
+#include <algorithm>
 #include <iostream>
 
 Level::Level()
@@ -60,11 +61,6 @@ void Level::LoadLevel(std::string name)
     }
 
     delete levelImage;
-}
-
-Block *Level::operator [](unsigned int i)
-{
-    return blocks[i];
 }
 
 void Level::AddEntity(Entity *entity)

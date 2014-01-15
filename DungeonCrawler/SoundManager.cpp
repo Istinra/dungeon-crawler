@@ -48,7 +48,7 @@ void SoundManager::PlaySound(Sounds sound)
     switch (sound)
     {
         case SOUND:
-            soundObject = InitSound(sound, "/Users/sam/Documents/DungeonCrawler/DungeonCrawler/Art/hit.wav");
+            soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\hit.wav");
             SDL_OpenAudio(&soundObject->wavSpec, nullptr);
             SDL_PauseAudio(0);
             break;

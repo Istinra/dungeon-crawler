@@ -11,7 +11,7 @@
 
 #include <string>
 #include <vector>
-#include "Entity.h"
+#include "../Entity.h"
 #include "Block.h"
 
 class Level
@@ -26,7 +26,10 @@ public:
 
     void Update();
 
-    Block *operator [] (unsigned int);
+    inline Block *operator [] (unsigned int i)
+	{
+		return blocks[i];
+	}
 
     int Width()
     {

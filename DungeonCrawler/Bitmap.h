@@ -18,17 +18,17 @@ public:
 
     virtual ~Bitmap();
 
-    unsigned int const *Pixels()
+    inline unsigned int const *Pixels()
     {
         return pixels;
     };
 
-    int Height()
+	inline int Height()
     {
         return height;
     };
 
-    int Width()
+    inline int Width()
     {
         return width;
     };
