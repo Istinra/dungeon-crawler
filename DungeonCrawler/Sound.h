@@ -19,6 +19,7 @@ enum Sounds
 struct Sound
 {
     unsigned int wavLength;
+	unsigned int originalWavLength;
     unsigned char *wavBuffer;
     SDL_AudioSpec wavSpec;
 };

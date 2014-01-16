@@ -44,17 +44,22 @@ SoundManager::~SoundManager()
 
 void SoundManager::PlaySound(Sounds sound)
 {
-    Sound *soundObject;
-    switch (sound)
-    {
-        case SOUND:
-            soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\hit.wav");
-            SDL_OpenAudio(&soundObject->wavSpec, nullptr);
-            SDL_PauseAudio(0);
-            break;
-        default:
-            return;
-    }
+	Sound *soundObject = nullptr;
+	switch (sound)
+	{
+	case SOUND:
+		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\hit.wav");
+		break;
+	default:
+		return;
+	}
+	if (soundObject)
+	{
+		soundObject->wavBuffer -= soundObject->originalWavLength - soundObject->wavLength;
+		soundObject->wavLength = soundObject->originalWavLength;
+		SDL_OpenAudio(&soundObject->wavSpec, nullptr);
+		SDL_PauseAudio(0);
+	}
     activeSound = soundObject;
 }
 
@@ -70,6 +75,7 @@ Sound *SoundManager::InitSound(Sounds sounds, const char *file)
     {
         Sound *s = new Sound;
         SDL_LoadWAV(file, &s->wavSpec, &s->wavBuffer, &s->wavLength);
+		s->originalWavLength = s->wavLength;
         s->wavSpec.callback = AudioCallback;
         s->wavSpec.userdata = s;
         soundMap[sounds] = s;
