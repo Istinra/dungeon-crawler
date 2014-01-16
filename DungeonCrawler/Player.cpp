@@ -27,7 +27,10 @@ void Player::Action()
     {
         return;
     }
-	SoundManager::Instance().PlaySound(SOUND);
+	if (inventory[activeSlot].type == SWORD)
+	{
+		SoundManager::Instance().PlaySound(SOUND);
+	}
     actionTimer = 100;
     static const int checkDist = 96;
     std::vector<Entity *> potentialEntities;

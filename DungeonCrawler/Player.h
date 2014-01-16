@@ -30,27 +30,32 @@ public:
 
     virtual bool IsRemoved() override;
 
-    short Battery()
+    inline short Battery()
     {
         return battery;
     }
 
-    bool Alive()
+	inline bool Alive()
     {
         return health > 0;
     }
 
-    Item ItemAtSlot(int slot)
+	inline Item ItemAtSlot(int slot)
     {
         return inventory[slot];
     }
 
-    Item ActiveItem()
+	inline Item ActiveItem()
     {
         return inventory[activeSlot];
     }
 
-    bool IsActing()
+	inline void ActiveItem(short activeSlot)
+	{
+		this->activeSlot = activeSlot;
+	}
+
+	inline bool IsActing()
     {
         return actionTimer > 0;
     }

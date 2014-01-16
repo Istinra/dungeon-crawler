@@ -84,6 +84,31 @@ void Game::HandleInput(bool const *keys)
         player.Action();
     }
     player.Yaw(yaw);
+
+	if (keys[SDL_SCANCODE_1])
+	{
+		player.ActiveItem(0);
+	}
+	if (keys[SDL_SCANCODE_2])
+	{
+		player.ActiveItem(1);
+	}
+	if (keys[SDL_SCANCODE_3])
+	{
+		player.ActiveItem(2);
+	}
+	if (keys[SDL_SCANCODE_4])
+	{
+		player.ActiveItem(3);
+	}
+	if (keys[SDL_SCANCODE_5])
+	{
+		player.ActiveItem(4);
+	}
+	if (keys[SDL_SCANCODE_6])
+	{
+		player.ActiveItem(5);
+	}
 }
 
 Game::~Game()
