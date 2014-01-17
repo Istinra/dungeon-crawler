@@ -27,11 +27,23 @@ void Player::Action()
     {
         return;
     }
-	if (inventory[activeSlot].type == SWORD)
+	actionTimer = 100;
+	Item& activeItem = inventory[activeSlot];
+	switch (activeItem.type)
 	{
+	case SWORD:
 		SoundManager::Instance().PlaySound(SOUND);
+		break;
+	case POTION:
+		health += 20;
+		if (health > 100)
+		{
+			health = 100;
+		}
+		return;
 	}
-    actionTimer = 100;
+
+	//Continue to interaction
     static const int checkDist = 96;
     std::vector<Entity *> potentialEntities;
     const std::vector<Entity *> &entities = level->Entities();
@@ -57,7 +69,7 @@ void Player::Action()
         {
             if (entity->ContainsPoint(x, z))
             {
-                entity->Use(this, inventory[activeSlot]);
+				entity->Use(this, activeItem);
                 return;
             }
         }
