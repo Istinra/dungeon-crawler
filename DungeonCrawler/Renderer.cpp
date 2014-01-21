@@ -42,8 +42,8 @@ void Renderer::Draw(Game &game)
     if (game.GetPlayer().Alive())
     {
         viewPort.Draw(game);
-        DrawText(std::to_string(game.GetPlayer().Health()), 50, 390);
-        DrawText(std::to_string(game.GetPlayer().Battery()) + "%", 50, 425);
+        DrawText(NumberString(game.GetPlayer().Health()), 50, 390);
+        DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 425);
         DrawText(std::string("0/?"), 50, 455);
         DrawInventory(game);
     }
@@ -53,12 +53,13 @@ void Renderer::Draw(Game &game)
     }
 }
 
+
 void Renderer::DrawText(const std::string text, int x, int y)
 {
     Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
 	int fontBitmapWidth = fontBitmap->Width();
     unsigned int const *const fontPix = fontBitmap->Pixels();
-    for (int i = 0; i < text.length(); i++)
+    for (unsigned int i = 0; i < text.length(); i++)
     {
         char c = text[i];
         const unsigned long location = symbols.find(c, 0);
@@ -92,8 +93,8 @@ void Renderer::DrawInventory(Game &game)
         {
             return;
         }
-		float heightOffset = (item.type / (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE;
-		float widthOffset = (item.type % (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE;
+		float heightOffset = static_cast<float>((item.type / (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE);
+		float widthOffset = static_cast<float>((item.type % (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE);
         int screenHeight = 408;
         for (float height = heightOffset; height < heightOffset + SPRITE_SIZE; height += 1 / scale, screenHeight++)
         {
@@ -118,8 +119,8 @@ void Renderer::DrawHeldItem(Game &game, Bitmap *const spriteBitmap)
     {
         return;
     }
-	float heightOffset = (item.type / (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE;
-	float widthOffset = (item.type % (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE;
+	float heightOffset = static_cast<float>((item.type / (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE);
+	float widthOffset = static_cast<float>((item.type % (spriteBitmapWidth / SPRITE_SIZE)) * SPRITE_SIZE);
     heightOffset += game.GetPlayer().IsActing() ? 32 : 16;
     int screenHeight = 204;
     for (float height = heightOffset; height < heightOffset + SPRITE_SIZE; height += 1 / scale, screenHeight++)
@@ -135,4 +136,13 @@ void Renderer::DrawHeldItem(Game &game, Bitmap *const spriteBitmap)
             }
         }
     }
+}
+
+std::string Renderer::NumberString(int number)
+{
+	if (number < 10)
+	{
+		return std::string("0") + std::to_string(number);
+	}
+	return std::to_string(number);
 }

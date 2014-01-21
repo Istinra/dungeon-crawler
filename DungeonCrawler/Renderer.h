@@ -34,11 +34,12 @@ public:
     }
 
 private:
+	std::string NumberString(int number);
+	void DrawHeldItem(Game &game, Bitmap *const spriteBitmap);
+
     const std::string symbols;
     unsigned int* pixels;
     RayCastBitmap viewPort;
-
-    void DrawHeldItem(Game &game, Bitmap *const spriteBitmap);
 };
 
 #endif
