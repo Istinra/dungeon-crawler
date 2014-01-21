@@ -61,7 +61,7 @@ void Enemy::Update()
             yaw -= 2 * M_PI;
         }
     }
-//    Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));
+    Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));
 }
 
 void Enemy::Collide(Entity *e)
@@ -96,7 +96,10 @@ void Enemy::Hurt(int damage)
 
 bool Enemy::Use(Entity *source, Item &item)
 {
-    Hurt(2);
+	if (item.type == ItemType::SWORD)
+	{
+		Hurt(2);
+	}
     return true;
 }
 

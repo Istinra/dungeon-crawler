@@ -12,6 +12,8 @@
 #include "SoundManager.h"
 #include "Map/Level.h"
 
+#define CHECK_DISTANCE 94
+
 Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
 {
 }
@@ -33,6 +35,7 @@ void Player::Action()
 	{
 	case SWORD:
 		SoundManager::Instance().PlaySound(SOUND);
+		Interact();
 		break;
 	case POTION:
 		health += 20;
@@ -40,46 +43,48 @@ void Player::Action()
 		{
 			health = 100;
 		}
-		return;
+		activeItem.count--;
+		break;
+	}
+}
+
+void Player::Interact()
+{
+	std::vector<Entity *> potentialEntities;
+	const std::vector<Entity *> &entities = level->Entities();
+	for (Entity *entity : entities)
+	{
+		Vector3 entPos = entity->Position();
+		if (entPos.x < position.x + CHECK_DISTANCE && entPos.x > position.x - CHECK_DISTANCE &&
+			entPos.z < position.z + CHECK_DISTANCE && entPos.z > position.z - CHECK_DISTANCE)
+		{
+			if (entity == this) continue;
+			potentialEntities.push_back(entity);
+		}
 	}
 
-	//Continue to interaction
-    static const int checkDist = 96;
-    std::vector<Entity *> potentialEntities;
-    const std::vector<Entity *> &entities = level->Entities();
-    for (Entity *entity : entities)
-    {
-        Vector3 entPos = entity->Position();
-        if (entPos.x < position.x + checkDist && entPos.x > position.x - checkDist &&
-                entPos.z < position.z + checkDist && entPos.z > position.z - checkDist)
-        {
-            if (entity == this) continue;
-            potentialEntities.push_back(entity);
-        }
-    }
+	float rSin = sinf(yaw);
+	float rCos = cosf(yaw);
 
-    float rSin = sinf(yaw);
-    float rCos = cosf(yaw);
-
-    for (int i = 0; i < checkDist; i += 4)
-    {
-        float x = position.x + rCos * i;
-        float z = position.z - rSin * i;
-        for (Entity *entity : potentialEntities)
-        {
-            if (entity->ContainsPoint(x, z))
-            {
-				entity->Use(this, activeItem);
-                return;
-            }
-        }
-        int xIndex = static_cast<int>(x / 64);
-        int zIndex = static_cast<int>(z / 64);
-        if ((*level)[xIndex + zIndex * level->Width()]->Use())
-        {
-            return;
-        }
-    }
+	for (int i = 0; i < CHECK_DISTANCE; i += 4)
+	{
+		float x = position.x + rCos * i;
+		float z = position.z - rSin * i;
+		for (Entity *entity : potentialEntities)
+		{
+			if (entity->ContainsPoint(x, z))
+			{
+				entity->Use(this, inventory[activeSlot]);
+				return;
+			}
+		}
+		int xIndex = static_cast<int>(x / 64);
+		int zIndex = static_cast<int>(z / 64);
+		if ((*level)[xIndex + zIndex * level->Width()]->Use())
+		{
+			return;
+		}
+	}
 }
 
 void Player::Hurt(int damage)

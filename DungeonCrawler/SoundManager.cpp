@@ -87,8 +87,8 @@ Sound *SoundManager::InitSound(Sounds sounds, const char *file)
 void SoundManager::Update()
 {
     if (activeSound != nullptr && activeSound->wavLength == 0)
-    {
-        SDL_CloseAudio();
+	{
+		SDL_CloseAudio();
         activeSound = nullptr;
     }
 }

@@ -61,6 +61,8 @@ public:
     }
 
 private:
+	void Interact();
+
     short battery;
     short actionTimer;
 
