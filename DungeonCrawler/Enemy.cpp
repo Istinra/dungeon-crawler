@@ -54,11 +54,11 @@ void Enemy::Update()
         yaw += static_cast<float>((rand() % 360) * 180 / M_PI) * TURN_STEP;
         if (yaw < 0)
         {
-            yaw += 2 * M_PI;
+			yaw += static_cast<float>(M_PI) * 2.0f;
         }
         else if (yaw > 2 * M_PI )
         {
-            yaw -= 2 * M_PI;
+			yaw -= static_cast<float>(M_PI) * 2.0f;
         }
     }
     Move(Vector3(MOVE_STEP * cosf(yaw), 0, MOVE_STEP * sinf(yaw)));

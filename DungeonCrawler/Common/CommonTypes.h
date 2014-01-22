@@ -13,18 +13,20 @@
 
 struct Sprite
 {
-    Sprite(float x, float y, float z, int texNumber, unsigned int colour):
-    x(x), y(y), z(z), texNumber(texNumber), colour(colour)
+	Sprite(float x, float y, float z, int texNumber, unsigned int colour, float scale) :
+	x(x), y(y), z(z), texNumber(texNumber), colour(colour), scale(scale)
     {
     }
 
-    Sprite(float x, float y, float z, int texNumber):x(x), y(y), z(z), texNumber(texNumber), colour(0x00000000)
+	Sprite(float x, float y, float z, int texNumber) :
+	x(x), y(y), z(z), texNumber(texNumber), colour(0x00000000), scale(1)
     {
     }
 
     float x;
     float y;
     float z;
+	float scale;
     int texNumber;
     unsigned int colour;
 };

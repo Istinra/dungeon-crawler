@@ -127,18 +127,19 @@ void RayCastBitmap::DrawSprites(Game &game)
 
 		float zScreenPos = width / 2 - zCamSpace / depth * DISTANCE_TO_PLANE;
 
-		int size = (int) (64 / depth * DISTANCE_TO_PLANE);
+		float unscaledSize = 64 / depth * DISTANCE_TO_PLANE;
+		float size = unscaledSize * sprite->scale;
 
-		int pixelX = (int) (zScreenPos - size / 2.0f);
-		int pixelEndX = pixelX + size;
+		int pixelX = static_cast<int>(zScreenPos - size / 2.0f);
+		int pixelEndX = pixelX + static_cast<int>(size);
 
-		int pixelY = height / 2 - size / 2;
-		int pixelEndY = pixelY + size;
+		int pixelY = static_cast<int>(height / 2 - size / 2 + (unscaledSize - size) / 2.0f);
+		int pixelEndY = pixelY + static_cast<int>(size);
 
 		const float xTexIncrement = 16.0f / (pixelEndX - pixelX);
 		const float yTexIncrement = 16.0f / (pixelEndY - pixelY);
 
-		float texX = (sprite->texNumber % 8) * 16;
+		float texX = (sprite->texNumber % 8) * 16.0f;
 
 		if (pixelX < 0)
 		{

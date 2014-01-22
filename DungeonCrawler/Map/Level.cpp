@@ -76,7 +76,7 @@ void Level::RemoveEntity(Entity *entity)
 
 void Level::CheckEntities(int x, int y, unsigned pixel)
 {
-    Vector3 pos = Vector3(x * 64 + 32, 0, y * 62 - 32);
+	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, y * 62.0f - 32.0f);
     switch (pixel)
     {
         case 0xFF00A000:

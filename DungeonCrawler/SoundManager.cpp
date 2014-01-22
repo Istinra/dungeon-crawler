@@ -20,7 +20,7 @@ void AudioCallback(void *userdata, Uint8 *stream, int len)
         return;
     }
 
-    len = (len > s->wavLength ? s->wavLength : len);
+    len = (static_cast<unsigned int>(len) > s->wavLength ? s->wavLength : len);
     //SDL_memcpy (stream, audio_pos, len); 					// simply copy from one buffer into the other
     SDL_MixAudio(stream, s->wavBuffer, len, SDL_MIX_MAXVOLUME);// mix from one buffer into another
 
