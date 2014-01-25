@@ -179,22 +179,25 @@ void RayCastBitmap::DrawSprites(Game &game)
 
 void RayCastBitmap::CheckHorizontalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex)
 {
+	float rTan = tanf(angle);
 	float aZ = floorf(posZ / GRID_SIZE) * GRID_SIZE + (angle > M_PI ? +GRID_SIZE : -1);
-	float aX = posX + (posZ - aZ) / tanf(angle);
+	float aX = posX + (posZ - aZ) / rTan;
 
 	float zA = angle > M_PI ? +GRID_SIZE : -GRID_SIZE;
-	float xA = GRID_SIZE / (posZ - aZ > 0 ? tanf(angle) : -tanf(angle));
+	float xA = GRID_SIZE / (posZ - aZ > 0 ? rTan : -rTan);
 
 	return CheckIntersections(level, aZ, aX, zA, xA, x, z, tex);
 }
 
 void RayCastBitmap::CheckVerticalIntersections(Level &level, const float angle, float &x, float &z, unsigned int &tex)
 {
+	float rTan = tanf(angle);
 	float aX = floorf(posX / GRID_SIZE) * GRID_SIZE + (angle < M_PI_2 || angle > M_PI_2 + M_PI ? +GRID_SIZE : -1);
-	float aZ = posZ + (posX - aX) * tanf(angle);
+	float aZ = posZ + (posX - aX) * rTan;
 
 	float xA = angle < M_PI_2 || angle > M_PI_2 + M_PI ? GRID_SIZE : -GRID_SIZE;
-	float zA = GRID_SIZE * (posX - aX > 0 ? tanf(angle) : -tanf(angle));
+	float zA = GRID_SIZE * (posX - aX > 0 ? rTan : -rTan);
+
 	return CheckIntersections(level, aZ, aX, zA, xA, x, z, tex);
 }
 

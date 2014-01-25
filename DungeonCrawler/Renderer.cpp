@@ -42,19 +42,19 @@ void Renderer::Draw(Game &game)
     if (game.GetPlayer().Alive())
     {
         viewPort.Draw(game);
-        DrawText(NumberString(game.GetPlayer().Health()), 50, 390);
-        DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 425);
-        DrawText(std::string("0/?"), 50, 455);
+        DrawText(NumberString(game.GetPlayer().Health()), 50, 390, 2);
+        DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 425, 2);
+        DrawText(std::string("0/?"), 50, 455, 1);
         DrawInventory(game);
     }
     else
     {
-        DrawText(std::string("You died"), 320, 240);
+        DrawText(std::string("You died"), 320, 240, 1);
     }
 }
 
 
-void Renderer::DrawText(const std::string text, int x, int y)
+void Renderer::DrawText(const std::string text, int x, int y, float scale)
 {
     Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
 	int fontBitmapWidth = fontBitmap->Width();
@@ -65,14 +65,24 @@ void Renderer::DrawText(const std::string text, int x, int y)
         const unsigned long location = symbols.find(c, 0);
         if (location != std::string::npos)
         {
+			int letterOffset = i * LETTER_WIDTH * scale;
 			int heightOffset = (location / (fontBitmapWidth / LETTER_WIDTH)) * LETTER_HEIGHT;
 			int widthOffset = (location % (fontBitmapWidth / LETTER_WIDTH)) * LETTER_WIDTH;
-            for (int height = heightOffset, screenHeight = y; height < heightOffset + LETTER_HEIGHT; height++, screenHeight++)
+
+			int endHeight = heightOffset + LETTER_HEIGHT;
+			int endWidth = widthOffset + LETTER_WIDTH;
+			
+			float heightInc = LETTER_HEIGHT / (LETTER_HEIGHT * scale);
+			float widthInc = LETTER_WIDTH / (LETTER_WIDTH * scale);
+
+			float fHeight = heightOffset;
+			for (int screenHeight = y; fHeight < endHeight; fHeight += heightInc, screenHeight++)
             {
-                for (int width = widthOffset, screenWidth = x; width < widthOffset + LETTER_WIDTH; width++, screenWidth++)
+				float fWidth = widthOffset;
+				for (int screenWidth = x; fWidth < endWidth; fWidth += widthInc, screenWidth++)
                 {
-                    pixels[screenWidth + screenHeight * WIDTH + i * LETTER_WIDTH] =
-						fontPix[width + height * fontBitmapWidth];
+					pixels[screenWidth + screenHeight * WIDTH + letterOffset] = 
+						fontPix[static_cast<int>(fWidth) +static_cast<int>(fHeight) * fontBitmapWidth];
                 }
             }
         }

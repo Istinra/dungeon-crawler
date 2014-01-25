@@ -24,7 +24,7 @@ public:
 
     void Draw(Game &game);
 
-    void DrawText(const std::string text, int x, int y);
+    void DrawText(const std::string text, int x, int y, float scale);
 
     void DrawInventory(Game &game);
 
