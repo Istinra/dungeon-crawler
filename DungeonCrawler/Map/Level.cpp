@@ -38,12 +38,13 @@ void Level::LoadLevel(std::string name)
     height = levelImage->Height();
     blocks.resize(static_cast<unsigned int>(width * height));
 
+	std::vector<TriggerBlock*> triggerBlocks;
     for (int i = 0; i < width * height; i++)
     {
         unsigned int pixel = levelImage->Pixels()[i];
         int x = i % width;
         int y = i / height;
-        blocks[i] = CreateBlock(x, y, pixel);
+        blocks[i] = CreateBlock(x, y, pixel, triggerBlocks);
         CheckEntities(x, y, pixel);
         //R : Block Type
         //G : Entity on the block
@@ -107,16 +108,20 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
 
 }
 
-Block *Level::CreateBlock(int x, int y, unsigned pixel)
+Block *Level::CreateBlock(int x, int y, unsigned pixel, const std::vector<TriggerBlock*>& triggerBlocks)
 {
     Block *block;
+	int id = (pixel & 0xFF000000) >> 8;
     switch (pixel)
     {
         case 0xFFFF0000:
-            block = new DoorBlock(1, x, y, 2);
+            block = new DoorBlock(id, x, y, 2);
             break;
+		case 0x00990000:
+			block = new TriggerBlock(id, x, y, 2);
+			break;
         case 0xFFFFFFFF:
-            block = new Block(1, x, y, 0);
+            block = new Block(id, x, y, 0);
             break;
         default:
             block = new Block(0, x, y, 0);

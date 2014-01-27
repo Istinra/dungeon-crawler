@@ -42,14 +42,14 @@ void Renderer::Draw(Game &game)
     if (game.GetPlayer().Alive())
     {
         viewPort.Draw(game);
-        DrawText(NumberString(game.GetPlayer().Health()), 50, 390, 2);
-        DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 425, 2);
-        DrawText(std::string("0/?"), 50, 455, 1);
+        DrawText(NumberString(game.GetPlayer().Health()), 50, 385, 2);
+        DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 420, 2);
+        DrawText(std::string("0/?"), 50, 450, 2);
         DrawInventory(game);
     }
     else
     {
-        DrawText(std::string("You died"), 320, 240, 1);
+        DrawText(std::string("You died"), 120, 140, 8);
     }
 }
 

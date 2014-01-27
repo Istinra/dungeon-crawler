@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include "../Entity.h"
+#include "TriggerBlock.h"
 #include "Block.h"
 
 class Level
@@ -47,7 +48,7 @@ public:
     };
 
 private:
-    Block *CreateBlock(int x, int y, unsigned pixel);
+	Block *CreateBlock(int x, int y, unsigned pixel, const std::vector<TriggerBlock*>& triggerBlocks);
 
     void CheckEntities(int x, int y, unsigned pixel);
 

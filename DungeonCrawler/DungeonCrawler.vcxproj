@@ -22,6 +22,7 @@
     <ClCompile Include="Map\Block.cpp" />
     <ClCompile Include="Map\DoorBlock.cpp" />
     <ClCompile Include="Map\Level.cpp" />
+    <ClCompile Include="Map\TriggerBlock.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayCastBitmap.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Map\Block.h" />
     <ClInclude Include="Map\DoorBlock.h" />
     <ClInclude Include="Map\Level.h" />
+    <ClInclude Include="Map\TriggerBlock.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RayCastBitmap.h" />

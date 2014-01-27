@@ -84,6 +84,9 @@
     <ClCompile Include="External\stb_image.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="Map\TriggerBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BatEnemy.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="External\std_image.h">
       <Filter>Source Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\TriggerBlock.h">
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
