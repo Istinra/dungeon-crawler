@@ -114,28 +114,24 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
 
 Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks)
 {
-    Block *block;
 	int id = (pixel & 0xFF000000) >> 24;
-    switch (pixel)
-    {
-        case 0xFFFF0000:
-            block = new DoorBlock(id, x, y, 2);
-            break;
-		case 0x00990000: //Green Channel used to identify target block ID
-		{
-			TriggerBlock* trigger = new TriggerBlock(id, x, y, 2);
-			trigger->TargetId((pixel & 0x0000FF00) >> 8);
-			block = trigger;
-			triggerBlocks.push_back(trigger);
-		}
-			break;
-        case 0xFFFFFFFF:
-            block = new Block(id, x, y, 0);
-            break;
-        default:
-            block = new Block(0, x, y, 0);
-    }
-    return block;
+	if ((pixel & 0x00FFFFFF) == 0x00FF0000)
+	{
+		return new DoorBlock(id, x, y, 2);
+	}
+	if ((pixel & 0x00FF00FF) == 0x00630000)
+	{
+		//Green Channel used to identify target block ID
+		TriggerBlock* trigger = new TriggerBlock(id, x, y, 0);
+		trigger->TargetId((pixel & 0x0000FF00) >> 8);
+		triggerBlocks.push_back(trigger);
+		return trigger;
+	}
+	if (pixel == 0xFFFFFFFF)
+	{
+		return new Block(id, x, y, 0);
+	}
+	return new Block(0, x, y, 0);;
 }
 
 void Level::Update()
