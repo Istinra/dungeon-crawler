@@ -52,14 +52,18 @@ void Level::LoadLevel(std::string name)
         //A : Block ID
     }
 
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            std::cout << std::hex << blocks[i * width + j]->Id() << " ";
-        }
-        std::cout << std::endl;
-    }
+	for (auto* trigger : triggerBlocks)
+	{
+		auto blockId = trigger->TargetId();
+		for (auto* b : blocks)
+		{
+			if (b->Id() == blockId)
+			{
+				trigger->SetBlockToTrigger(b);
+				break;
+			}
+		}
+	}
 
     delete levelImage;
 }
@@ -108,17 +112,22 @@ void Level::CheckEntities(int x, int y, unsigned pixel)
 
 }
 
-Block *Level::CreateBlock(int x, int y, unsigned pixel, const std::vector<TriggerBlock*>& triggerBlocks)
+Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks)
 {
     Block *block;
-	int id = (pixel & 0xFF000000) >> 8;
+	int id = (pixel & 0xFF000000) >> 24;
     switch (pixel)
     {
         case 0xFFFF0000:
             block = new DoorBlock(id, x, y, 2);
             break;
-		case 0x00990000:
-			block = new TriggerBlock(id, x, y, 2);
+		case 0x00990000: //Green Channel used to identify target block ID
+		{
+			TriggerBlock* trigger = new TriggerBlock(id, x, y, 2);
+			trigger->TargetId((pixel & 0x0000FF00) >> 8);
+			block = trigger;
+			triggerBlocks.push_back(trigger);
+		}
 			break;
         case 0xFFFFFFFF:
             block = new Block(id, x, y, 0);

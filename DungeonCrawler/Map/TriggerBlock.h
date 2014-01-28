@@ -8,8 +8,11 @@ public:
 	TriggerBlock(unsigned int id, int x, int y, unsigned int tex);
 	virtual ~TriggerBlock();
 	virtual bool Use() override;
+	void SetBlockToTrigger(Block* b) { this->block = b; }
+	inline const unsigned int TargetId() { return targetId; }
+	inline void TargetId(unsigned int tId) { targetId = tId; }
 private:
-	Entity* entity;
+	unsigned int targetId;
 	Block* block;
 };
 

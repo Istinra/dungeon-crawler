@@ -2,7 +2,7 @@
 
 
 TriggerBlock::TriggerBlock(unsigned int id, int x, int y, unsigned int tex)
-: Block(id, x, y, tex), block(nullptr)
+: Block(id, x, y, tex), block(nullptr), targetId(0)
 {
 }
 

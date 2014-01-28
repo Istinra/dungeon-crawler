@@ -48,7 +48,7 @@ public:
     };
 
 private:
-	Block *CreateBlock(int x, int y, unsigned pixel, const std::vector<TriggerBlock*>& triggerBlocks);
+	Block *CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks);
 
     void CheckEntities(int x, int y, unsigned pixel);
 
