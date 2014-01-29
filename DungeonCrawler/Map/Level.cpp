@@ -117,12 +117,12 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 	int id = (pixel & 0xFF000000) >> 24;
 	if ((pixel & 0x00FFFFFF) == 0x00FF0000)
 	{
-		return new DoorBlock(id, x, y, 2);
+		return new DoorBlock(id, x, y, 3);
 	}
 	if ((pixel & 0x00FF00FF) == 0x00630000)
 	{
 		//Green Channel used to identify target block ID
-		TriggerBlock* trigger = new TriggerBlock(id, x, y, 0);
+		TriggerBlock* trigger = new TriggerBlock(id, x, y, 1);
 		trigger->TargetId((pixel & 0x0000FF00) >> 8);
 		triggerBlocks.push_back(trigger);
 		return trigger;

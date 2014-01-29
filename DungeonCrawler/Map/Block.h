@@ -35,9 +35,9 @@ public:
         return tex;
     }
 
-private:
+protected:
     const unsigned int id;
-    const unsigned int tex;
+    unsigned int tex;
 };
 
 #endif /* defined(__DungeonCrawler__Block__) */

@@ -13,8 +13,9 @@ TriggerBlock::~TriggerBlock()
 
 bool TriggerBlock::Use()
 {
-	if (block)
+	if (block && tex == 1)
 	{
+		++tex;
 		return block->Use();
 	}
 	return false;
