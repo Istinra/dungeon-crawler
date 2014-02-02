@@ -23,7 +23,7 @@ bool DoorBlock::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z
     return false;
 }
 
-bool DoorBlock::Use()
+bool DoorBlock::Use(Item& item)
 {
     if (closed)
     {

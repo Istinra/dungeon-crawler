@@ -18,7 +18,7 @@ Block::~Block()
 
 }
 
-bool Block::Use()
+bool Block::Use(Item& item)
 {
     return false;
 }

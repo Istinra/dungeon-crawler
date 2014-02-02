@@ -11,12 +11,12 @@ TriggerBlock::~TriggerBlock()
 {
 }
 
-bool TriggerBlock::Use()
+bool TriggerBlock::Use(Item& item)
 {
 	if (block && tex == 1)
 	{
 		++tex;
-		return block->Use();
+		return block->Use(item);
 	}
 	return false;
 }

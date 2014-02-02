@@ -10,6 +10,7 @@
 #define __DungeonCrawler__Block__
 
 #include "../Common/CommonTypes.h"
+#include "../Item.h"
 
 class Block
 {
@@ -21,7 +22,7 @@ public:
 
     virtual bool IsSolid() const;
 
-    virtual bool Use();
+	virtual bool Use(Item& item);
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
 

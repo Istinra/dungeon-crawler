@@ -98,9 +98,15 @@ bool Enemy::Use(Entity *source, Item &item)
 {
 	if (item.type == ItemType::SWORD)
 	{
-		Hurt(2);
+		Hurt(3);
+		return true;
 	}
-    return true;
+	if (item.type == ItemType::GUN)
+	{
+		Hurt(2);
+		return true;
+	}
+	return false;
 }
 
 bool Enemy::IsRemoved()

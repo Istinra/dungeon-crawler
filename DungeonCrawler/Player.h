@@ -61,7 +61,7 @@ public:
     }
 
 private:
-	void Interact();
+	void Interact(int checkDistance);
 
     short battery;
     short actionTimer;

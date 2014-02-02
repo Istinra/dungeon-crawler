@@ -12,7 +12,8 @@
 #include "SoundManager.h"
 #include "Map/Level.h"
 
-#define CHECK_DISTANCE 94
+#define MELEE_CHECK_DISTANCE 94
+#define RANGED_CHECK_DISTANCE 2048
 
 Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
 {
@@ -35,7 +36,11 @@ void Player::Action()
 	{
 	case SWORD:
 		SoundManager::Instance().PlaySound(SOUND);
-		Interact();
+		Interact(MELEE_CHECK_DISTANCE);
+		break;
+	case GUN:
+		SoundManager::Instance().PlaySound(SOUND);
+		Interact(RANGED_CHECK_DISTANCE);
 		break;
 	case POTION:
 		health += 20;
@@ -48,15 +53,15 @@ void Player::Action()
 	}
 }
 
-void Player::Interact()
+void Player::Interact(int checkDistance)
 {
 	std::vector<Entity *> potentialEntities;
 	const std::vector<Entity *> &entities = level->Entities();
 	for (Entity *entity : entities)
 	{
 		Vector3 entPos = entity->Position();
-		if (entPos.x < position.x + CHECK_DISTANCE && entPos.x > position.x - CHECK_DISTANCE &&
-			entPos.z < position.z + CHECK_DISTANCE && entPos.z > position.z - CHECK_DISTANCE)
+		if (entPos.x < position.x + checkDistance && entPos.x > position.x - checkDistance &&
+			entPos.z < position.z + checkDistance && entPos.z > position.z - checkDistance)
 		{
 			if (entity == this) continue;
 			potentialEntities.push_back(entity);
@@ -66,7 +71,7 @@ void Player::Interact()
 	float rSin = sinf(yaw);
 	float rCos = cosf(yaw);
 
-	for (int i = 0; i < CHECK_DISTANCE; i += 4)
+	for (int i = 0; i < checkDistance; i += 4)
 	{
 		float x = position.x + rCos * i;
 		float z = position.z - rSin * i;
@@ -80,7 +85,7 @@ void Player::Interact()
 		}
 		int xIndex = static_cast<int>(x / 64);
 		int zIndex = static_cast<int>(z / 64);
-		if ((*level)[xIndex + zIndex * level->Width()]->Use())
+		if ((*level)[xIndex + zIndex * level->Width()]->Use(inventory[activeSlot]))
 		{
 			return;
 		}

@@ -65,7 +65,7 @@ void Renderer::DrawText(const std::string text, int x, int y, float scale)
         const unsigned long location = symbols.find(c, 0);
         if (location != std::string::npos)
         {
-			int letterOffset = i * LETTER_WIDTH * scale;
+			int letterOffset = static_cast<int>(i * LETTER_WIDTH * scale);
 			int heightOffset = (location / (fontBitmapWidth / LETTER_WIDTH)) * LETTER_HEIGHT;
 			int widthOffset = (location % (fontBitmapWidth / LETTER_WIDTH)) * LETTER_WIDTH;
 
@@ -75,10 +75,10 @@ void Renderer::DrawText(const std::string text, int x, int y, float scale)
 			float heightInc = LETTER_HEIGHT / (LETTER_HEIGHT * scale);
 			float widthInc = LETTER_WIDTH / (LETTER_WIDTH * scale);
 
-			float fHeight = heightOffset;
+			float fHeight = static_cast<float>(heightOffset);
 			for (int screenHeight = y; fHeight < endHeight; fHeight += heightInc, screenHeight++)
             {
-				float fWidth = widthOffset;
+				float fWidth = static_cast<float>(widthOffset);
 				for (int screenWidth = x; fWidth < endWidth; fWidth += widthInc, screenWidth++)
                 {
 					pixels[screenWidth + screenHeight * WIDTH + letterOffset] = 
