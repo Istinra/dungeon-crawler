@@ -13,7 +13,7 @@ TriggerBlock::~TriggerBlock()
 
 bool TriggerBlock::Use(Item& item)
 {
-	if (block && tex == 1)
+	if (item.type != GUN && block && tex == 1)
 	{
 		++tex;
 		return block->Use(item);

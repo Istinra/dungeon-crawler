@@ -11,6 +11,7 @@
 #include "../Resources.h"
 #include "../Pickup.h"
 #include "DoorBlock.h"
+#include "IceBlock.h"
 #include <algorithm>
 #include <iostream>
 
@@ -134,6 +135,10 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 		trigger->TargetId((pixel & 0x0000FF00) >> 8);
 		triggerBlocks.push_back(trigger);
 		return trigger;
+	}
+	if (pixel == 0xFF800000)
+	{
+		return new IceBlock(id, x, y, 4);
 	}
 	if (pixel == 0xFFFFFFFF)
 	{

@@ -21,6 +21,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Block.cpp" />
     <ClCompile Include="Map\DoorBlock.cpp" />
+    <ClCompile Include="Map\IceBlock.cpp" />
     <ClCompile Include="Map\Level.cpp" />
     <ClCompile Include="Map\TriggerBlock.cpp" />
     <ClCompile Include="Pickup.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="LivingEntity.h" />
     <ClInclude Include="Map\Block.h" />
     <ClInclude Include="Map\DoorBlock.h" />
+    <ClInclude Include="Map\IceBlock.h" />
     <ClInclude Include="Map\Level.h" />
     <ClInclude Include="Map\TriggerBlock.h" />
     <ClInclude Include="Pickup.h" />
