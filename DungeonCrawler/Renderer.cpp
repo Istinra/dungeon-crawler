@@ -45,7 +45,7 @@ void Renderer::Draw(Game &game)
 		memcpy(pixels + WIDTH * (HEIGHT - PANEL_HEIGHT), scaledHudGraphic, sizeof(unsigned int) * PANEL_HEIGHT * WIDTH);
 		DrawText(NumberString(game.GetPlayer().Health()), 50, 385, 2);
 		DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 420, 2);
-		DrawText(std::string("0/?"), 50, 450, 2);
+		DrawText(std::string("0"), 50, 450, 2);
 		DrawInventory(game);
 		DrawSelectedItem(game);
 	}
