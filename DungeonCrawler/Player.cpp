@@ -89,8 +89,7 @@ void Player::Interact(int checkDistance)
 		int xIndex = static_cast<int>(x / 64);
 		int zIndex = static_cast<int>(z / 64);
 		
-		if (xIndex < levelWidth && 
-			zIndex < levelHeight &&
+		if (xIndex > -1 && zIndex > -1 && xIndex < levelWidth &&  zIndex < levelHeight &&
 			(*level)[xIndex + zIndex * level->Width()]->Use(inventory[activeSlot]))
 		{
 			return;

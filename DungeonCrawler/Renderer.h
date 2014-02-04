@@ -36,9 +36,11 @@ public:
 private:
 	std::string NumberString(int number);
 	void DrawHeldItem(Game &game, Bitmap *const spriteBitmap);
+	void DrawSelectedItem(Game & game);
 
     const std::string symbols;
-    unsigned int* pixels;
+    unsigned int *pixels;
+	unsigned int *scaledHudGraphic;
     RayCastBitmap viewPort;
 };
 
