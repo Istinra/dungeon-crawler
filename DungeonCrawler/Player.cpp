@@ -71,8 +71,8 @@ void Player::Interact(int checkDistance)
 	float rSin = sinf(yaw);
 	float rCos = cosf(yaw);
 
-	unsigned int levelWidth = level->Width();
-	unsigned int levelHeight = level->Height();
+	int levelWidth = level->Width();
+	int levelHeight = level->Height();
 
 	for (int i = 0; i < checkDistance; i += 4)
 	{
