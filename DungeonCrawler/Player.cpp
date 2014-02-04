@@ -71,6 +71,9 @@ void Player::Interact(int checkDistance)
 	float rSin = sinf(yaw);
 	float rCos = cosf(yaw);
 
+	unsigned int levelWidth = level->Width();
+	unsigned int levelHeight = level->Height();
+
 	for (int i = 0; i < checkDistance; i += 4)
 	{
 		float x = position.x + rCos * i;
@@ -85,7 +88,10 @@ void Player::Interact(int checkDistance)
 		}
 		int xIndex = static_cast<int>(x / 64);
 		int zIndex = static_cast<int>(z / 64);
-		if ((*level)[xIndex + zIndex * level->Width()]->Use(inventory[activeSlot]))
+		
+		if (xIndex < levelWidth && 
+			zIndex < levelHeight &&
+			(*level)[xIndex + zIndex * level->Width()]->Use(inventory[activeSlot]))
 		{
 			return;
 		}
