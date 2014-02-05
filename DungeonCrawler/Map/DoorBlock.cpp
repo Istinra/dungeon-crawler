@@ -7,6 +7,7 @@
 //
 
 #include "DoorBlock.h"
+#include "../NotificationManager.h"
 
 DoorBlock::DoorBlock(unsigned int id, int x, int y, unsigned int tex):Block(id, x, y, tex), closed(true)
 {

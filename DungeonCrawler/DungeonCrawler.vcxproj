@@ -47,6 +47,7 @@
     <ClInclude Include="Map\IceBlock.h" />
     <ClInclude Include="Map\Level.h" />
     <ClInclude Include="Map\TriggerBlock.h" />
+    <ClInclude Include="NotificationManager.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RayCastBitmap.h" />

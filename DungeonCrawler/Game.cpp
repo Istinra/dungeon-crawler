@@ -8,6 +8,7 @@
 
 #include <SDL_scancode.h>
 #include "Game.h"
+#include "NotificationManager.h"
 
 Game::Game()
 {
@@ -30,6 +31,7 @@ void Game::LoadLevel(std::string name)
 
 void Game::Update(bool const *keys)
 {
+	NotificationManager::Instance().Tick();
     if (player.Alive())
     {
         HandleInput(keys);

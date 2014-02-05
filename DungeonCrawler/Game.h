@@ -35,11 +35,10 @@ public:
 
 private:
     void HandleInput(bool const *keys);
+	void LoadLevel(std::string name);
 
     Player player;
     Level level;
-
-    void LoadLevel(std::string name);
 };
 
 #endif

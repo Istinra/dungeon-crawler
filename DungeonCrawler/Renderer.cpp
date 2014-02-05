@@ -7,6 +7,7 @@
 //
 #include "Renderer.h"
 #include "Resources.h"
+#include "NotificationManager.h"
 
 #define LETTER_WIDTH 6
 #define LETTER_HEIGHT 8
@@ -43,11 +44,16 @@ void Renderer::Draw(Game &game)
 	{
 		viewPort.Draw(game);
 		memcpy(pixels + WIDTH * (HEIGHT - PANEL_HEIGHT), scaledHudGraphic, sizeof(unsigned int) * PANEL_HEIGHT * WIDTH);
-		DrawText(NumberString(game.GetPlayer().Health()), 50, 385, 2);
-		DrawText(NumberString(game.GetPlayer().Battery()) + "%", 50, 420, 2);
-		DrawText(std::string("0"), 50, 450, 2);
+		Player& player = game.GetPlayer();
+		DrawText(NumberString(player.Health()), 50, 385, 2);
+		DrawText(NumberString(player.Battery()) + "%", 50, 420, 2);
+		DrawText(NumberString(player.Keys()), 50, 450, 2);
 		DrawInventory(game);
 		DrawSelectedItem(game);
+		if (NotificationManager::Instance().HasPendingNotification())
+		{
+			DrawText(NotificationManager::Instance().CurrentNotification(), 30, 140, 6);
+		}
 	}
 	else
 	{

@@ -60,10 +60,16 @@ public:
         return actionTimer > 0;
     }
 
+	inline short Keys() 
+	{ 
+		return keys; 
+	}
+
 private:
 	void Interact(int checkDistance);
 
     short battery;
+	short keys;
     short actionTimer;
 
     Item inventory[MAX_INVENTORY];

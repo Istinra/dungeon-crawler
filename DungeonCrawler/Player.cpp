@@ -15,7 +15,7 @@
 #define MELEE_CHECK_DISTANCE 94
 #define RANGED_CHECK_DISTANCE 2048
 
-Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0)
+Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0), keys(0)
 {
 }
 
