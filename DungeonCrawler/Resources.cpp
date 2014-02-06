@@ -24,7 +24,7 @@ Resources::~Resources()
     }
 }
 
-Bitmap *Resources::LoadTexture(Textures texture)
+Bitmap const *Resources::LoadTexture(Textures texture)
 {
     Bitmap *bitmap = nullptr;
 
@@ -76,7 +76,7 @@ Bitmap *Resources::InitTexture(Textures texture, const char *file)
     return bitmap;
 }
 
-Bitmap *Resources::LoadLevel(std::string name)
+Bitmap const *Resources::LoadLevel(std::string name)
 {
     std::string s = levelDirectory + name + ".png";
     int x, y, n;

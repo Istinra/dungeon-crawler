@@ -27,22 +27,22 @@ public:
 
     void Update();
 
-    inline Block *operator [] (unsigned int i)
+    inline Block *operator [] (unsigned int i) const
 	{
 		return blocks[i];
 	}
 
-    int Width()
+    int Width() const
     {
         return width;
     }
 
-    int Height()
+    int Height() const
     {
         return height;
     }
 
-    std::vector<Entity *> &Entities()
+    std::vector<Entity *> const &Entities() const
     {
         return entities;
     };

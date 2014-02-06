@@ -20,7 +20,7 @@ Renderer::Renderer() :
 	viewPort(HEIGHT - PANEL_HEIGHT, WIDTH, pixels, false),
 	symbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz%/\\.?")
 {
-	Bitmap *const hudTexture = Resources::Instance().LoadTexture(HUD);
+	const Bitmap *const hudTexture = Resources::Instance().LoadTexture(HUD);
 	int hudTextWidth = hudTexture->Width();
 	unsigned int const *const hudPixels = hudTexture->Pixels();
 	for (int h = 0, hudImgHeight = 0; h < PANEL_HEIGHT; h++, hudImgHeight++)
@@ -64,7 +64,7 @@ void Renderer::Draw(Game &game)
 
 void Renderer::DrawText(const std::string text, int x, int y, float scale)
 {
-	Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
+	const Bitmap *const fontBitmap = Resources::Instance().LoadTexture(FONT);
 	int fontBitmapWidth = fontBitmap->Width();
 	unsigned int const *const fontPix = fontBitmap->Pixels();
 	for (unsigned int i = 0; i < text.length(); i++)
@@ -103,7 +103,7 @@ void Renderer::DrawText(const std::string text, int x, int y, float scale)
 void Renderer::DrawInventory(Game &game)
 {
 	const static float scale = 3.8f;
-	Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(ITEMS);
+	const Bitmap *const spriteBitmap = Resources::Instance().LoadTexture(ITEMS);
 	unsigned int const *const spritePixels = spriteBitmap->Pixels();
 	const int spriteBitmapWidth = spriteBitmap->Width();
 	DrawHeldItem(game, spriteBitmap);
@@ -129,7 +129,7 @@ void Renderer::DrawInventory(Game &game)
 	}
 }
 
-void Renderer::DrawHeldItem(Game &game, Bitmap *const spriteBitmap)
+void Renderer::DrawHeldItem(Game &game, const Bitmap *const spriteBitmap)
 {
 	unsigned int const *const spritePixels = spriteBitmap->Pixels();
 	const Item item = game.GetPlayer().ActiveItem();

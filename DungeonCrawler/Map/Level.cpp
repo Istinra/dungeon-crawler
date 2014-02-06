@@ -34,7 +34,7 @@ Level::~Level()
 
 void Level::LoadLevel(std::string name)
 {
-    Bitmap *levelImage = Resources::Instance().LoadLevel(name);
+    const Bitmap *levelImage = Resources::Instance().LoadLevel(name);
     width = levelImage->Width();
     height = levelImage->Height();
     blocks.resize(static_cast<unsigned int>(width * height));

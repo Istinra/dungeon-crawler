@@ -24,7 +24,7 @@ void RayCastBitmap::Draw(Game &game)
 
 void RayCastBitmap::DrawWalls(Game &game)
 {
-	Bitmap *walls = Resources::Instance().LoadTexture(WALLS);
+	const Bitmap *walls = Resources::Instance().LoadTexture(WALLS);
 	const int wallWidth = walls->Width();
 	const unsigned int* const wallPixels = walls->Pixels();
 	Level &level = game.CurrentLevel();
@@ -100,8 +100,8 @@ void RayCastBitmap::DrawWalls(Game &game)
 
 void RayCastBitmap::DrawSprites(Game &game)
 {
-	std::vector<Entity *> &entities = game.CurrentLevel().Entities();
-	Bitmap *spriteSheet = Resources::Instance().LoadTexture(SPRITES);
+	const std::vector<Entity *> &entities = game.CurrentLevel().Entities();
+	const Bitmap *spriteSheet = Resources::Instance().LoadTexture(SPRITES);
 	int sheetWidth = spriteSheet->Width();
 	const unsigned int *sheetPixels = spriteSheet->Pixels();
 

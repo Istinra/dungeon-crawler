@@ -36,9 +36,9 @@ public:
         return instance;
     };
 
-    Bitmap *LoadTexture(Textures texture);
+    Bitmap const *LoadTexture(Textures texture);
 
-    Bitmap *LoadLevel(std::string name);
+    Bitmap const *LoadLevel(std::string name);
 
 private:
     Bitmap *InitTexture(Textures texture, const char *file);

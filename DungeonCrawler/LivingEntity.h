@@ -26,7 +26,7 @@ public:
         return health <= 0;
     }
 
-    short Health()
+    short Health() const
     {
         return health;
     }

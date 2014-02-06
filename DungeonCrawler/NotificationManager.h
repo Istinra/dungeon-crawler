@@ -23,12 +23,12 @@ public:
 		framesRemaining = frames;
 	}
 
-	bool HasPendingNotification()
+	bool HasPendingNotification() const
 	{
 		return framesRemaining > 0;
 	}
 
-	std::string CurrentNotification()
+	std::string CurrentNotification() const
 	{
 		return currentNotification;
 	}
