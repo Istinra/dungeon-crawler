@@ -11,12 +11,12 @@ TriggerBlock::~TriggerBlock()
 {
 }
 
-bool TriggerBlock::Use(Item& item)
+bool TriggerBlock::Use(const Item& item)
 {
 	if (item.type != GUN && block && tex == 1)
 	{
 		++tex;
-		return block->Use(item);
+		return block->Trigger(item);
 	}
 	return false;
 }

@@ -4,7 +4,7 @@ IceBlock::IceBlock(unsigned int id, int x, int y, unsigned int tex) :Block(id, x
 {
 }
 
-bool IceBlock::Use(Item& item)
+bool IceBlock::Use(const Item& item)
 {
 	if (closed && item.type == GUN)
 	{

@@ -17,7 +17,9 @@ class DoorBlock : public  Block
 public:
     DoorBlock(unsigned int id, int x, int y, unsigned int tex);
 
-	virtual bool Use(Item& item) override;
+	virtual bool Use(const Item& item) override;
+
+	virtual bool Trigger(const Item& item) override;
 
     virtual bool IsSolid() const override;
 

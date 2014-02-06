@@ -52,7 +52,7 @@ void Renderer::Draw(Game &game)
 		DrawSelectedItem(game);
 		if (NotificationManager::Instance().HasPendingNotification())
 		{
-			DrawText(NotificationManager::Instance().CurrentNotification(), 30, 140, 6);
+			DrawText(NotificationManager::Instance().CurrentNotification(), 30, 140, 2.5);
 		}
 	}
 	else

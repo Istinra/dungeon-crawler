@@ -22,7 +22,7 @@ public:
 
     virtual bool IsSolid() const;
 
-	virtual bool Use(Item& item);
+	virtual bool Use(const Item& item);
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
 
@@ -35,6 +35,8 @@ public:
     {
         return tex;
     }
+
+	virtual bool Trigger(const Item& item);
 
 protected:
     const unsigned int id;

@@ -24,14 +24,24 @@ bool DoorBlock::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z
     return false;
 }
 
-bool DoorBlock::Use(Item& item)
+bool DoorBlock::Use(const Item& item)
 {
-    if (closed)
-    {
-        closed = false;
-        return true;
-    }
-    return false;
+	if (closed)
+	{
+		NotificationManager::Instance().PostNotification("This door is opened elsewhere", 350);
+		return true;
+	}
+	return false;
+}
+
+bool DoorBlock::Trigger(const Item& item)
+{
+	if (closed)
+	{
+		closed = false;
+		return true;
+	}
+	return false;
 }
 
 bool DoorBlock::IsSolid() const

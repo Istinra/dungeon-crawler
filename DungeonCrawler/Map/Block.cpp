@@ -18,9 +18,14 @@ Block::~Block()
 
 }
 
-bool Block::Use(Item& item)
+bool Block::Use(const Item& item)
 {
     return false;
+}
+
+bool Block::Trigger(const Item& item)
+{
+	return false;
 }
 
 bool Block::IsSolid() const
