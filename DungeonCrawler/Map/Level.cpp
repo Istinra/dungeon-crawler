@@ -40,13 +40,17 @@ void Level::LoadLevel(std::string name)
     blocks.resize(static_cast<unsigned int>(width * height));
 
 	std::vector<TriggerBlock*> triggerBlocks;
-    for (int i = 0; i < width * height; i++)
+	const unsigned int * pixels = levelImage->Pixels();
+	colour = pixels[0];
+	blocks[0] = CreateBlock(0, 0, 0xFFFFFFFF, triggerBlocks);
+
+    for (int i = 1; i < width * height; i++)
     {
-        unsigned int pixel = levelImage->Pixels()[i];
+		unsigned int pixel = pixels[i];
         int x = i % width;
         int y = i / height;
         blocks[i] = CreateBlock(x, y, pixel, triggerBlocks);
-        CheckEntities(x, y, pixel);
+		CreateEntities(x, y, pixel);
         //R : Block Type
         //G : Entity on the block
         //B : Pickup/Item entities
@@ -80,7 +84,7 @@ void Level::RemoveEntity(Entity *entity)
     entities.erase(std::remove(entities.begin(), entities.end(), entity));
 }
 
-void Level::CheckEntities(int x, int y, unsigned pixel)
+void Level::CreateEntities(int x, int y, unsigned pixel)
 {
 	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, y * 62.0f - 32.0f);
     switch (pixel)

@@ -32,12 +32,12 @@ public:
 		return blocks[i];
 	}
 
-    int Width() const
+	inline const int Width() const
     {
         return width;
     }
 
-    int Height() const
+	inline const int Height() const
     {
         return height;
     }
@@ -47,12 +47,18 @@ public:
         return entities;
     };
 
+	inline const unsigned int Colour()
+	{
+		return colour;
+	}
+
 private:
 	Block *CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks);
 
-    void CheckEntities(int x, int y, unsigned pixel);
+    void CreateEntities(int x, int y, unsigned pixel);
 
     int width, height;
+	unsigned int colour;
     std::vector<Block *> blocks;
     std::vector<Entity *> entities;
 };

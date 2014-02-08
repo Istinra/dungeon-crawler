@@ -28,6 +28,7 @@ void RayCastBitmap::DrawWalls(Game &game)
 	const int wallWidth = walls->Width();
 	const unsigned int* const wallPixels = walls->Pixels();
 	Level &level = game.CurrentLevel();
+	const unsigned int levelColour = level.Colour();
 
 	float rawAngle = yaw + VIEWING_ANGLE / 2;
 	for (int i = 0; i < width; i++, rawAngle -= ANGLE_BETWEEN_RAYS)
@@ -89,7 +90,7 @@ void RayCastBitmap::DrawWalls(Game &game)
 		for (; start < end; start++, texPos += texIncrement)
 		{
 			unsigned int heightOffset = static_cast<unsigned int>(texPos) * wallWidth;
-			pixels[i + start * width] = wallPixels[heightOffset + texOffset];
+			pixels[i + start * width] = wallPixels[heightOffset + texOffset] | levelColour;
 		}
 		for (int h = end; h < height; h++)
 		{
