@@ -65,6 +65,8 @@ public:
 		return keys; 
 	}
 
+	void GiveKey();
+
 private:
 	void Interact(int checkDistance);
 

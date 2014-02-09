@@ -10,6 +10,7 @@
 #include "../BatEnemy.h"
 #include "../Resources.h"
 #include "../Pickup.h"
+#include "../KeyPickup.h"
 #include "DoorBlock.h"
 #include "IceBlock.h"
 #include <algorithm>
@@ -117,6 +118,14 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 		{
 			Pickup *pickup = new Pickup(pos, Item(1, GUN));
 			pickup->SetSprite(new Sprite(0, 0, 0, 4));
+			pickup->SetLevel(this);
+			entities.push_back(pickup);
+			break;
+		}
+		case 0xFF000088:
+		{
+			KeyPickup *pickup = new KeyPickup(pos);
+			pickup->SetSprite(new Sprite(0, 0, 0, 5, 0x00000000, 0.5f));
 			pickup->SetLevel(this);
 			entities.push_back(pickup);
 			break;

@@ -131,3 +131,8 @@ void Player::GiveItem(Item item)
         }
     }
 }
+
+void Player::GiveKey()
+{
+	keys++;
+}
