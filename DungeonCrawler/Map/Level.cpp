@@ -139,7 +139,7 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 	int id = (pixel & 0xFF000000) >> 24;
 	if ((pixel & 0x00FFFFFF) == 0x00FF0000)
 	{
-		return new DoorBlock(id, x, y, 3);
+		return new DoorBlock(id, x, y, 3, TRIGGERED);
 	}
 	if ((pixel & 0x00FF00FF) == 0x00630000)
 	{

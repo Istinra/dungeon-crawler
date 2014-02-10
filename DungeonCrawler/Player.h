@@ -67,6 +67,8 @@ public:
 
 	void GiveKey();
 
+	bool UseKey();
+
 private:
 	void Interact(int checkDistance);
 

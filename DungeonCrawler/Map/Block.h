@@ -11,6 +11,7 @@
 
 #include "../Common/CommonTypes.h"
 #include "../Item.h"
+#include "../Entity.h"
 
 class Block
 {
@@ -22,7 +23,7 @@ public:
 
     virtual bool IsSolid() const;
 
-	virtual bool Use(const Item& item);
+	virtual bool Use(Entity* source, const Item& item);
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
 

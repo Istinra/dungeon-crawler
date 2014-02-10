@@ -7,15 +7,17 @@
 //
 
 #include "DoorBlock.h"
+#include "../Player.h"
 #include "../NotificationManager.h"
 
-DoorBlock::DoorBlock(unsigned int id, int x, int y, unsigned int tex):Block(id, x, y, tex), closed(true)
+DoorBlock::DoorBlock(unsigned int id, int x, int y, unsigned int tex, DoorBlockState state) 
+: Block(id, x, y, tex), state(state)
 {
 }
 
 bool DoorBlock::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const
 {
-    if (closed)
+    if (state != OPEN)
     {
         x += xDiff / 2;
         z += zDiff / 2;
@@ -24,21 +26,40 @@ bool DoorBlock::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z
     return false;
 }
 
-bool DoorBlock::Use(const Item& item)
+bool DoorBlock::Use(Entity* source, const Item& item)
 {
-	if (closed)
+	switch (state)
 	{
+	case OPEN:
+		return false;
+	case TRIGGERED:
 		NotificationManager::Instance().PostNotification("This door is opened elsewhere", 350);
-		return true;
+		break;
+	case CLOSED:
+		state = OPEN;
+		break;
+	case LOCKED:
+	{
+		Player* player = dynamic_cast<Player*>(source);
+		if (player && !player->UseKey())
+		{
+			NotificationManager::Instance().PostNotification("This door requires a key", 350);
+		}
+		else
+		{
+			state = OPEN;
+		}
+		break;
 	}
-	return false;
+	}
+	return true;
 }
 
 bool DoorBlock::Trigger(const Item& item)
 {
-	if (closed)
+	if (TRIGGERED)
 	{
-		closed = false;
+		state = OPEN;
 		return true;
 	}
 	return false;
@@ -46,5 +67,5 @@ bool DoorBlock::Trigger(const Item& item)
 
 bool DoorBlock::IsSolid() const
 {
-    return closed;
+    return state != OPEN;
 }

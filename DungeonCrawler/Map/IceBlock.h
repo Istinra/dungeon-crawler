@@ -17,7 +17,7 @@ class IceBlock : public  Block
 public:
 	IceBlock(unsigned int id, int x, int y, unsigned int tex);
 
-	virtual bool Use(const Item& item) override;
+	virtual bool Use(Entity* source, const Item& item) override;
 
 	virtual bool IsSolid() const override;
 

@@ -7,7 +7,7 @@ class TriggerBlock : public Block
 public:
 	TriggerBlock(unsigned int id, int x, int y, unsigned int tex);
 	virtual ~TriggerBlock();
-	virtual bool Use(const Item& item) override;
+	virtual bool Use(Entity* source, const Item& item) override;
 
 	void SetBlockToTrigger(Block* b)
 	{ 

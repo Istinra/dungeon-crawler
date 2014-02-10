@@ -18,7 +18,7 @@ Block::~Block()
 
 }
 
-bool Block::Use(const Item& item)
+bool Block::Use(Entity* source, const Item& item)
 {
     return false;
 }

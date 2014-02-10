@@ -11,7 +11,7 @@ TriggerBlock::~TriggerBlock()
 {
 }
 
-bool TriggerBlock::Use(const Item& item)
+bool TriggerBlock::Use(Entity* source, const Item& item)
 {
 	if (item.type != GUN && block && tex == 1)
 	{
