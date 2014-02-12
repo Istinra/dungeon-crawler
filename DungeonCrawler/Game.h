@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "Map/Level.h"
+#include <map>
 
 class Game
 {
@@ -30,15 +31,18 @@ public:
 
     Level &CurrentLevel()
     {
-        return level;
+        return *currentLevel;
     }
 
 private:
     void HandleInput(bool const *keys);
 	void LoadLevel(std::string name);
+	void RegisterLevel(std::string name, Level* level);
+
+	std::map <std::string, Level*> levelMap;
+	Level* currentLevel;
 
     Player player;
-    Level level;
 };
 
 #endif

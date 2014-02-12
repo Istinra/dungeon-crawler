@@ -10,23 +10,29 @@
 #include "Game.h"
 #include "NotificationManager.h"
 
-Game::Game()
+Game::Game() : currentLevel(nullptr)
 {
-
+	for (auto keyValuePair : levelMap)
+	{
+		delete keyValuePair.second;
+	}
 }
 
 void Game::NewGame()
 {
-    level.LoadLevel("demo");
-    level.AddEntity(&player);
+	LoadLevel("demo");
 }
 
 void Game::LoadLevel(std::string name)
 {
-    level.RemoveEntity(&player);
-    level = Level();
-    level.LoadLevel(name);
-    level.AddEntity(&player);
+	if (currentLevel)
+	{
+		currentLevel->RemoveEntity(&player);
+	}
+	currentLevel = new Level();
+	currentLevel->LoadLevel(name);
+	currentLevel->AddEntity(&player);
+	RegisterLevel(name, currentLevel);
 }
 
 void Game::Update(bool const *keys)
@@ -35,7 +41,7 @@ void Game::Update(bool const *keys)
     if (player.Alive())
     {
         HandleInput(keys);
-        level.Update();
+        currentLevel->Update();
     }
 }
 
@@ -115,5 +121,15 @@ void Game::HandleInput(bool const *keys)
 
 Game::~Game()
 {
-    level.RemoveEntity(&player);
+    currentLevel->RemoveEntity(&player);
+}
+
+void Game::RegisterLevel(std::string name, Level* level)
+{
+	auto itr = levelMap.find(name);
+	if (itr != levelMap.end())
+	{
+		delete itr->second;
+	}
+	levelMap[name] = level;
 }
