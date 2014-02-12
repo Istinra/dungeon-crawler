@@ -29,10 +29,17 @@ void Game::LoadLevel(std::string name)
 	{
 		currentLevel->RemoveEntity(&player);
 	}
-	currentLevel = new Level();
-	currentLevel->LoadLevel(name);
+	if (levelMap.find(name) == levelMap.end())
+	{
+		currentLevel = new Level();
+		currentLevel->LoadLevel(name);
+		levelMap[name] = currentLevel;
+	}
+	else
+	{
+		currentLevel = levelMap[name];
+	}
 	currentLevel->AddEntity(&player);
-	RegisterLevel(name, currentLevel);
 }
 
 void Game::Update(bool const *keys)
@@ -116,20 +123,11 @@ void Game::HandleInput(bool const *keys)
 	if (keys[SDL_SCANCODE_6])
 	{
 		player.ActiveItem(5);
+		LoadLevel("l1");
 	}
 }
 
 Game::~Game()
 {
     currentLevel->RemoveEntity(&player);
-}
-
-void Game::RegisterLevel(std::string name, Level* level)
-{
-	auto itr = levelMap.find(name);
-	if (itr != levelMap.end())
-	{
-		delete itr->second;
-	}
-	levelMap[name] = level;
 }

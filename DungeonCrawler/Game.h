@@ -37,7 +37,6 @@ public:
 private:
     void HandleInput(bool const *keys);
 	void LoadLevel(std::string name);
-	void RegisterLevel(std::string name, Level* level);
 
 	std::map <std::string, Level*> levelMap;
 	Level* currentLevel;
