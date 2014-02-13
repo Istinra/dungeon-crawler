@@ -123,7 +123,6 @@ void Game::HandleInput(bool const *keys)
 	if (keys[SDL_SCANCODE_6])
 	{
 		player.ActiveItem(5);
-		LoadLevel("l1");
 	}
 }
 

@@ -11,6 +11,7 @@
 #include "../Resources.h"
 #include "../Pickup.h"
 #include "../KeyPickup.h"
+#include "../Ladder.h"
 #include "DoorBlock.h"
 #include "IceBlock.h"
 #include <algorithm>
@@ -129,6 +130,17 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 			pickup->SetLevel(this);
 			entities.push_back(pickup);
 			break;
+		}
+		default:
+		{
+			if ((pixel & 0x00FFFFFF) == 0x00FFFF00)
+			{
+				Ladder* ladder = new Ladder(pos, "l1");
+				entities.push_back(ladder); //pixel & 0x000000FF
+				ladder->SetSprite(new Sprite(0, 0, 0, 6));
+				ladder->SetLevel(this);
+				break;
+			}
 		}
     }
 

@@ -15,6 +15,8 @@ class KeyPickup : public Entity
 {
 public:
 	KeyPickup(Vector3 const &position);
+	
+	virtual ~KeyPickup();
 
 	virtual void Collide(Entity *e) override;
 

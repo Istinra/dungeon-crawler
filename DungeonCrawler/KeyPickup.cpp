@@ -27,3 +27,8 @@ bool KeyPickup::IsRemoved()
 {
 	return removed;
 }
+
+KeyPickup::~KeyPickup()
+{
+
+}

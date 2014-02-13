@@ -17,6 +17,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="External\stb_image.c" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Block.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="KeyPickup.h" />
+    <ClInclude Include="Ladder.h" />
     <ClInclude Include="LivingEntity.h" />
     <ClInclude Include="Map\Block.h" />
     <ClInclude Include="Map\DoorBlock.h" />

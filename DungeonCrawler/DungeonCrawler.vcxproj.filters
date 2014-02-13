@@ -96,6 +96,9 @@
     <ClCompile Include="KeyPickup.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Ladder.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="KeyPickup.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Ladder.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
