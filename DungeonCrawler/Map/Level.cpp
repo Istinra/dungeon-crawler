@@ -137,7 +137,7 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 			{
 				Ladder* ladder = new Ladder(pos, "l1");
 				entities.push_back(ladder); //pixel & 0x000000FF
-				ladder->SetSprite(new Sprite(0, 0, 0, 6));
+				ladder->SetSprite(new Sprite(0, 0, 0, (pixel & 0xFF000000) == 0xFF000000 ? 6 : 7));
 				ladder->SetLevel(this);
 				break;
 			}
