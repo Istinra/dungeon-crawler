@@ -133,7 +133,7 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 		}
 		default:
 		{
-			if ((pixel & 0x00FFFFFF) == 0x00FFFF00)
+			if ((pixel & 0x00FFFF00) == 0x00FEFE00)
 			{
 				Ladder* ladder = new Ladder(pos, "l1");
 				entities.push_back(ladder); //pixel & 0x000000FF
