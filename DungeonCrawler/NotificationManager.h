@@ -17,11 +17,7 @@ public:
 		return manager;
 	}
 
-	void PostNotification(std::string notification, int frames)
-	{
-		currentNotification = notification;
-		framesRemaining = frames;
-	}
+	void PostNotification(std::string notification, int frames);
 
 	bool HasPendingNotification() const
 	{
@@ -33,22 +29,22 @@ public:
 		return currentNotification;
 	}
 
-	void Tick()
-	{
-		if (framesRemaining > 0)
-		{
-			--framesRemaining;
-		}
-	}
+	void Tick();
+
+	std::string* PopPendingLevelTransition();
+	
+	void TransitionToLevel(std::string level);
 
 private:
-	NotificationManager()
-	{
-	}
-
 	std::string currentNotification;
 	int framesRemaining;
-};
+	
+	std::string level;
+	bool transitioned;
 
+	NotificationManager() : transitioned(true)
+	{
+	}
+};
 
 #endif // NotificationManager_h__

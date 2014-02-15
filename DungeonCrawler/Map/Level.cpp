@@ -135,7 +135,7 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 		{
 			if ((pixel & 0x00FFFF00) == 0x00FEFE00)
 			{
-				Ladder* ladder = new Ladder(pos, "l1");
+				Ladder* ladder = new Ladder(pos, std::string("l") + std::to_string(0xFF & pixel));
 				entities.push_back(ladder); //pixel & 0x000000FF
 				ladder->SetSprite(new Sprite(0, 0, 0, (pixel & 0xFF000000) == 0xFF000000 ? 6 : 7));
 				ladder->SetLevel(this);

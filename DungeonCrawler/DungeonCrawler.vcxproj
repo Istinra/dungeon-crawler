@@ -25,6 +25,7 @@
     <ClCompile Include="Map\IceBlock.cpp" />
     <ClCompile Include="Map\Level.cpp" />
     <ClCompile Include="Map\TriggerBlock.cpp" />
+    <ClCompile Include="NotificationManager.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayCastBitmap.cpp" />

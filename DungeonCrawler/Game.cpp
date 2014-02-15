@@ -50,6 +50,11 @@ void Game::Update(bool const *keys)
         HandleInput(keys);
         currentLevel->Update();
     }
+	std::string* newLevel = NotificationManager::Instance().PopPendingLevelTransition();
+	if (newLevel)
+	{
+		LoadLevel(*newLevel);
+	}
 }
 
 void Game::HandleInput(bool const *keys)
