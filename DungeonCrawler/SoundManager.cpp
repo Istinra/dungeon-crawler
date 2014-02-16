@@ -13,19 +13,14 @@ static Uint32 audio_len;
 
 void AudioCallback(void *userdata, Uint8 *stream, int len)
 {
-    Sound *s = reinterpret_cast<Sound *>(userdata);
-    s->wavSpec.userdata = s;
-    if (s->wavLength == 0)
-    {
-        return;
-    }
-
-    len = (static_cast<unsigned int>(len) > s->wavLength ? s->wavLength : len);
-    //SDL_memcpy (stream, audio_pos, len); 					// simply copy from one buffer into the other
-    SDL_MixAudio(stream, s->wavBuffer, len, SDL_MIX_MAXVOLUME);// mix from one buffer into another
-
-    s->wavBuffer += len;
-    s->wavLength -= len;
+	Sound *s = reinterpret_cast<Sound *>(userdata);
+	Uint32 amount = s->dataLength - s->dataPos;
+	if (amount > len) {
+		amount = len;
+	}
+	memset(stream, 0, len);
+	SDL_MixAudio(stream, &s->data[s->dataPos], amount, SDL_MIX_MAXVOLUME);
+	s->dataPos += amount;
 }
 
 SoundManager::SoundManager() : activeSound(nullptr)
@@ -35,9 +30,10 @@ SoundManager::SoundManager() : activeSound(nullptr)
 
 SoundManager::~SoundManager()
 {
+	SDL_CloseAudio();
     for (auto val : soundMap)
     {
-        SDL_FreeWAV(val.second->wavBuffer);
+        SDL_FreeWAV(val.second->data);
         delete val.second;
     }
 }
@@ -55,9 +51,8 @@ void SoundManager::PlaySound(Sounds sound)
 	}
 	if (soundObject)
 	{
-		soundObject->wavBuffer -= soundObject->originalWavLength - soundObject->wavLength;
-		soundObject->wavLength = soundObject->originalWavLength;
-		SDL_OpenAudio(&soundObject->wavSpec, nullptr);
+		soundObject->dataPos = 0;
+		SDL_OpenAudio(&soundObject->wave, NULL);
 		SDL_PauseAudio(0);
 	}
     activeSound = soundObject;
@@ -74,10 +69,10 @@ Sound *SoundManager::InitSound(Sounds sounds, const char *file)
     if (soundMap.find(sounds) == soundMap.end())
     {
         Sound *s = new Sound;
-        SDL_LoadWAV(file, &s->wavSpec, &s->wavBuffer, &s->wavLength);
-		s->originalWavLength = s->wavLength;
-        s->wavSpec.callback = AudioCallback;
-        s->wavSpec.userdata = s;
+		SDL_LoadWAV(file, &s->wave, &s->data, &s->dataLength);
+		s->wave.callback = AudioCallback;
+		s->wave.userdata = s;
+		s->dataPos = 0;
         soundMap[sounds] = s;
         return s;
     }
@@ -86,9 +81,9 @@ Sound *SoundManager::InitSound(Sounds sounds, const char *file)
 
 void SoundManager::Update()
 {
-    if (activeSound != nullptr && activeSound->wavLength == 0)
+	if (activeSound != nullptr && activeSound->dataPos >= activeSound->dataLength)
 	{
-		SDL_CloseAudio();
-        activeSound = nullptr;
-    }
+//		
+		activeSound = nullptr;
+	}
 }
