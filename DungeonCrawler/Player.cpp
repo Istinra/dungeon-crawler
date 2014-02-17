@@ -9,6 +9,7 @@
 #include <vector>
 #include <math.h>
 #include "Player.h"
+#include "Projectile.h"
 #include "SoundManager.h"
 #include "Map/Level.h"
 
@@ -39,9 +40,14 @@ void Player::Action()
 		Interact(MELEE_CHECK_DISTANCE);
 		break;
 	case GUN:
+	{
 		SoundManager::Instance().PlaySound(SOUND);
 		Interact(RANGED_CHECK_DISTANCE);
+		Projectile* proj = new Projectile(position, yaw);
+		proj->SetLevel(level);
+		level->AddEntity(proj);
 		break;
+	}
 	case POTION:
 		health += 20;
 		if (health > 100)

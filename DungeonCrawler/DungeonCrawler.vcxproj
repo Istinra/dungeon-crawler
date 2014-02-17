@@ -28,6 +28,7 @@
     <ClCompile Include="NotificationManager.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RayCastBitmap.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resources.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="NotificationManager.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="RayCastBitmap.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resources.h" />

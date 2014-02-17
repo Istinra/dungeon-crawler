@@ -40,6 +40,7 @@ void Game::LoadLevel(std::string name)
 		currentLevel = levelMap[name];
 	}
 	currentLevel->AddEntity(&player);
+	player.SetLevel(currentLevel);
 }
 
 void Game::Update(bool const *keys)
