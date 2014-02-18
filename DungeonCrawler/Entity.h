@@ -25,7 +25,7 @@ public:
 
     virtual ~Entity();
 
-    void Move(Vector3 movement);
+    virtual void Move(Vector3 movement);
 
     bool ContainsPoint(float x, float z);
 

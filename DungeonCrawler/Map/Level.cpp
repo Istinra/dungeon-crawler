@@ -181,6 +181,7 @@ void Level::Update()
         {
             delete (*i);
             entities.erase(i);
+			--i;
         }
     }
 }

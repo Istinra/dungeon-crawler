@@ -41,9 +41,8 @@ void Player::Action()
 		break;
 	case GUN:
 	{
-		SoundManager::Instance().PlaySound(SOUND);
-		Interact(RANGED_CHECK_DISTANCE);
-		Projectile* proj = new Projectile(position, yaw);
+		SoundManager::Instance().PlaySound(LASER);
+		Projectile* proj = new Projectile(position, yaw, activeItem, this);
 		proj->SetLevel(level);
 		level->AddEntity(proj);
 		break;

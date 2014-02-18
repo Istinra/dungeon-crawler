@@ -8,14 +8,24 @@
 class Projectile : public Entity 
 {
 public:
-	Projectile(Vector3 position, float yaw);
+	Projectile(Vector3 position, float yaw, Item sourceItem, Entity* sourceEntity);
 
 	virtual ~Projectile();
 
 	void Update() override;
 
+	void Move(Vector3 movement) override;
+
+	bool IsRemoved() override
+	{
+		return destroyed;
+	}
+
 private:
 	Vector3 movementVector;
+	bool destroyed;
+	Entity* sourceEntity;
+	Item sourceItem;
 };
 
 #endif // Projectile_h__

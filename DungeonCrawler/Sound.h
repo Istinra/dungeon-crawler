@@ -13,7 +13,8 @@
 
 enum Sounds
 {
-    SOUND
+    SOUND,
+	LASER
 };
 
 struct Sound
