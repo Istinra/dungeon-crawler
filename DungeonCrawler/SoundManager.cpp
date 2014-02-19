@@ -13,14 +13,17 @@ static Uint32 audio_len;
 
 void AudioCallback(void *userdata, Uint8 *stream, int len)
 {
-	Sound *s = reinterpret_cast<Sound *>(userdata);
-	Uint32 amount = s->dataLength - s->dataPos;
-	if (amount > len) {
-		amount = len;
-	}
+	Sound *s = *reinterpret_cast<Sound**>(userdata);
 	memset(stream, 0, len);
-	SDL_MixAudio(stream, &s->data[s->dataPos], amount, SDL_MIX_MAXVOLUME);
-	s->dataPos += amount;
+	if (s)
+	{
+		Uint32 amount = s->dataLength - s->dataPos;
+		if (amount > len) {
+			amount = len;
+		}
+		SDL_MixAudio(stream, &s->data[s->dataPos], amount, SDL_MIX_MAXVOLUME);
+		s->dataPos += amount;
+	}
 }
 
 SoundManager::SoundManager() : activeSound(nullptr)
@@ -48,11 +51,16 @@ void SoundManager::PlaySound(Sounds sound)
 		break;
 	case LASER:
 		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\laser.wav");
+		break;
 	default:
 		return;
 	}
 	if (soundObject)
 	{
+		if (activeSound && activeSound != soundObject)
+		{
+
+		}
 		soundObject->dataPos = 0;
 		SDL_OpenAudio(&soundObject->wave, NULL);
 		SDL_PauseAudio(0);
@@ -73,7 +81,7 @@ Sound *SoundManager::InitSound(Sounds sounds, const char *file)
         Sound *s = new Sound;
 		SDL_LoadWAV(file, &s->wave, &s->data, &s->dataLength);
 		s->wave.callback = AudioCallback;
-		s->wave.userdata = s;
+		s->wave.userdata = &activeSound;
 		s->dataPos = 0;
         soundMap[sounds] = s;
         return s;
@@ -85,7 +93,8 @@ void SoundManager::Update()
 {
 	if (activeSound != nullptr && activeSound->dataPos >= activeSound->dataLength)
 	{
-//		
+		SDL_LockAudio();
 		activeSound = nullptr;
+		SDL_UnlockAudio();
 	}
 }
