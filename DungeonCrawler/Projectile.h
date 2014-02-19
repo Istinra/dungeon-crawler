@@ -22,6 +22,7 @@ public:
 	}
 
 private:
+	static const float projectBoundingWidth;
 	Vector3 movementVector;
 	bool destroyed;
 	Entity* sourceEntity;
