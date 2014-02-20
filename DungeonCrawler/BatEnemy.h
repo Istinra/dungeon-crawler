@@ -17,8 +17,6 @@ class BatEnemy : public Enemy
 public:
     BatEnemy(Vector3 position, int textureId);
 
-private:
-    int health;
 };
 
 #endif /* defined(__DungeonCrawler__BatEnemy__) */

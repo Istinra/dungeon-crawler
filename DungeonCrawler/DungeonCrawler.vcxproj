@@ -32,6 +32,7 @@
     <ClCompile Include="RayCastBitmap.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SkeletonEnemy.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="KeyPickup.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="RayCastBitmap.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="SkeletonEnemy.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
   </ItemGroup>

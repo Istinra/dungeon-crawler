@@ -105,6 +105,9 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletonEnemy.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.h">
@@ -180,6 +183,9 @@
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonEnemy.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
