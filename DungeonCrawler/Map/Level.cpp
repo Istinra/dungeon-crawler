@@ -10,6 +10,7 @@
 #include "../BatEnemy.h"
 #include "../Resources.h"
 #include "../Pickup.h"
+#include "../SkeletonEnemy.h"
 #include "../KeyPickup.h"
 #include "../Ladder.h"
 #include "DoorBlock.h"
@@ -99,6 +100,14 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
             entities.push_back(bat);
             break;
         }
+		case 0xFF005600:
+		{
+			SkeletonEnemy *skele = new SkeletonEnemy(pos, 8);
+			skele->SetSprite(new Sprite(0, 0, 0, 8));
+			skele->SetLevel(this);
+			entities.push_back(skele);
+			break;
+		}
         case 0xFF0000FF:
         {
             Pickup *pickup = new Pickup(pos, Item(1, POTION));
