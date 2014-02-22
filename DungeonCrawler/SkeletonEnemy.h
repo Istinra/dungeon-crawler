@@ -7,6 +7,8 @@ class SkeletonEnemy : public Enemy
 {
 public:
 	SkeletonEnemy(Vector3 position, int textureId);
+
+	virtual void Update() override;
 };
 
 #endif

@@ -15,6 +15,8 @@
 #include "TriggerBlock.h"
 #include "Block.h"
 
+class Player;
+
 class Level
 {
 public:
@@ -23,6 +25,7 @@ public:
 
     void LoadLevel(std::string name);
     void AddEntity(Entity *entity);
+	void AddPlayer(Player *player);
     void RemoveEntity(Entity *entity);
 
     void Update();
@@ -47,9 +50,14 @@ public:
         return entities;
     };
 
-	inline const unsigned int Colour()
+	inline const unsigned int Colour() const
 	{
 		return colour;
+	}
+
+	inline const Player * const GetPlayer() const
+	{
+		return player;
 	}
 
 private:
@@ -59,6 +67,7 @@ private:
 
     int width, height;
 	unsigned int colour;
+	Player *player;
     std::vector<Block *> blocks;
     std::vector<Entity *> entities;
 };

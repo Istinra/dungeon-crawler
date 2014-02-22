@@ -13,12 +13,13 @@
 #include "../SkeletonEnemy.h"
 #include "../KeyPickup.h"
 #include "../Ladder.h"
+#include "../Player.h"
 #include "DoorBlock.h"
 #include "IceBlock.h"
 #include <algorithm>
 #include <iostream>
 
-Level::Level()
+Level::Level() : player(nullptr)
 {
 
 }
@@ -82,8 +83,18 @@ void Level::AddEntity(Entity *entity)
     entity->SetLevel(this);
 }
 
+void Level::AddPlayer(Player *entity)
+{
+	player = entity;
+	AddEntity(player);
+}
+
 void Level::RemoveEntity(Entity *entity)
 {
+	if (entity == player)
+	{
+		player = nullptr;
+	}
     entities.erase(std::remove(entities.begin(), entities.end(), entity));
 }
 

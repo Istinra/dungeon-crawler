@@ -42,7 +42,7 @@ public:
 
     void SetLevel(Level *level);
 
-    Vector3 const Position()
+    Vector3 const Position() const
     {
         return position;
     }
