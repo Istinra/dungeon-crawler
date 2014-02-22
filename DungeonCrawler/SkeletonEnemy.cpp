@@ -18,7 +18,6 @@ Enemy(position, textureId)
 void SkeletonEnemy::Update()
 {
 	//TODO, shouldn't shoot if it can't hit
-	//TODO, Angel breaks in some cases
 	if (!attackCoolDown)
 	{
 		attackCoolDown = 200;
@@ -28,7 +27,7 @@ void SkeletonEnemy::Update()
 		float xDiff = position.x - playerPos.x;
 		float zDiff = position.z - playerPos.z;
 
-		float aimingAngle = atanf(xDiff / zDiff) + M_PI_2;
+		float aimingAngle = atan2f(xDiff, zDiff) + M_PI_2;
 		
 		//SoundManager::Instance().PlaySound(LASER);
 		Projectile* proj = new Projectile(position, aimingAngle, Item(0, GUN), this);
