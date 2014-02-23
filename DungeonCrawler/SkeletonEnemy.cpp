@@ -46,7 +46,7 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 	const int levelHeight = level->Height();
 
 	float dx = fabsf(object.x - position.x);
-	float dy = fabsf(object.z - position.z);
+	float dz = fabsf(object.z - position.z);
 
 	int x = static_cast<int>(floorf(position.x));
 	int z = static_cast<int>(floorf(position.z));
@@ -62,31 +62,31 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 	}
 	else if (object.x > position.x)
 	{
-		xIncrement = GRID_SIZE;
+		xIncrement = 1;
 		n += static_cast<int>(floorf(object.x)) - x;
-		error = (floorf(position.x) + 1 - position.x) * dy;
+		error = (floorf(position.x) + 1 - position.x) * dz;
 	}
 	else
 	{
-		xIncrement = -GRID_SIZE;
+		xIncrement = -1;
 		n += x - static_cast<int>(floorf(object.x));
-		error = (position.x - floorf(position.x)) * dy;
+		error = (position.x - floorf(position.x)) * dz;
 	}
 
-	if (dy == 0)
+	if (dz == 0)
 	{
 		yIncrement = 0;
 		error -= std::numeric_limits<float>::infinity();
 	}
 	else if (object.z > position.z)
 	{
-		yIncrement = GRID_SIZE;
+		yIncrement = 1;
 		n += static_cast<int>(floorf(object.z)) - z;
 		error -= (floorf(position.z) + 1 - position.z) * dx;
 	}
 	else
 	{
-		yIncrement = -GRID_SIZE;
+		yIncrement = -1;
 		n += z - static_cast<int>(floorf(object.z));
 		error -= (position.z - floorf(position.z)) * dx;
 	}
@@ -98,7 +98,7 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 		if (xIndex > -1 && zIndex > -1 && xIndex < levelWidth &&  zIndex < levelHeight &&
 			(*level)[xIndex + zIndex * level->Width()]->IsSolid())
 		{
-			return true;
+			return false;
 		}
 
 		if (error > 0)
@@ -109,9 +109,9 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 		else
 		{
 			x += xIncrement;
-			error += dy;
+			error += dz;
 		}
 	}
 
-	return false;
+	return true;
 }
