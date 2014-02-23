@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "SoundManager.h"
 #include "Projectile.h"
+#include "RayCastBitmap.h"
 
 const static float maxFireDistance = 1280.0f;
 const static float testStep = 62.0f;
@@ -27,12 +28,90 @@ void SkeletonEnemy::Update()
 		float xDiff = position.x - playerPos.x;
 		float zDiff = position.z - playerPos.z;
 
-		float aimingAngle = atan2f(xDiff, zDiff) + M_PI_2;
-		
-		//SoundManager::Instance().PlaySound(LASER);
-		Projectile* proj = new Projectile(position, aimingAngle, Item(0, GUN), this);
-		proj->SetLevel(level);
-		level->AddEntity(proj);
+		if (IsPathClear(playerPos))
+		{
+			float aimingAngle = static_cast<float>(atan2f(xDiff, zDiff) + M_PI_2);
+			SoundManager::Instance().PlaySound(LASER);
+			Projectile* proj = new Projectile(position, aimingAngle, Item(0, GUN), this);
+			proj->SetLevel(level);
+			level->AddEntity(proj);
+		}
 	}
 	Enemy::Update();
+}
+
+bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
+{
+	const int levelWidth = level->Width();
+	const int levelHeight = level->Height();
+
+	float dx = fabsf(object.x - position.x);
+	float dy = fabsf(object.z - position.z);
+
+	int x = static_cast<int>(floorf(position.x));
+	int z = static_cast<int>(floorf(position.z));
+
+	int n = 1;
+	int xIncrement, yIncrement;
+	float error;
+
+	if (dx == 0)
+	{
+		xIncrement = 0;
+		error = std::numeric_limits<float>::infinity();
+	}
+	else if (object.x > position.x)
+	{
+		xIncrement = GRID_SIZE;
+		n += static_cast<int>(floorf(object.x)) - x;
+		error = (floorf(position.x) + 1 - position.x) * dy;
+	}
+	else
+	{
+		xIncrement = -GRID_SIZE;
+		n += x - static_cast<int>(floorf(object.x));
+		error = (position.x - floorf(position.x)) * dy;
+	}
+
+	if (dy == 0)
+	{
+		yIncrement = 0;
+		error -= std::numeric_limits<float>::infinity();
+	}
+	else if (object.z > position.z)
+	{
+		yIncrement = GRID_SIZE;
+		n += static_cast<int>(floorf(object.z)) - z;
+		error -= (floorf(position.z) + 1 - position.z) * dx;
+	}
+	else
+	{
+		yIncrement = -GRID_SIZE;
+		n += z - static_cast<int>(floorf(object.z));
+		error -= (position.z - floorf(position.z)) * dx;
+	}
+
+	for (; n > 0; --n)
+	{
+		int xIndex = static_cast<int>(x / 64);
+		int zIndex = static_cast<int>(z / 64);
+		if (xIndex > -1 && zIndex > -1 && xIndex < levelWidth &&  zIndex < levelHeight &&
+			(*level)[xIndex + zIndex * level->Width()]->IsSolid())
+		{
+			return true;
+		}
+
+		if (error > 0)
+		{
+			z += yIncrement;
+			error -= dx;
+		}
+		else
+		{
+			x += xIncrement;
+			error += dy;
+		}
+	}
+
+	return false;
 }

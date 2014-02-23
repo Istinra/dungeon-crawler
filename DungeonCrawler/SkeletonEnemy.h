@@ -9,6 +9,9 @@ public:
 	SkeletonEnemy(Vector3 position, int textureId);
 
 	virtual void Update() override;
+
+private:
+	bool IsPathClear(const Vector3 &object) const;
 };
 
 #endif

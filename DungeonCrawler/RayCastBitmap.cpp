@@ -253,6 +253,6 @@ void RayCastBitmap::CheckIntersections(Level &level, float aZ, float aX, float z
 		zIndex = static_cast<int>(aZ / GRID_SIZE);
 		xIndex = static_cast<int>(aX / GRID_SIZE);
 	}
-	x = INFINITY;
-	z = INFINITY;
+	x = std::numeric_limits<float>::infinity();
+	z = std::numeric_limits<float>::infinity();
 }
