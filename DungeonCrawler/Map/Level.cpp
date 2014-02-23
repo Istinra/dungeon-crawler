@@ -185,9 +185,10 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 	{
 		return new IceBlock(id, x, y, 4);
 	}
-	if (pixel == 0xFFFFFFFF)
+	if ((pixel & 0x00FFFFFF) == 0x00FFFFFF)
 	{
-		return new Block(id, x, y, 0);
+		unsigned int texId = pixel >> 24;
+		return new Block(id, x, y, texId == 255 ? 0 : texId);
 	}
 	return new Block(0, x, y, 0);;
 }

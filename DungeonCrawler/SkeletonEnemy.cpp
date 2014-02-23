@@ -42,14 +42,15 @@ void SkeletonEnemy::Update()
 
 bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 {
+	//TODO - Increments should be 64 not 1
 	const int levelWidth = level->Width();
 	const int levelHeight = level->Height();
 
 	float dx = fabsf(object.x - position.x);
 	float dz = fabsf(object.z - position.z);
 
-	int x = static_cast<int>(floorf(position.x));
-	int z = static_cast<int>(floorf(position.z));
+	int x = static_cast<int>(position.x);
+	int z = static_cast<int>(position.z);
 
 	int n = 1;
 	int xIncrement, yIncrement;
@@ -69,7 +70,7 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 	else
 	{
 		xIncrement = -1;
-		n += x - static_cast<int>(floorf(object.x));
+		n += x - static_cast<int>(object.x);
 		error = (position.x - floorf(position.x)) * dz;
 	}
 
@@ -87,7 +88,7 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 	else
 	{
 		yIncrement = -1;
-		n += z - static_cast<int>(floorf(object.z));
+		n += z - static_cast<int>(object.z);
 		error -= (position.z - floorf(position.z)) * dx;
 	}
 
