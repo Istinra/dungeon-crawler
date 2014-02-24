@@ -134,7 +134,8 @@ void RayCastBitmap::DrawSprites(Game &game)
 		int pixelX = static_cast<int>(zScreenPos - size / 2.0f);
 		int pixelEndX = pixelX + static_cast<int>(size);
 
-		int pixelY = static_cast<int>(height / 2 - size / 2 + (unscaledSize - size) / 2.0f);
+		//int pixelY = height / 2 - size / 2;
+		int pixelY = static_cast<int>(height / 2 - size / 2 + (unscaledSize - size) / 2.0f - sprite->y / depth * DISTANCE_TO_PLANE);
 		int pixelEndY = pixelY + static_cast<int>(size);
 
 		const float xTexIncrement = 16.0f / (pixelEndX - pixelX);

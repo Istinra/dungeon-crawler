@@ -12,7 +12,7 @@ sourceItem(sourceItem),
 movementVector(Vector3(PROJECTILE_MOVE_STEP * cosf(yaw), 0, -PROJECTILE_MOVE_STEP * sinf(yaw)))
 {
 	this->yaw = yaw;
-	SetSprite(new Sprite(0, 0, 0, 0, 0, 0.25f));
+	SetSprite(new Sprite(0, 22, 0, 0, 0, 0.25f));
 }
 
 Projectile::~Projectile()
