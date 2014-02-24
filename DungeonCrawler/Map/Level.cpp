@@ -206,3 +206,22 @@ void Level::Update()
         }
     }
 }
+
+void Level::SortEntitiesByDistToPlayer()
+{
+	if (entities.size == 0)
+	{
+		return;
+	}
+	float *distanceCache = new float [entities.size];
+	Vector3 playerPos = player->Position();
+	for (int i = 0; i < entities.size; i++)
+	{
+		Vector3 pos = entities[i]->Position();
+		distanceCache[i] = hypotf(playerPos.x - pos.x, playerPos.z - pos.z);
+	}
+
+	//TODO do sort
+
+	delete distanceCache;
+}

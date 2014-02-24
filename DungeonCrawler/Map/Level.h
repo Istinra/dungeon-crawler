@@ -27,7 +27,7 @@ public:
     void AddEntity(Entity *entity);
 	void AddPlayer(Player *player);
     void RemoveEntity(Entity *entity);
-
+	void SortEntitiesByDistToPlayer();
     void Update();
 
     inline Block *operator [] (unsigned int i) const

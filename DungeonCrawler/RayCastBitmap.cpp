@@ -101,6 +101,7 @@ void RayCastBitmap::DrawWalls(Game &game)
 
 void RayCastBitmap::DrawSprites(Game &game)
 {
+	game.CurrentLevel().SortEntitiesByDistToPlayer();
 	const std::vector<Entity *> &entities = game.CurrentLevel().Entities();
 	const Bitmap *spriteSheet = Resources::Instance().LoadTexture(SPRITES);
 	int sheetWidth = spriteSheet->Width();
