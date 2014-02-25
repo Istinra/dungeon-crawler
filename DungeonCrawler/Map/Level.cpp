@@ -209,19 +209,42 @@ void Level::Update()
 
 void Level::SortEntitiesByDistToPlayer()
 {
-	if (entities.size == 0)
+	if (entities.size() == 0)
 	{
 		return;
 	}
-	float *distanceCache = new float [entities.size];
+	float *distanceCache = new float [entities.size()];
 	Vector3 playerPos = player->Position();
-	for (int i = 0; i < entities.size; i++)
+	for (int i = 0; i < entities.size(); i++)
 	{
 		Vector3 pos = entities[i]->Position();
 		distanceCache[i] = hypotf(playerPos.x - pos.x, playerPos.z - pos.z);
 	}
 
-	//TODO do sort
+	//Quicksort is too much effort for a list of max 20~ items
+
+	Entity* tempEnt;
+	float tempDist;
+	bool finalPass = true;
+
+	for (int i = 1; finalPass; i++)
+	{
+		finalPass = false;
+		for (int j = 0; j < entities.size() - i; j++)
+		{
+			if (distanceCache[j] < distanceCache[j + 1])
+			{
+				tempEnt = entities[j];
+				tempDist = distanceCache[j];
+				entities[j] = entities[j + 1];
+				distanceCache[j] = distanceCache[j + 1];
+				entities[j + 1] = tempEnt;
+				distanceCache[j + 1] = tempDist;
+				finalPass = true;
+			}
+		}
+	}
+
 
 	delete distanceCache;
 }
