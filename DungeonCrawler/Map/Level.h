@@ -70,6 +70,7 @@ private:
 	Player *player;
     std::vector<Block *> blocks;
     std::vector<Entity *> entities;
+	std::vector<Entity *> entityQueue;
 };
 
 #endif /* defined(__DungeonCrawler__Level__) */

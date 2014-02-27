@@ -52,7 +52,7 @@ void Level::LoadLevel(std::string name)
     {
 		unsigned int pixel = pixels[i];
         int x = i % width;
-        int y = i / height;
+        int y = i / width;
         blocks[i] = CreateBlock(x, y, pixel, triggerBlocks);
 		CreateEntities(x, y, pixel);
         //R : Block Type
@@ -79,7 +79,7 @@ void Level::LoadLevel(std::string name)
 
 void Level::AddEntity(Entity *entity)
 {
-    entities.push_back(entity);
+	entityQueue.push_back(entity);
     entity->SetLevel(this);
 }
 
@@ -100,55 +100,49 @@ void Level::RemoveEntity(Entity *entity)
 
 void Level::CreateEntities(int x, int y, unsigned pixel)
 {
-	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, y * 62.0f - 32.0f);
+	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, (y + 1) * 62.0f - 32.0f);
     switch (pixel)
     {
         case 0xFF00A000:
         {
             BatEnemy *bat = new BatEnemy(pos, 1);
             bat->SetSprite(new Sprite(0, 0, 0, 1));
-            bat->SetLevel(this);
-            entities.push_back(bat);
+			AddEntity(bat);
             break;
         }
 		case 0xFF005600:
 		{
 			SkeletonEnemy *skele = new SkeletonEnemy(pos, 8);
 			skele->SetSprite(new Sprite(0, 0, 0, 8));
-			skele->SetLevel(this);
-			entities.push_back(skele);
+			AddEntity(skele);
 			break;
 		}
         case 0xFF0000FF:
         {
             Pickup *pickup = new Pickup(pos, Item(1, POTION));
             pickup->SetSprite(new Sprite(0, 0, 0, 4));
-            pickup->SetLevel(this);
-            entities.push_back(pickup);
+			AddEntity(pickup);
             break;
         }
         case 0xFF0000AA:
         {
             Pickup *pickup = new Pickup(pos, Item(1, SWORD));
             pickup->SetSprite(new Sprite(0, 0, 0, 4));
-            pickup->SetLevel(this);
-            entities.push_back(pickup);
+			AddEntity(pickup);
             break;
         }
 		case 0xFF000066:
 		{
 			Pickup *pickup = new Pickup(pos, Item(1, GUN));
 			pickup->SetSprite(new Sprite(0, 0, 0, 4));
-			pickup->SetLevel(this);
-			entities.push_back(pickup);
+			AddEntity(pickup);
 			break;
 		}
 		case 0xFF000088:
 		{
 			KeyPickup *pickup = new KeyPickup(pos);
 			pickup->SetSprite(new Sprite(0, 0, 0, 5, 0x00000000, 0.5f));
-			pickup->SetLevel(this);
-			entities.push_back(pickup);
+			AddEntity(pickup);
 			break;
 		}
 		default:
@@ -156,9 +150,8 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 			if ((pixel & 0x00FFFF00) == 0x00FEFE00)
 			{
 				Ladder* ladder = new Ladder(pos, std::string("l") + std::to_string(0xFF & pixel));
-				entities.push_back(ladder); //pixel & 0x000000FF
 				ladder->SetSprite(new Sprite(0, 0, 0, (pixel & 0xFF000000) == 0xFF000000 ? 6 : 7));
-				ladder->SetLevel(this);
+				AddEntity(ladder);
 				break;
 			}
 		}
@@ -195,16 +188,21 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 
 void Level::Update()
 {
-    for (auto i = entities.begin(); i != entities.end(); i++)
+    for (auto i = entities.begin(); i != entities.end();)
     {
-        (*i)->Update();
+		(*i)->Update();
         if ((*i)->IsRemoved())
         {
             delete (*i);
             entities.erase(i);
-			--i;
         }
+		else
+		{
+			i++;
+		}
     }
+	entities.insert(entities.end(), entityQueue.begin(), entityQueue.end());
+	entityQueue.clear();
 }
 
 void Level::SortEntitiesByDistToPlayer()
@@ -222,7 +220,6 @@ void Level::SortEntitiesByDistToPlayer()
 	}
 
 	//Quicksort is too much effort for a list of max 20~ items
-
 	Entity* tempEnt;
 	float tempDist;
 	bool finalPass = true;
@@ -244,7 +241,5 @@ void Level::SortEntitiesByDistToPlayer()
 			}
 		}
 	}
-
-
 	delete distanceCache;
 }
