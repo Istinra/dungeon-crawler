@@ -23,7 +23,7 @@ public:
 
     virtual void Hurt(int damage);
 
-    virtual bool Use(Entity *source, Item &item);
+    virtual bool Use(Entity *source, Item &item) override;
 
     virtual bool IsRemoved() override;
 

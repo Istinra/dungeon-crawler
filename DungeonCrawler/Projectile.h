@@ -23,6 +23,7 @@ public:
 
 private:
 	static const float projectBoundingWidth;
+	unsigned animationStep;
 	Vector3 movementVector;
 	bool destroyed;
 	Entity* sourceEntity;

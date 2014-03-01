@@ -9,10 +9,10 @@ Projectile::Projectile(Vector3 position, float yaw, Item sourceItem, Entity* sou
 destroyed(false), 
 sourceEntity(sourceEntity),
 sourceItem(sourceItem),
+animationStep(0),
 movementVector(Vector3(PROJECTILE_MOVE_STEP * cosf(yaw), 0, -PROJECTILE_MOVE_STEP * sinf(yaw)))
 {
 	this->yaw = yaw;
-	SetSprite(new Sprite(0, 22, 0, 0, 0, 0.25f));
 }
 
 Projectile::~Projectile()
@@ -23,6 +23,16 @@ Projectile::~Projectile()
 void Projectile::Update()
 {
 	Move(movementVector);
+	++animationStep;
+	if (animationStep == 60)
+	{
+		sprite->texNumber = sprite->texNumber + 1;
+	}
+	else if (animationStep == 120)
+	{
+		sprite->texNumber = sprite->texNumber - 1;
+		animationStep = 0;
+	}
 }
 
 void Projectile::Move(Vector3 movement)

@@ -43,6 +43,7 @@ void Player::Action()
 	{
 		SoundManager::Instance().PlaySound(LASER);
 		Projectile* proj = new Projectile(position, yaw, activeItem, this);
+		proj->SetSprite(new Sprite(0, 22, 0, 10, 0, 0.25f));
 		proj->SetLevel(level);
 		level->AddEntity(proj);
 		break;
@@ -100,6 +101,24 @@ void Player::Interact(int checkDistance)
 			return;
 		}
 	}
+}
+
+bool Player::Use(Entity *source, Item &item)
+{
+	if (source != this)
+	{
+		if (item.type == ItemType::SWORD)
+		{
+			Hurt(3);
+			return true;
+		}
+		if (item.type == ItemType::GUN)
+		{
+			Hurt(2);
+			return true;
+		}
+	}
+	return false;
 }
 
 void Player::Hurt(int damage)

@@ -30,6 +30,8 @@ public:
 
     virtual bool IsRemoved() override;
 
+	virtual bool Use(Entity *source, Item &item) override;
+
     inline short Battery()
     {
         return battery;

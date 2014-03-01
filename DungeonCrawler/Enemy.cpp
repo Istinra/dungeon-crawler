@@ -96,15 +96,18 @@ void Enemy::Hurt(int damage)
 
 bool Enemy::Use(Entity *source, Item &item)
 {
-	if (item.type == ItemType::SWORD)
+	if (source != this)
 	{
-		Hurt(3);
-		return true;
-	}
-	if (item.type == ItemType::GUN)
-	{
-		Hurt(2);
-		return true;
+		if (item.type == ItemType::SWORD)
+		{
+			Hurt(3);
+			return true;
+		}
+		if (item.type == ItemType::GUN)
+		{
+			Hurt(2);
+			return true;
+		}
 	}
 	return false;
 }

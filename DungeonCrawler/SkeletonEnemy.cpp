@@ -33,6 +33,7 @@ void SkeletonEnemy::Update()
 			float aimingAngle = static_cast<float>(atan2f(xDiff, zDiff) + M_PI_2);
 			SoundManager::Instance().PlaySound(LASER);
 			Projectile* proj = new Projectile(position, aimingAngle, Item(0, GUN), this);
+			proj->SetSprite(new Sprite(0, 22, 0, 12, 0, 0.25f));
 			proj->SetLevel(level);
 			level->AddEntity(proj);
 		}
