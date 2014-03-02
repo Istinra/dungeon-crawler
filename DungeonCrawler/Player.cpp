@@ -53,17 +53,21 @@ void Player::Action()
 		}
 		else
 		{
+			actionTimer = 0;
 			NotificationManager::Instance().PostNotification("Not enough power", 200);
 		}
 		break;
 	}
 	case POTION:
-		health += 20;
-		if (health > 100)
+		if (activeItem.count)
 		{
-			health = 100;
+			health += 20;
+			if (health > 100)
+			{
+				health = 100;
+			}
+			activeItem.count--;
 		}
-		activeItem.count--;
 		break;
 	}
 }
