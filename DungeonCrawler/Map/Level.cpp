@@ -148,7 +148,7 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 		}
 		case 0xFFC60000:
 		{
-			VineEntity *vine = new VineEntity(pos, static_cast<int>(x / 64), static_cast<int>(y / 64));
+			VineEntity *vine = new VineEntity(pos, x, y);
 			vine->SetSprite(new Sprite(0, 0, 0, 14, 0x00000000, 1));
 			AddEntity(vine);
 			break;
