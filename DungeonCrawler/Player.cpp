@@ -12,6 +12,7 @@
 #include "Projectile.h"
 #include "SoundManager.h"
 #include "Map/Level.h"
+#include "NotificationManager.h"
 
 #define MELEE_CHECK_DISTANCE 94
 #define RANGED_CHECK_DISTANCE 2048
@@ -41,11 +42,19 @@ void Player::Action()
 		break;
 	case GUN:
 	{
-		SoundManager::Instance().PlaySound(LASER);
-		Projectile* proj = new Projectile(position, yaw, activeItem, this);
-		proj->SetSprite(new Sprite(0, 22, 0, 10, 0, 0.25f));
-		proj->SetLevel(level);
-		level->AddEntity(proj);
+		if (battery > 5)
+		{
+			SoundManager::Instance().PlaySound(LASER);
+			Projectile* proj = new Projectile(position, yaw, activeItem, this);
+			proj->SetSprite(new Sprite(0, 22, 0, 10, 0, 0.25f));
+			proj->SetLevel(level);
+			level->AddEntity(proj);
+			battery -= 5;
+		}
+		else
+		{
+			NotificationManager::Instance().PostNotification("Not enough power", 200);
+		}
 		break;
 	}
 	case POTION:
