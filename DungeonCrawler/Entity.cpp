@@ -31,7 +31,7 @@ void Entity::Move(Vector3 movement)
     int xBox = static_cast<int>((position.x + movement.x + bound) / 64.0f);
     int zBox = static_cast<int>((position.z + movement.z) / 64.0f);
     Block *xBlock = (*level)[xBox + level->Width() * zBox];
-    if (xBlock->IsSolid())
+    if (xBlock->IsCollidable())
     {
         movement.x = 0.0f;
     }
@@ -39,7 +39,7 @@ void Entity::Move(Vector3 movement)
     xBox = static_cast<int>((position.x + movement.x) / 64.0f);
     zBox = static_cast<int>((position.z + movement.z + bound) / 64.0f);
     Block *zBlock = (*level)[xBox + level->Width() * zBox];
-    if (zBlock->IsSolid())
+	if (zBlock->IsCollidable())
     {
         movement.z = 0.0f;
     }

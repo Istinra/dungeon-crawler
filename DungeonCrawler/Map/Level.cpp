@@ -14,6 +14,7 @@
 #include "../KeyPickup.h"
 #include "../Ladder.h"
 #include "../Player.h"
+#include "../VineEntity.h"
 #include "DoorBlock.h"
 #include "IceBlock.h"
 #include <algorithm>
@@ -145,6 +146,13 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 			AddEntity(pickup);
 			break;
 		}
+		case 0xFFC60000:
+		{
+			VineEntity *vine = new VineEntity(pos, static_cast<int>(x / 64), static_cast<int>(y / 64));
+			vine->SetSprite(new Sprite(0, 0, 0, 14, 0x00000000, 1));
+			AddEntity(vine);
+			break;
+		}
 		default:
 		{
 			if ((pixel & 0x00FFFF00) == 0x00FEFE00)
@@ -166,7 +174,7 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 	{
 		return new DoorBlock(id, x, y, 3, static_cast<DoorBlockState>(pixel & 0x000000FF));
 	}
-	if ((pixel & 0x00FF00FF) == 0x00630000)
+	else if ((pixel & 0x00FF00FF) == 0x00630000)
 	{
 		//Green Channel used to identify target block ID
 		TriggerBlock* trigger = new TriggerBlock(id, x, y, 1);
@@ -174,16 +182,22 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 		triggerBlocks.push_back(trigger);
 		return trigger;
 	}
-	if (pixel == 0xFF800000)
+	else if (pixel == 0xFF800000)
 	{
 		return new IceBlock(id, x, y, 4);
 	}
-	if ((pixel & 0x00FFFFFF) == 0x00FFFFFF)
+	else if (pixel == 0xFFC60000)
+	{
+		Block* b = new Block(0, x, y, 0);
+		b->Collidable(true);
+		return b;
+	}
+	else if ((pixel & 0x00FFFFFF) == 0x00FFFFFF)
 	{
 		unsigned int texId = pixel >> 24;
 		return new Block(id, x, y, texId == 255 ? 0 : texId);
 	}
-	return new Block(0, x, y, 0);;
+	return new Block(0, x, y, 0);
 }
 
 void Level::Update()

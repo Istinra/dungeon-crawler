@@ -21,6 +21,8 @@ public:
 
 	virtual bool IsSolid() const override;
 
+	virtual bool IsCollidable() const override;
+
 private:
 	bool closed;
 };

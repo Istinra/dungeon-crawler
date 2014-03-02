@@ -8,7 +8,7 @@
 
 #include "Block.h"
 
-Block::Block(unsigned int id, int x, int y, unsigned int tex) : id(id), tex(tex)
+Block::Block(unsigned int id, int x, int y, unsigned int tex) : id(id), tex(tex), collidable(id << 8 > 0)
 {
 
 }
@@ -30,7 +30,7 @@ bool Block::Trigger(const Item& item)
 
 bool Block::IsSolid() const
 {
-    return id << 8 > 0;
+	return id << 8 > 0;
 }
 
 bool Block::CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const

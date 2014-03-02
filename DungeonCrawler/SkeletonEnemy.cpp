@@ -98,7 +98,7 @@ bool SkeletonEnemy::IsPathClear(const Vector3 &object) const
 		int xIndex = static_cast<int>(x / 64);
 		int zIndex = static_cast<int>(z / 64);
 		if (xIndex > -1 && zIndex > -1 && xIndex < levelWidth &&  zIndex < levelHeight &&
-			(*level)[xIndex + zIndex * level->Width()]->IsSolid())
+			(*level)[xIndex + zIndex * level->Width()]->IsCollidable())
 		{
 			return false;
 		}

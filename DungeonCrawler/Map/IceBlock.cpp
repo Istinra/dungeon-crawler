@@ -18,3 +18,8 @@ bool IceBlock::IsSolid() const
 {
 	return closed;
 }
+
+bool IceBlock::IsCollidable() const
+{
+	return IsSolid();
+}

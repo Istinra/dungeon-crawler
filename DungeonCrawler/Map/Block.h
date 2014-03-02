@@ -23,6 +23,16 @@ public:
 
     virtual bool IsSolid() const;
 
+	virtual bool IsCollidable() const
+	{
+		return collidable;
+	}
+
+	void Collidable(bool collidable)
+	{
+		this->collidable = collidable;
+	}
+
 	virtual bool Use(Entity* source, const Item& item);
 
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const;
@@ -42,6 +52,7 @@ public:
 protected:
     const unsigned int id;
     unsigned int tex;
+	bool collidable;
 };
 
 #endif /* defined(__DungeonCrawler__Block__) */

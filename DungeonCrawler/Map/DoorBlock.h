@@ -31,6 +31,8 @@ public:
 
     virtual bool IsSolid() const override;
 
+	virtual bool IsCollidable() const override;
+
     virtual bool CheckSolidAndAdjust(float xDiff, float zDiff, float &x, float &z) const override;
 
 private:

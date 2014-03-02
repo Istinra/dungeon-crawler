@@ -36,6 +36,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="KeyPickup.cpp" />
+    <ClCompile Include="VineEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BatEnemy.h" />
@@ -64,6 +65,7 @@
     <ClInclude Include="SkeletonEnemy.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="VineEntity.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7B86D4A6-A1F6-469D-A11D-4D68D31EC4FF}</ProjectGuid>

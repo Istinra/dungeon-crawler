@@ -69,3 +69,8 @@ bool DoorBlock::IsSolid() const
 {
     return state != OPEN;
 }
+
+bool DoorBlock::IsCollidable() const
+{
+	return IsSolid();
+}
