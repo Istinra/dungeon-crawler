@@ -170,8 +170,9 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks)
 {
 	int id = (pixel & 0xFF000000) >> 24;
-	if ((pixel & 0x00FFFFFF) == 0x00FF0000)
+	if ((pixel & 0x00FFFFF0) == 0x00FF0000)
 	{
+		//Blue channel to enum
 		return new DoorBlock(id, x, y, 3, static_cast<DoorBlockState>(pixel & 0x000000FF));
 	}
 	else if ((pixel & 0x00FF00FF) == 0x00630000)
