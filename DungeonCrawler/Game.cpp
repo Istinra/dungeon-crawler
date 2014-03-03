@@ -20,7 +20,7 @@ Game::Game() : currentLevel(nullptr)
 
 void Game::NewGame()
 {
-	LoadLevel("demo");
+	LoadLevel("l1");
 }
 
 void Game::LoadLevel(std::string name)
