@@ -27,40 +27,40 @@ Level::Level() : player(nullptr)
 
 Level::~Level()
 {
-    for (Block *b : blocks)
-    {
-        delete b;
-    }
-    for (Entity *entity : entities)
-    {
-        delete entity;
-    }
+	for (Block *b : blocks)
+	{
+		delete b;
+	}
+	for (Entity *entity : entities)
+	{
+		delete entity;
+	}
 }
 
 void Level::LoadLevel(std::string name)
 {
-    const Bitmap *levelImage = Resources::Instance().LoadLevel(name);
-    width = levelImage->Width();
-    height = levelImage->Height();
-    blocks.resize(static_cast<unsigned int>(width * height));
+	const Bitmap *levelImage = Resources::Instance().LoadLevel(name);
+	width = levelImage->Width();
+	height = levelImage->Height();
+	blocks.resize(static_cast<unsigned int>(width * height));
 
 	std::vector<TriggerBlock*> triggerBlocks;
 	const unsigned int * pixels = levelImage->Pixels();
 	colour = pixels[0];
 	blocks[0] = CreateBlock(0, 0, 0xFFFFFFFF, triggerBlocks);
 
-    for (int i = 1; i < width * height; i++)
-    {
+	for (int i = 1; i < width * height; i++)
+	{
 		unsigned int pixel = pixels[i];
-        int x = i % width;
-        int y = i / width;
-        blocks[i] = CreateBlock(x, y, pixel, triggerBlocks);
+		int x = i % width;
+		int y = i / width;
+		blocks[i] = CreateBlock(x, y, pixel, triggerBlocks);
 		CreateEntities(x, y, pixel);
-        //R : Block Type
-        //G : Entity on the block
-        //B : Pickup/Item entities
-        //A : Block ID
-    }
+		//R : Block Type
+		//G : Entity on the block
+		//B : Pickup/Item entities
+		//A : Block ID
+	}
 
 	for (auto* trigger : triggerBlocks)
 	{
@@ -75,13 +75,13 @@ void Level::LoadLevel(std::string name)
 		}
 	}
 
-    delete levelImage;
+	delete levelImage;
 }
 
 void Level::AddEntity(Entity *entity)
 {
 	entityQueue.push_back(entity);
-    entity->SetLevel(this);
+	entity->SetLevel(this);
 }
 
 void Level::AddPlayer(Player *entity)
@@ -96,74 +96,74 @@ void Level::RemoveEntity(Entity *entity)
 	{
 		player = nullptr;
 	}
-    entities.erase(std::remove(entities.begin(), entities.end(), entity));
+	entities.erase(std::remove(entities.begin(), entities.end(), entity));
 }
 
 void Level::CreateEntities(int x, int y, unsigned pixel)
 {
-	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, (y + 1) * 62.0f - 32.0f);
-    switch (pixel)
-    {
-        case 0xFF00A000:
-        {
-            BatEnemy *bat = new BatEnemy(pos, 1);
-            bat->SetSprite(new Sprite(0, 0, 0, 1));
-			AddEntity(bat);
-            break;
-        }
-		case 0xFF005600:
-		{
-			SkeletonEnemy *skele = new SkeletonEnemy(pos, 8);
-			skele->SetSprite(new Sprite(0, 0, 0, 8));
-			AddEntity(skele);
-			break;
-		}
-        case 0xFF0000FF:
-        {
-            Pickup *pickup = new Pickup(pos, Item(1, POTION));
-            pickup->SetSprite(new Sprite(0, 0, 0, 4));
-			AddEntity(pickup);
-            break;
-        }
-        case 0xFF0000AA:
-        {
-            Pickup *pickup = new Pickup(pos, Item(1, SWORD));
-            pickup->SetSprite(new Sprite(0, 0, 0, 4));
-			AddEntity(pickup);
-            break;
-        }
-		case 0xFF000066:
-		{
-			Pickup *pickup = new Pickup(pos, Item(1, GUN));
-			pickup->SetSprite(new Sprite(0, 0, 0, 4));
-			AddEntity(pickup);
-			break;
-		}
-		case 0xFF000088:
-		{
-			KeyPickup *pickup = new KeyPickup(pos);
-			pickup->SetSprite(new Sprite(0, 0, 0, 5, 0x00000000, 0.5f));
-			AddEntity(pickup);
-			break;
-		}
-		case 0xFFC60000:
-		{
-			VineEntity *vine = new VineEntity(pos, x, y);
-			vine->SetSprite(new Sprite(0, 0, 0, 14, 0x00000000, 1));
-			AddEntity(vine);
-			break;
-		}
-		default:
-		{
-			if ((pixel & 0x00FFFF00) == 0x00FEFE00)
-			{
-				Ladder* ladder = new Ladder(pos, std::string("l") + std::to_string(0xFF & pixel));
-				ladder->SetSprite(new Sprite(0, 0, 0, (pixel & 0xFF000000) == 0xFF000000 ? 6 : 7));
-				AddEntity(ladder);
-				break;
-			}
-		}
-    }
+	Vector3 pos = Vector3(x * 64.0f + 32.0f, 0.0f, y * 64.0f + 32.0f);
+	switch (pixel)
+	{
+	case 0xFF00A000:
+	{
+					   BatEnemy *bat = new BatEnemy(pos, 1);
+					   bat->SetSprite(new Sprite(0, 0, 0, 1));
+					   AddEntity(bat);
+					   break;
+	}
+	case 0xFF005600:
+	{
+					   SkeletonEnemy *skele = new SkeletonEnemy(pos, 8);
+					   skele->SetSprite(new Sprite(0, 0, 0, 8));
+					   AddEntity(skele);
+					   break;
+	}
+	case 0xFF0000FF:
+	{
+					   Pickup *pickup = new Pickup(pos, Item(1, POTION));
+					   pickup->SetSprite(new Sprite(0, 0, 0, 4));
+					   AddEntity(pickup);
+					   break;
+	}
+	case 0xFF0000AA:
+	{
+					   Pickup *pickup = new Pickup(pos, Item(1, SWORD));
+					   pickup->SetSprite(new Sprite(0, 0, 0, 4));
+					   AddEntity(pickup);
+					   break;
+	}
+	case 0xFF000066:
+	{
+					   Pickup *pickup = new Pickup(pos, Item(1, GUN));
+					   pickup->SetSprite(new Sprite(0, 0, 0, 4));
+					   AddEntity(pickup);
+					   break;
+	}
+	case 0xFF000088:
+	{
+					   KeyPickup *pickup = new KeyPickup(pos);
+					   pickup->SetSprite(new Sprite(0, 0, 0, 5, 0x00000000, 0.5f));
+					   AddEntity(pickup);
+					   break;
+	}
+	case 0xFFC60000:
+	{
+					   VineEntity *vine = new VineEntity(pos, x, y);
+					   vine->SetSprite(new Sprite(0, 0, 0, 14, 0x00000000, 1));
+					   AddEntity(vine);
+					   break;
+	}
+	default:
+	{
+			   if ((pixel & 0x00FFFF00) == 0x00FEFE00)
+			   {
+				   Ladder* ladder = new Ladder(pos, std::string("l") + std::to_string(0xFF & pixel));
+				   ladder->SetSprite(new Sprite(0, 0, 0, (pixel & 0xFF000000) == 0xFF000000 ? 6 : 7));
+				   AddEntity(ladder);
+				   break;
+			   }
+	}
+	}
 
 }
 
@@ -203,19 +203,19 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 
 void Level::Update()
 {
-    for (auto i = entities.begin(); i != entities.end();)
-    {
+	for (auto i = entities.begin(); i != entities.end();)
+	{
 		(*i)->Update();
-        if ((*i)->IsRemoved())
-        {
-            delete (*i);
-            entities.erase(i);
-        }
+		if ((*i)->IsRemoved())
+		{
+			delete (*i);
+			entities.erase(i);
+		}
 		else
 		{
 			i++;
 		}
-    }
+	}
 	entities.insert(entities.end(), entityQueue.begin(), entityQueue.end());
 	entityQueue.clear();
 }
@@ -226,7 +226,7 @@ void Level::SortEntitiesByDistToPlayer()
 	{
 		return;
 	}
-	float *distanceCache = new float [entities.size()];
+	float *distanceCache = new float[entities.size()];
 	Vector3 playerPos = player->Position();
 	for (int i = 0; i < entities.size(); i++)
 	{
