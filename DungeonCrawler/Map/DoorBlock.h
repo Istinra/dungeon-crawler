@@ -16,7 +16,8 @@ enum DoorBlockState
 	LOCKED,
 	TRIGGERED,
 	CLOSED,
-	OPEN
+	OPEN,
+	BROKEN
 };
 
 class DoorBlock : public Block

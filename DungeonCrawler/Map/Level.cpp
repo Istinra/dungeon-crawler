@@ -173,7 +173,21 @@ Block *Level::CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock
 	if ((pixel & 0x00FFFFF0) == 0x00FF0000)
 	{
 		//Blue channel to enum
-		return new DoorBlock(id, x, y, 3, static_cast<DoorBlockState>(pixel & 0x000000FF));
+		DoorBlockState state = static_cast<DoorBlockState>(pixel & 0x000000FF);
+		unsigned int texId;
+		switch (state)
+		{
+		case LOCKED:
+			texId = 7;
+			break;
+		case BROKEN:
+			texId = 6;
+			break;
+		default:
+			texId = 3;
+			break;
+		}
+		return new DoorBlock(id, x, y, texId, state);
 	}
 	else if ((pixel & 0x00FF00FF) == 0x00630000)
 	{

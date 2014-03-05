@@ -51,6 +51,11 @@ bool DoorBlock::Use(Entity* source, const Item& item)
 		}
 		break;
 	}
+	case BROKEN:
+	{
+		NotificationManager::Instance().PostNotification("This door appears to be broken", 350);
+		break;
+	}
 	}
 	return true;
 }
