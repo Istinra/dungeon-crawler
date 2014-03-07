@@ -52,6 +52,9 @@ void SoundManager::PlaySound(Sounds sound)
 	case LASER:
 		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\laser.wav");
 		break;
+	case LADDER:
+		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\ladder.wav");
+		break;
 	default:
 		return;
 	}

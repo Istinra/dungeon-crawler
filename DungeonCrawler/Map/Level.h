@@ -55,6 +55,16 @@ public:
 		return colour;
 	}
 
+	inline const unsigned int RoofColour() const
+	{
+		return roofColour;
+	}
+
+	inline const unsigned int FloorColour() const
+	{
+		return floorColour;
+	}
+
 	inline const Player * const GetPlayer() const
 	{
 		return player;
@@ -67,6 +77,8 @@ private:
 
     int width, height;
 	unsigned int colour;
+	unsigned int roofColour;
+	unsigned int floorColour;
 	Player *player;
     std::vector<Block *> blocks;
     std::vector<Entity *> entities;

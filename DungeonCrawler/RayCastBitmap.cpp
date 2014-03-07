@@ -29,6 +29,8 @@ void RayCastBitmap::DrawWalls(Game &game)
 	const unsigned int* const wallPixels = walls->Pixels();
 	Level &level = game.CurrentLevel();
 	const unsigned int levelColour = level.Colour();
+	const unsigned int roofColour = level.RoofColour();
+	const unsigned int floorColour = level.FloorColour();
 
 	float rawAngle = yaw + VIEWING_ANGLE / 2;
 	for (int i = 0; i < width; i++, rawAngle -= ANGLE_BETWEEN_RAYS)
@@ -84,19 +86,35 @@ void RayCastBitmap::DrawWalls(Game &game)
 		}
 		for (int h = 0; h < start; h++)
 		{
-			pixels[i + h * width] = 0x444444;
+			pixels[i + h * width] = roofColour;
 		}
 		texOffset /= 4;
+		unsigned int darkness = CalculateDarkness(distance);
 		for (; start < end; start++, texPos += texIncrement)
 		{
 			unsigned int heightOffset = static_cast<unsigned int>(texPos) * wallWidth;
-			pixels[i + start * width] = wallPixels[heightOffset + texOffset] | levelColour;
+			pixels[i + start * width] = (wallPixels[heightOffset + texOffset] | levelColour) & darkness;
 		}
 		for (int h = end; h < height; h++)
 		{
-			pixels[i + h * width] = 0x222222;
+			pixels[i + h * width] = floorColour;
 		}
 	}
+}
+
+unsigned int RayCastBitmap::CalculateDarkness(float distance)
+{
+	unsigned int darkness = 0xFFFFFFFF;
+	if (distance > 200 && distance < 1000)
+	{
+		unsigned char sDistance = 255 - static_cast<unsigned char>(((distance - 200) / 800) * 255);
+		darkness = 0xFF << 24 | sDistance << 16 | sDistance << 8 | sDistance;
+	}
+	else if (distance >= 1000)
+	{
+		darkness = 0;
+	}
+	return darkness;
 }
 
 void RayCastBitmap::DrawSprites(Game &game)
@@ -158,7 +176,7 @@ void RayCastBitmap::DrawSprites(Game &game)
 			pixelY = 0;
 		}
 		if (pixelEndY > height - 2) pixelEndY = height - 1;
-
+		unsigned int darkness = CalculateDarkness(depth);
 		for (int stripe = pixelX; stripe < pixelEndX; stripe++)
 		{
 			float texY = sprite->texNumber / 8 * 16 + yOffset;
@@ -170,7 +188,7 @@ void RayCastBitmap::DrawSprites(Game &game)
 					unsigned int colour = sheetPixels[index];
 					if (0xFF000000 & colour)
 					{
-						pixels[stripe + width * row] = colour | sprite->colour;
+						pixels[stripe + width * row] = (colour | sprite->colour) & darkness;
 					}
 					texY += yTexIncrement;
 				}

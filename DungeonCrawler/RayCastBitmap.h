@@ -44,6 +44,8 @@ private:
 
     float CorrectAngle(float angle);
 
+	unsigned int CalculateDarkness(float distance);
+
     float posX, posY, posZ, yaw;
     float zBuffer[WIDTH];
 };

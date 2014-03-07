@@ -47,9 +47,13 @@ void Level::LoadLevel(std::string name)
 	std::vector<TriggerBlock*> triggerBlocks;
 	const unsigned int * pixels = levelImage->Pixels();
 	colour = pixels[0];
+	roofColour = pixels[1];
+	floorColour = pixels[2];
 	blocks[0] = CreateBlock(0, 0, 0xFFFFFFFF, triggerBlocks);
+	blocks[1] = CreateBlock(0, 0, 0xFFFFFFFF, triggerBlocks);
+	blocks[2] = CreateBlock(0, 0, 0xFFFFFFFF, triggerBlocks);
 
-	for (int i = 1; i < width * height; i++)
+	for (int i = 3; i < width * height; i++)
 	{
 		unsigned int pixel = pixels[i];
 		int x = i % width;
