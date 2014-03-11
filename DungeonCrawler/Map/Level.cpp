@@ -276,3 +276,9 @@ void Level::SortEntitiesByDistToPlayer()
 	}
 	delete distanceCache;
 }
+
+void Level::GiveEnergy(short energy)
+{
+	player->GiveEnergy(energy);
+}
+

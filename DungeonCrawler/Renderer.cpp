@@ -46,7 +46,7 @@ void Renderer::Draw(Game &game)
 		memcpy(pixels + WIDTH * (HEIGHT - PANEL_HEIGHT), scaledHudGraphic, sizeof(unsigned int) * PANEL_HEIGHT * WIDTH);
 		Player& player = game.GetPlayer();
 		DrawText(NumberString(player.Health()), 50, 385, 2);
-		DrawText(NumberString(player.Battery()) + "%", 50, 420, 2);
+		DrawText(NumberString(player.Battery()), 50, 420, 2);
 		DrawText(NumberString(player.Keys()), 50, 450, 2);
 		DrawInventory(game);
 		DrawSelectedItem(game);

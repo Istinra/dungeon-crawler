@@ -24,6 +24,8 @@ public:
 
     void GiveItem(Item item);
 
+	void GiveEnergy(short energy);
+
     virtual void Hurt(int damage);
 
     virtual void Update() override;

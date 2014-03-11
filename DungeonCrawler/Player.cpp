@@ -183,3 +183,8 @@ bool Player::UseKey()
 	}
 	return false;
 }
+
+void Player::GiveEnergy(short energy)
+{
+	battery += energy;
+}

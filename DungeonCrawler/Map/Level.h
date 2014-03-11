@@ -70,6 +70,8 @@ public:
 		return player;
 	}
 
+	void GiveEnergy(short energy);
+
 private:
 	Block *CreateBlock(int x, int y, unsigned pixel, std::vector<TriggerBlock*>& triggerBlocks);
 

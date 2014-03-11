@@ -11,6 +11,7 @@
 #include <math.h>
 #include "Enemy.h"
 #include "Player.h"
+#include "Map\Level.h"
 
 #define HURT_COLOUR 0x00FF0000
 #define DEAD_TEXTURE 3
@@ -91,6 +92,7 @@ void Enemy::Hurt(int damage)
     {
         sprite->texNumber = DEAD_TEXTURE;
         animationTimer = 100;
+		level->GiveEnergy(6);
     }
 }
 
