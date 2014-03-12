@@ -13,12 +13,13 @@ enum ItemType
 {
 	SWORD = 0,
 	POTION = 1,
-	GUN = 2
+	GUN = 2,
+	NONE = 3
 };
 
 struct Item
 {
-    Item() : count(0)
+	Item() : count(0), type(NONE)
     {
     }
 

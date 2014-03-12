@@ -115,10 +115,26 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 					   AddEntity(bat);
 					   break;
 	}
+	case 0xFF00B000:
+	{
+					   BatEnemy *bat = new BatEnemy(pos, 16);
+					   bat->SetSprite(new Sprite(0, 0, 0, 16));
+					   bat->SetHealth(12);
+					   AddEntity(bat);
+					   break;
+	}
 	case 0xFF005600:
 	{
 					   SkeletonEnemy *skele = new SkeletonEnemy(pos, 8);
 					   skele->SetSprite(new Sprite(0, 0, 0, 8));
+					   AddEntity(skele);
+					   break;
+	}
+	case 0xFF005000:
+	{
+					   SkeletonEnemy *skele = new SkeletonEnemy(pos, 18);
+					   skele->SetSprite(new Sprite(0, 0, 0, 18));
+					   skele->SetHealth(12);
 					   AddEntity(skele);
 					   break;
 	}

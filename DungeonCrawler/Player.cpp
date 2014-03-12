@@ -37,8 +37,11 @@ void Player::Action()
 	switch (activeItem.type)
 	{
 	case SWORD:
-		SoundManager::Instance().PlaySound(SOUND);
-		Interact(MELEE_CHECK_DISTANCE);
+		if (activeItem.count)
+		{
+			SoundManager::Instance().PlaySound(SOUND);
+			Interact(MELEE_CHECK_DISTANCE);
+		}
 		break;
 	case GUN:
 	{
@@ -49,7 +52,7 @@ void Player::Action()
 			proj->SetSprite(new Sprite(0, 22, 0, 10, 0, 0.25f));
 			proj->SetLevel(level);
 			level->AddEntity(proj);
-			battery -= 5;
+			battery -= 4;
 		}
 		else
 		{
@@ -69,6 +72,8 @@ void Player::Action()
 			activeItem.count--;
 		}
 		break;
+	default:
+		Interact(MELEE_CHECK_DISTANCE);
 	}
 }
 

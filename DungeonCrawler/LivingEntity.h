@@ -21,6 +21,11 @@ public:
 
     virtual void Hurt(int damage) = 0;
 
+	inline void SetHealth(short health)
+	{
+		this->health = health;
+	}
+
     virtual bool IsRemoved()
     {
         return health <= 0;

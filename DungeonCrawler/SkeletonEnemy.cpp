@@ -13,12 +13,11 @@ const static float testStep = 62.0f;
 SkeletonEnemy::SkeletonEnemy(Vector3 position, int textureId) :
 Enemy(position, textureId)
 {
-
+	this->health = 5;
 }
 
 void SkeletonEnemy::Update()
 {
-	//TODO, shouldn't shoot if it can't hit
 	if (!attackCoolDown)
 	{
 		attackCoolDown = 200;
