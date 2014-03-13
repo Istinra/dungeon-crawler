@@ -55,6 +55,9 @@ void SoundManager::PlaySound(Sounds sound)
 	case LADDER:
 		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\ladder.wav");
 		break;
+	case HURT:
+		soundObject = InitSound(sound, "..\\DungeonCrawler\\Art\\hurt.wav");
+		break;
 	default:
 		return;
 	}

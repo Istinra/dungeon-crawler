@@ -7,6 +7,7 @@
 //
 
 #include "DoorBlock.h"
+#include "../SoundManager.h"
 #include "../Player.h"
 #include "../NotificationManager.h"
 
@@ -37,6 +38,7 @@ bool DoorBlock::Use(Entity* source, const Item& item)
 		break;
 	case CLOSED:
 		state = OPEN;
+		SoundManager::Instance().PlaySound(LADDER);
 		break;
 	case LOCKED:
 	{
@@ -47,6 +49,7 @@ bool DoorBlock::Use(Entity* source, const Item& item)
 		}
 		else
 		{
+			SoundManager::Instance().PlaySound(LADDER);
 			state = OPEN;
 		}
 		break;
@@ -64,6 +67,7 @@ bool DoorBlock::Trigger(const Item& item)
 {
 	if (TRIGGERED)
 	{
+		SoundManager::Instance().PlaySound(LADDER);
 		state = OPEN;
 		return true;
 	}

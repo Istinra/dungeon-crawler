@@ -15,7 +15,8 @@ enum Sounds
 {
     SOUND,
 	LASER,
-	LADDER
+	LADDER,
+	HURT
 };
 
 struct Sound

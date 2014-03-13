@@ -14,11 +14,12 @@
 #include "Map/Level.h"
 #include "NotificationManager.h"
 
-#define MELEE_CHECK_DISTANCE 94
+#define MELEE_CHECK_DISTANCE 118
 #define RANGED_CHECK_DISTANCE 2048
 
 Player::Player() : LivingEntity(Vector3(142, 32, 416)), battery(100), activeSlot(0), keys(0)
 {
+	health = 25;
 }
 
 Player::~Player()
@@ -141,6 +142,7 @@ bool Player::Use(Entity *source, Item &item)
 
 void Player::Hurt(int damage)
 {
+	SoundManager::Instance().PlaySound(HURT);
     health -= damage;
 }
 
