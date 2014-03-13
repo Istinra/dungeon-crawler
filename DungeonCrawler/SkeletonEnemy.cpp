@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "Projectile.h"
 #include "RayCastBitmap.h"
+#include "NotificationManager.h"
 
 const static float maxFireDistance = 1280.0f;
 const static float testStep = 62.0f;
@@ -18,6 +19,11 @@ Enemy(position, textureId)
 
 void SkeletonEnemy::Update()
 {
+	if (sprite->texNumber = DEAD_TEXTURE && textureId == 18)
+	{
+		NotificationManager::Instance().PostNotification("You Win!!!!", 2000);
+		textureId = 0;
+	}
 	if (!attackCoolDown)
 	{
 		attackCoolDown = 200;

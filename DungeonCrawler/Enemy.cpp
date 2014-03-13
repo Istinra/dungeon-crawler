@@ -14,7 +14,6 @@
 #include "Map\Level.h"
 
 #define HURT_COLOUR 0x00FF0000
-#define DEAD_TEXTURE 3
 
 Enemy::Enemy(Vector3 position, int textureId) : LivingEntity(position),
 textureId(textureId), animationTimer(0), attackCoolDown(0)

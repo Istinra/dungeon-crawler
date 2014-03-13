@@ -133,7 +133,7 @@ bool Player::Use(Entity *source, Item &item)
 		}
 		if (item.type == ItemType::GUN)
 		{
-			Hurt(2);
+			Hurt(1);
 			return true;
 		}
 	}

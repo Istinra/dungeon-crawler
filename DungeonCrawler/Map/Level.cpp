@@ -262,7 +262,7 @@ void Level::SortEntitiesByDistToPlayer()
 	}
 	float *distanceCache = new float[entities.size()];
 	Vector3 playerPos = player->Position();
-	for (int i = 0; i < entities.size(); i++)
+	for (unsigned int i = 0; i < entities.size(); i++)
 	{
 		Vector3 pos = entities[i]->Position();
 		distanceCache[i] = hypotf(playerPos.x - pos.x, playerPos.z - pos.z);
@@ -276,7 +276,7 @@ void Level::SortEntitiesByDistToPlayer()
 	for (int i = 1; finalPass; i++)
 	{
 		finalPass = false;
-		for (int j = 0; j < entities.size() - i; j++)
+		for (unsigned int j = 0; j < entities.size() - i; j++)
 		{
 			if (distanceCache[j] < distanceCache[j + 1])
 			{

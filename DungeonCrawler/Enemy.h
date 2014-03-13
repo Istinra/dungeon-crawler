@@ -10,6 +10,8 @@
 
 #include "LivingEntity.h"
 
+#define DEAD_TEXTURE 3
+
 class Enemy : public LivingEntity
 {
 public:
@@ -28,7 +30,7 @@ public:
     virtual bool IsRemoved() override;
 
 protected:
-    const int textureId;
+    int textureId;
     unsigned int colour;
     int attackCoolDown;
     int animationTimer;
