@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
         {
             std::cout << "FPS: " << frames / totalTime << '\n';
         }
-        SDL_Delay(2);
+        SDL_Delay(1);
     }
 
     SDL_DestroyWindow(window);

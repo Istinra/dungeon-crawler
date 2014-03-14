@@ -135,6 +135,7 @@ void Level::CreateEntities(int x, int y, unsigned pixel)
 					   SkeletonEnemy *skele = new SkeletonEnemy(pos, 18);
 					   skele->SetSprite(new Sprite(0, 0, 0, 18));
 					   skele->SetHealth(12);
+					   skele->Boss(true);
 					   AddEntity(skele);
 					   break;
 	}

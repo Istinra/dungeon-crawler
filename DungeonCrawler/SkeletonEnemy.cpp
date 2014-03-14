@@ -19,10 +19,9 @@ Enemy(position, textureId)
 
 void SkeletonEnemy::Update()
 {
-	if (sprite->texNumber = DEAD_TEXTURE && textureId == 18)
+	if (health < 1 && isBoss)
 	{
 		NotificationManager::Instance().PostNotification("You Win!!!!", 2000);
-		textureId = 0;
 	}
 	if (!attackCoolDown)
 	{

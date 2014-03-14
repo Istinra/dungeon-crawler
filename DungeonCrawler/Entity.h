@@ -9,8 +9,8 @@
 #ifndef DungeonCrawler_Entity_h
 #define DungeonCrawler_Entity_h
 
-#define MOVE_STEP 0.5f
-#define TURN_STEP 0.009f
+#define MOVE_STEP 0.6f
+#define TURN_STEP 0.01f
 
 #include "Common/CommonTypes.h"
 #include "Item.h"
