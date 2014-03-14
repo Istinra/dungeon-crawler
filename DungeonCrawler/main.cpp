@@ -32,7 +32,8 @@ void Render(SDL_Window *const window, Renderer &renderer)
 
 int main(int argc, char *argv[])
 {
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
+    //SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     SDL_Window *window = SDL_CreateWindow("Dungeon Crawler", SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 
@@ -43,10 +44,10 @@ int main(int argc, char *argv[])
     }
     bool running = true;
 
-	unsigned int frames = 0;
-    float frequency = (float) SDL_GetPerformanceFrequency();
-    float totalTime = 0;
-    float dt = 0;
+	//unsigned int frames = 0;
+ //   float frequency = (float) SDL_GetPerformanceFrequency();
+ //   float totalTime = 0;
+ //   float dt = 0;
 
     Uint64 oldTime = SDL_GetPerformanceCounter();
     Uint64 newTime;
@@ -57,11 +58,11 @@ int main(int argc, char *argv[])
 
     while (running)
     {
-        ++frames;
-        newTime = SDL_GetPerformanceCounter();
-        dt = (newTime - oldTime) / frequency;
-        totalTime += dt;
-        oldTime = newTime;
+        //++frames;
+        //newTime = SDL_GetPerformanceCounter();
+        //dt = (newTime - oldTime) / frequency;
+        //totalTime += dt;
+        //oldTime = newTime;
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -80,11 +81,13 @@ int main(int argc, char *argv[])
         renderer.Draw(game);
         Render(window, renderer);
         SoundManager::Instance().Update();
+#ifdef DEBUG
         if (frames % 100 == 0)
         {
             std::cout << "FPS: " << frames / totalTime << '\n';
         }
-        SDL_Delay(1);
+#endif
+        SDL_Delay(2);
     }
 
     SDL_DestroyWindow(window);

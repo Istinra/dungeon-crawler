@@ -65,7 +65,7 @@ void Player::Action()
 	case POTION:
 		if (activeItem.count)
 		{
-			health += 20;
+			health += 15;
 			if (health > 100)
 			{
 				health = 100;
