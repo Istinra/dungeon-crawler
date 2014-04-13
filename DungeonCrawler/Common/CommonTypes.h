@@ -8,8 +8,12 @@
 
 #ifndef DungeonCrawler_Vector_h
 #define DungeonCrawler_Vector_h
-
 #define _USE_MATH_DEFINES
+
+#include <memory>
+
+template<typename T>
+using UniquePtr = std::unique_ptr<T>;
 
 struct Sprite
 {

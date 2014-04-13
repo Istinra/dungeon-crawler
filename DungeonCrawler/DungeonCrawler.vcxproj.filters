@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Entity">
       <UniqueIdentifier>{396364b2-f614-41c8-8009-30102b06d486}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EntitySystem">
+      <UniqueIdentifier>{9dbf27b5-4064-4d7b-80cb-6463c2b0e5d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EntitySystem">
+      <UniqueIdentifier>{7e9d6531-f0ca-4489-af1b-aa583ff65a3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp">
@@ -40,9 +46,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RayCastBitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
@@ -110,6 +113,30 @@
     </ClCompile>
     <ClCompile Include="VineEntity.cpp">
       <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\Actor.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\AbstractComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\RenderableComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="RayCastBitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\PickupComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\PhysicsComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\EnemyComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySystem\LivingComponent.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +220,30 @@
     </ClInclude>
     <ClInclude Include="VineEntity.h">
       <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\AbstractComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\Actor.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\ComponentType.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\PhysicsComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\RenderableComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\EnemyComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\PickupComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySystem\LivingComponent.h">
+      <Filter>Header Files\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
